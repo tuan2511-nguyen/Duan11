@@ -6,9 +6,6 @@
                 <li><a href="index.php?act=add-danhmuc" >Thêm Danh mục</a></li>
                 <li>
                             <a href="index.php?act=add-sanpham" class="active">Thêm Sản phẩm</a>
-                                <ul class="submenu">
-                                    <li><a href="#">Thêm CT Sản phẩm</a></li>
-                                </ul>
                         </li>
                 <li><a href="index.php?act=dstk">QL Tài khoản</a></li>
                 <li><a href="index.php?act=dsbl">QL Bình luận</a></li>
