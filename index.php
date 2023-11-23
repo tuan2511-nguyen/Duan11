@@ -4,6 +4,7 @@ include "model/pdo.php";
 include "model/sanpham.php";
 include "model/danhmuc.php";
 include "model/taikhoan.php";
+include "model/binhluan.php";
 include "user/header.php";
 include "global.php";
 
@@ -50,6 +51,30 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             $danhmuc = loadall_danhmuc();
             include "user/sanpham/danhmuc.php";
             break;
+        case 'ct_sanpham':
+            if (isset($_GET['id_sp']) && ($_GET['id_sp'] > 0)) {
+                $id_sp = $_GET['id_sp'];
+                $ctsp = load_spct($id_sp);
+                $bienthe = load_bienthe($id_sp);
+                $load_random = load_random();
+                $listbl = loadall_binhluan($id_sp);
+            }
+            include "user/sanpham/ctsp.php";
+            break;
+        case 'binhluan':
+            if (isset($_GET['id_sp']) && ($_GET['id_sp'] > 0)) {
+                $id_sp = $_GET['id_sp'];
+                $ctsp = load_spct($id_sp);
+            }
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $rating = $_POST["rating"];
+                $noidung  = $_POST['noidung'];
+                $id_user = $_SESSION['username']['id_user'];
+                $ngaydang = date('d/m/Y');
+                insert_binhluan($noidung, $id_user, $id_sp, $ngaydang, $rating);
+            }
+            include "user/binhluan/binhluan.php";
+            break;
         case 'dangky':
         
             if (isset($_POST['btn_register']) && ($_POST['btn_register'])) {
@@ -61,7 +86,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 $diachi = $_POST['diachi'];
             
                 // Kiểm tra xem tất cả các trường có trống không
-                if (empty($username) || empty($pass) || empty($email) || empty($hoten) || empty($sdt) || empty($address)) {
+                if (empty($username) || empty($pass) || empty($email) || empty($hoten) || empty($sdt) || empty($diachi)) {
                     $thongbao = "<div class='notification'>Tất cả các trường đều phải được điền.</div>";
                 } else {
                     // Validate username
@@ -77,7 +102,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                                 $thongbao = "<div class='notification'>Email không hợp lệ.</div>";
                             } else {
                                 // Nếu tất cả các kiểm tra đều thành công, thì tiếp tục đăng ký
-                                insert_taikhoan($username, $pass, $email, $hoten, $sdt, $address);
+                                insert_taikhoan($username, $pass, $email, $hoten, $sdt, $diachi);
                                 $thongbao = "<div class='notification'>Đăng ký thành công. Vui lòng đăng nhập</div>";
                             }
                         }
@@ -89,6 +114,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             
             include "user/taikhoan/taikhoan.php";
             break;
+        
         case 'dangnhap':
             if (isset($_POST['btn_login']) && ($_POST['btn_login'])) {
                 $user = $_POST['username'];

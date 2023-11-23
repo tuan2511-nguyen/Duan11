@@ -48,7 +48,7 @@ function load_sanpham($start, $limit, $kw = "", $whereConditions = []) {
     $sql = "SELECT * FROM sanpham";
 
     if ($kw !== "") {
-        $whereConditions[] = "sp.name LIKE '%" . $kw . "%'";
+        $whereConditions[] = "sanpham.ten_sp LIKE '%" . $kw . "%'";
     }
 
     // Thêm điều kiện WHERE nếu có
@@ -65,5 +65,21 @@ function load_sanpham($start, $limit, $kw = "", $whereConditions = []) {
 function get_total_products(){
     $sql = "SELECT COUNT(*) as total FROM sanpham";
     return pdo_query_value($sql);
+}
+
+//load-sản phẩm chi tiết
+function load_spct($id_sp)
+{
+    $sql = "SELECT * FROM sanpham WHERE id_sp = $id_sp";
+    return pdo_query_one($sql);
+}
+function load_bienthe($id_sp)
+{
+    $sql = "SELECT DISTINCT size FROM ct_sanpham WHERE id_sp = $id_sp";
+    return pdo_query($sql);
+}
+function load_random(){
+    $sql = "SELECT * FROM sanpham ORDER BY RAND() LIMIT 5";
+    return pdo_query($sql);
 }
 
