@@ -47,7 +47,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             $start = ($current_page - 1) * $limit;
 
             // Tải sản phẩm với điều kiện tìm kiếm
-            $dssp = load_sanpham($start, $limit, $kw,$whereConditions);
+            $dssp = load_sanpham($start, $limit, $kw, $whereConditions);
             $danhmuc = loadall_danhmuc();
             include "user/sanpham/danhmuc.php";
             break;
@@ -72,11 +72,13 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 $id_user = $_SESSION['username']['id_user'];
                 $ngaydang = date('d/m/Y');
                 insert_binhluan($noidung, $id_user, $id_sp, $ngaydang, $rating);
+                echo '<script>window.location.href = "index.php?act=ct_sanpham&id_sp=' . $id_sp . '";</script>';
+                exit();
             }
             include "user/binhluan/binhluan.php";
             break;
         case 'dangky':
-        
+
             if (isset($_POST['btn_register']) && ($_POST['btn_register'])) {
                 $username = $_POST['username'];
                 $pass = $_POST['pass'];
@@ -84,7 +86,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 $hoten = $_POST['hoten'];
                 $sdt = $_POST['sdt'];
                 $diachi = $_POST['diachi'];
-            
+
                 // Kiểm tra xem tất cả các trường có trống không
                 if (empty($username) || empty($pass) || empty($email) || empty($hoten) || empty($sdt) || empty($diachi)) {
                     $thongbao = "<div class='notification'>Tất cả các trường đều phải được điền.</div>";
@@ -108,18 +110,17 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                         }
                     }
                 }
-                
             }
-            
-            
+
+
             include "user/taikhoan/taikhoan.php";
             break;
-        
+
         case 'dangnhap':
             if (isset($_POST['btn_login']) && ($_POST['btn_login'])) {
                 $user = $_POST['username'];
                 $pass = $_POST['pass'];
-            
+
                 // Kiểm tra xem tên người dùng và mật khẩu có trống không
                 if (empty($user) || empty($pass)) {
                     $thongbao = "Tên người dùng và mật khẩu không được để trống.";
@@ -133,7 +134,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                     }
                 }
             }
-            
+
             include "user/taikhoan/taikhoan.php";
             break;
         case 'logout':
