@@ -61,7 +61,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 $diachi = $_POST['diachi'];
             
                 // Kiểm tra xem tất cả các trường có trống không
-                if (empty($username) || empty($pass) || empty($email) || empty($hoten) || empty($sdt) || empty($address)) {
+                if (empty($username) || empty($pass) || empty($email) || empty($hoten) || empty($sdt) || empty($diachi)) {
                     $thongbao = "<div class='notification'>Tất cả các trường đều phải được điền.</div>";
                 } else {
                     // Validate username
@@ -77,7 +77,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                                 $thongbao = "<div class='notification'>Email không hợp lệ.</div>";
                             } else {
                                 // Nếu tất cả các kiểm tra đều thành công, thì tiếp tục đăng ký
-                                insert_taikhoan($username, $pass, $email, $hoten, $sdt, $address);
+                                insert_taikhoan($username, $pass, $email, $hoten, $sdt, $diachi);
                                 $thongbao = "<div class='notification'>Đăng ký thành công. Vui lòng đăng nhập</div>";
                             }
                         }
@@ -109,6 +109,9 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             }
             
             include "user/taikhoan/taikhoan.php";
+            break;
+        case 'update-taikhoan':
+            include "user/taikhoan/update-taikhoan.php";
             break;
         case 'logout':
             session_unset();

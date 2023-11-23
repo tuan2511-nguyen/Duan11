@@ -42,8 +42,8 @@
                 </tr>
             </thead>
             <?php
-                foreach ($listsanpham as $sanpham){
-                    extract($sanpham);
+                foreach ($listsp as $sp){
+                    extract($sp);
                     $suasp="index.php?act=suasp&id_sp=".$id_sp;
                     $xoasp="index.php?act=xoasp&id_sp=".$id_sp;
                     $bienthe="index.php?act=bienthe&id_sp=".$id_sp;
@@ -71,6 +71,26 @@
             }
             ?>
         </table>
+        <?php
+            if ($current_page > 1 && $total_page > 1){
+            echo '<li class="pagi"><a href="index.php?act=list-sanpham&page='.($current_page-1).'">Prev</a> </li>';
+            }
+            for ($i = 1; $i <= $total_page; $i++){
+                
+                if ($i == $current_page){
+                    echo '<li class="pagi"><a>'.$i.'</a></li>';
+                }
+                else{
+                    echo '<li class="pagi"><a href="index.php?act=list-sanpham&page='.$i.'">'.$i.'</a></li>';
+                }
+            }
+
+            // nếu current_page < $total_page và total_page > 1 mới hiển thị nút prev
+            if ($current_page < $total_page && $total_page > 1){
+                echo '<li class="pagi"><a href="index.php?act=list-sanpham&page='.($current_page+1).'">Next</a> </li>';
+            }
+        ?>
+        <br><br><br><br>
         <div>
             <a href="index.php?act=add-sanpham"  class="form">
                 <input type="button" value="Thêm Sản phẩm">

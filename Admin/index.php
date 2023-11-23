@@ -17,8 +17,19 @@
                 include "danhmuc/add-danhmuc.php";
                 break;
             case 'list-danhmuc':
-                //$listdanhmuc=loadall_danhmuc();
-                $page=getNumber();
+                $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+                $limit = 3;
+                $total_records = get_total_dm(); // Truyền điều kiện tìm kiếm vào get_total_products
+                $total_records = intval($total_records);
+                $total_page = ceil($total_records / $limit);
+                if ($current_page > $total_page) {
+                    $current_page = $total_page;
+                } else if ($current_page < 1) {
+                    $current_page = 1;
+                }
+                $start = ($current_page - 1) * $limit;
+                $listdm=load_dm($start, $limit);
+                get_total_dm();
                 include "danhmuc/list-danhmuc.php";
                 break;
             case 'xoadm':
@@ -95,8 +106,20 @@
                 }else{
                     $iddm=0;
                 }
+                $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+                $limit = 3;
+                $total_records = get_total_sp(); // Truyền điều kiện tìm kiếm vào get_total_products
+                $total_records = intval($total_records);
+                $total_page = ceil($total_records / $limit);
+                if ($current_page > $total_page) {
+                    $current_page = $total_page;
+                } else if ($current_page < 1) {
+                    $current_page = 1;
+                }
+                $start = ($current_page - 1) * $limit;
+                $listsp=load_sp($start, $limit,$iddm);
+                get_total_sp();
                 $listdanhmuc=loadall_danhmuc();
-                $listsanpham=loadall_sanpham($iddm);
                 include "sanpham/list-sanpham.php";
                 break;
             case 'xoasp':

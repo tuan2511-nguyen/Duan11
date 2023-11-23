@@ -129,7 +129,7 @@
 								<figure>
 									<span class="ribbon off">-30%</span>
 									<a href="product-detail-1.html">
-										<img class="img-fluid lazy" src="' . $hinh . '">
+										<img class="img-fluid lazy" src="'. $hinh .'">
 									</a>
 									<div data-countdown="2019/05/15" class="countdown"></div>
 								</figure>
