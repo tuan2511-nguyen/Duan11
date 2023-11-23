@@ -1,0 +1,181 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.admin-container {
+    display: flex;
+    background-color: #FFFFFF;
+    height: auto;
+}
+
+.admin-sidebar {
+    height: fit-content;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-left: 50px;
+    margin-right: 50px;
+    width: 400px;
+    background-color: white;
+    color: black;
+    padding: 20px;
+    border: black solid 3px;
+}
+
+.admin-sidebar h2 {
+    color: black;
+    margin-bottom: 20px;
+}
+
+.admin-sidebar nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.admin-sidebar nav a {
+    text-decoration: none;
+    color: black;
+    padding: 10px;
+    display: block;
+    transition: background-color 0.3s;
+}
+
+.admin-sidebar nav a:hover {
+    background-color: #D0D0D0;
+}
+
+.admin-sidebar nav a.active {
+    background-color: #004DDA;
+    color: white;
+}
+
+.admin-content {
+    padding: 20px;
+    width: 100%;
+}
+
+.add-product-form {
+    max-width: 400px;
+    margin-top: 20px;
+}
+
+.add-product-form label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.form1 input,
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form12 input {
+    width: 50px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form12 select {
+    width: 200px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form input {
+    margin-top: 10px;
+    width: 150px;
+    background-color: #004DDA;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.form2 button,
+.form2 input {
+    width: 49%;
+    background-color: #004DDA;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.form2 button:hover,
+.form2 input:hover {
+    background-color: #004DDA;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 40px;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.action-column {
+    text-align: center;
+}
+
+.action-column button {
+    padding: 5px 10px;
+    margin: 2px;
+    cursor: pointer;
+}
+
+.edit-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+}
+
+.delete-button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+}
+
+.submenu {
+    display: none;
+}
+
+
+/* Hiển thị menu con khi menu cha được hover */
+
+li:hover .submenu {
+    display: block;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
