@@ -9,6 +9,16 @@ function insert_bienthesanpham($size, $soluong, $id_sp)
     $sql = "insert into ct_sanpham(size,soluong,id_sp) values('$size','$soluong','$id_sp')";
     pdo_execute($sql);
 }
+function loadall_bienthesanpham($id_sp = 0)
+{
+    $sql = "select * from ct_sanpham where 1";
+    if ($id_sp > 0) {
+        $sql .= " and id_sp ='" . $idsp . "'";
+    }
+    $sql .= " order by id_sp asc";
+    $listbienthe = pdo_query($sql);
+    return $listbienthe;
+}
 function delete_sanpham($id_sp)
 {
     $sql = "delete from sanpham where id_sp=" . $id_sp;
