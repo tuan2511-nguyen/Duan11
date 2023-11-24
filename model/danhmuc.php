@@ -21,16 +21,13 @@
         $sql="update danhmuc set ten_dm='".$ten_dm."' where id_dm=".$id_dm;
         pdo_execute($sql);
     }
-    function getNumber(){
-        if(isset($_GET['pages'])){
-            $pages = $_GET['pages'];
-        }else{
-            $pages=1;
-        }
-        $row=3;
-        $from=($pages-1) * $row;
-        $sql="select * from danhmuc order by id_dm asc limit $from,$row";
-        $page=pdo_query($sql);
-        return $page;
+    function load_dm($start, $limit){
+        $sql = "SELECT * FROM danhmuc LIMIT $start, $limit";
+        $listdm = pdo_query($sql);
+        return $listdm;
+    }
+    function get_total_dm(){
+        $sql = "SELECT COUNT(*) as total FROM danhmuc";
+        return pdo_query_value($sql);
     }
 ?>

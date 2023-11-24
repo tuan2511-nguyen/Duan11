@@ -118,14 +118,14 @@
 					<?php
 					foreach ($dssp as $sp) {
 						extract($sp);
+						$hinh = $img_path . $img;
 						$linksp = "index.php?act=ct_sanpham&id_sp=" . $id_sp;
 						echo '<div class="col-6 col-md-4">
 							<div class="grid_item">
 								<span class="ribbon off">-30%</span>
 								<figure>
 									<a href="' . $linksp . '">
-										<img class="img-fluid lazy" src="img/products/product_placeholder_square_medium.jpg"
-											data-src="img/products/shoes/1.jpg" alt="">
+										<img class="img-fluid lazy" src="'. $hinh .'">
 									</a>
 									<div data-countdown="2019/05/15" class="countdown"></div>
 								</figure>
@@ -136,17 +136,6 @@
 									<span class="new_price">' . $gia_khuyenmai . '</span>
 									<span class="old_price">' . $gia_goc . '</span>
 								</div>
-								<ul>
-									<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
-											title="Add to favorites"><i class="ti-heart"></i><span>Add to
-												favorites</span></a></li>
-									<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
-											title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to
-												compare</span></a></li>
-									<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left"
-											title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a>
-									</li>
-								</ul>
 							</div>
 							<!-- /grid_item -->
 						</div>';

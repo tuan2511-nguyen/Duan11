@@ -179,3 +179,50 @@ li:hover .submenu {
     border: 1px solid #ccc;
     padding: 10px;
 }
+
+.pagi {
+    float: left;
+    list-style: none;
+    margin-top: 20px;
+}
+
+.pagi a {
+    padding: 8px 12px;
+    text-decoration: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: #333;
+    transition: background-color 0.3s ease;
+    margin: 3px;
+}
+
+.pagi a:hover {
+    background-color: rgba(0, 0, 0, 0.123);
+}
+
+.pagi .active a {
+    background-color: #007BFF;
+    color: #fff;
+}
+
+.div1 {
+    margin-left: 200px;
+    width: 70%;
+    background-color: #fff;
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    position: relative;
+}
+
+.form3 input {
+    margin-left: 200px;
+    width: 49%;
+    background-color: #004DDA;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}

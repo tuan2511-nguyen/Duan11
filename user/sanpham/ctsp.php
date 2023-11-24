@@ -38,7 +38,7 @@
                     </ul>
                 </div>
                 <!-- /page_header -->
-                <form action="" method="post">
+                <form action="index.php?act=viewcart" method="post">
                     <div class="prod_info">
                         <h1><?php echo $ctsp['ten_sp']  ?></h1>
                         <span class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i><em>4 reviews</em></span>
@@ -79,7 +79,11 @@
                                 <div class="price_main"><span class="new_price"><?php echo $ctsp['gia_khuyenmai'] ?></span><span class="percentage">-20%</span> <span class="old_price"><?php echo $ctsp['gia_goc'] ?></span></div>
                             </div>
                             <div class="col-lg-4 col-md-6">
-                                <input type="hidden" name="product_id" id="product_id" value="<?php echo $ctsp['id_sp'] ?>">
+                                <input type="hidden" name="id_sp" value="<?= $ctsp['id_sp'] ?>">
+                                <input type="hidden" name="ten_sp" value="<?= $ctsp['ten_sp'] ?>">
+                                <input type="hidden" name="gia_khuyenmai" value="<?= $ctsp['gia_khuyenmai'] ?>">
+                                <input type="hidden" name="soluong" id="quantity_hidden" value="1">
+                                <input type="hidden" name="size[]" value="<?= $size['size'] ?>">
                                 <div class="btn_add_to_cart"><input type="submit" class="btn_1" value="Add to Cart"></div>
                             </div>
                         </div>
@@ -170,7 +174,7 @@
                             <?php
                             }
                             ?>
-                            
+
                         </div>
                         <!-- /card-body -->
                     </div>

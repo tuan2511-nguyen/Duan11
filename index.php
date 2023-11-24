@@ -1,5 +1,6 @@
 <?php
 session_start();
+if (!isset($_SESSION['cart'])) $_SESSION['cart'];
 include "model/pdo.php";
 include "model/sanpham.php";
 include "model/danhmuc.php";
@@ -77,6 +78,38 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             }
             include "user/binhluan/binhluan.php";
             break;
+        case 'viewcart':
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $id_sp = $_POST['id_sp'];
+                $ten_sp = $_POST['ten_sp'];
+                $gia_khuyenmai = $_POST['gia_khuyenmai'];
+                $soluong = $_POST['soluong'];
+                $size = $_POST['size'];
+        
+
+                $product_in_cart = false;
+                foreach ($_SESSION['cart'] as &$product) {
+                    if ($product['id_sp'] == $id_sp) {
+                        $product['soluong'] += $soluong;
+                        $product_in_cart = true;
+                        break;
+                    }
+                }
+        
+                if (!$product_in_cart) {
+                    $product = array(
+                        "id_sp" => $id_sp,
+                        "ten_sp" => $ten_sp,
+                        "gia_khuyenmai" => $gia_khuyenmai,
+                        "soluong" => $soluong,
+                        "size" => $size
+                    );
+        
+                    $_SESSION['cart'][] = $product;
+                }
+            }
+            include "user/sanpham/cart.php";
+            break;
         case 'dangky':
 
             if (isset($_POST['btn_register']) && ($_POST['btn_register'])) {
@@ -136,6 +169,9 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             }
 
             include "user/taikhoan/taikhoan.php";
+            break;
+        case 'update-taikhoan':
+            include "user/taikhoan/edit-taikhoan.php";
             break;
         case 'logout':
             session_unset();

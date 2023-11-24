@@ -25,8 +25,8 @@
                 </tr>
             </thead>
             <?php
-                foreach ($page as $pa){
-                    extract($pa);
+                foreach ($listdm as $dm){
+                    extract($dm);
                     $suadm="index.php?act=suadm&id_dm=".$id_dm;
                     $xoadm="index.php?act=xoadm&id_dm=".$id_dm;
 
@@ -43,23 +43,26 @@
                 }
             ?>
         </table>
-        <nav aria-label="Page navigation example">
-  <ul class="pagination">
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</nav>
+        <?php
+            if ($current_page > 1 && $total_page > 1){
+            echo '<li class="pagi"><a href="index.php?act=list-danhmuc&page='.($current_page-1).'">Prev</a> </li>';
+            }
+            for ($i = 1; $i <= $total_page; $i++){
+                
+                if ($i == $current_page){
+                    echo '<li class="pagi"><a>'.$i.'</a></li>';
+                }
+                else{
+                    echo '<li class="pagi"><a href="index.php?act=list-danhmuc&page='.$i.'">'.$i.'</a></li>';
+                }
+            }
+
+            // nếu current_page < $total_page và total_page > 1 mới hiển thị nút prev
+            if ($current_page < $total_page && $total_page > 1){
+                echo '<li class="pagi"><a href="index.php?act=list-danhmuc&page='.($current_page+1).'">Next</a> </li>';
+            }
+        ?>
+        <br><br><br><br>
         <div>
             <a href="index.php?act=add-danhmuc"  class="form">
                 <input type="button" value="Thêm Danh mục">

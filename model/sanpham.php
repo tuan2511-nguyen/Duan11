@@ -61,12 +61,23 @@ function load_sanpham($start, $limit, $kw = "", $whereConditions = []) {
     $listsp = pdo_query($sql);
     return $listsp;
 }
-
-function get_total_products(){
-    $sql = "SELECT COUNT(*) as total FROM sanpham";
-    return pdo_query_value($sql);
-}
-
+    function get_total_products(){
+        $sql = "SELECT COUNT(*) as total FROM sanpham";
+        return pdo_query_value($sql);
+    }
+    function load_sp($start, $limit, $iddm = 0){
+        $sql = "select * from sanpham where 1";
+        if ($iddm > 0) {
+            $sql .= " and id_dm ='" . $iddm . "'";
+        }
+        $sql .= " LIMIT $start, $limit";
+        $listsp = pdo_query($sql);
+        return $listsp;
+    }
+    function get_total_sp(){
+        $sql = "SELECT COUNT(*) as total FROM sanpham";
+        return pdo_query_value($sql);
+    }
 //load-sản phẩm chi tiết
 function load_spct($id_sp)
 {
@@ -83,3 +94,4 @@ function load_random(){
     return pdo_query($sql);
 }
 
+?>
