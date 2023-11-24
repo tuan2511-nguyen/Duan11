@@ -43,6 +43,7 @@
 	<!-- YOUR CUSTOM CSS -->
 	<link href="css/custom.css" rel="stylesheet">
 
+	<link rel="stylesheet" href="css/admin-styles.css">
 </head>
 
 <body>
@@ -132,6 +133,11 @@
                                                 extract($_SESSION['username']);
                                             ?>
                                                 <h4>Xin chào <?= $username ?></h4><br>
+												<ul>
+													<li>
+														<a href="index.php?act=edit-taikhoan"><i class="ti-user"></i> My Profile</a>
+													</li>
+												</ul>
                                             <?php
                                             } else {
                                             ?>
@@ -145,9 +151,6 @@
 												</li>
 												<li>
 													<a href="account.html"><i class="ti-package"></i>My Orders</a>
-												</li>
-												<li>
-													<a href="account.html"><i class="ti-user"></i>My Profile</a>
 												</li>
 												<li>
 													<a href="index.php?act=logout"><i class="ti-help-alt"></i>Đăng xuất</a>
