@@ -28,9 +28,6 @@
                         <label for="productName">Tên Sản Phẩm:</label>
                         <input type="text" id="productName" name="tensp" value="<?=$ten_sp?>" required>
 
-                        <label for="productColor">Màu Sắc:</label>
-                        <input type="text" id="productColor" name="mausac" required>
-
                         <label for="productSize">Size:</label>
                         <select id="productSize" name="size" required>
                             <option value="38">38</option>

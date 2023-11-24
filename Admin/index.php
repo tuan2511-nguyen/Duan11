@@ -92,10 +92,9 @@
                 if(isset($_POST['them'])&&($_POST['them'])){
                     if(isset($_POST['them'])&&($_POST['them'])){
                         $id_sp=$_POST['id_sp'];
-                        $mausac=$_POST['mausac'];
                         $size=$_POST['size'];
                         $soluong=$_POST['soluong'];
-                        insert_bienthesanpham($mausac,$size,$soluong,$id_sp);
+                        insert_bienthesanpham($size,$soluong,$id_sp);
                         $thongbao="Thêm thành công";
                     }
                 }

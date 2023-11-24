@@ -137,7 +137,7 @@
 													<li>
 														<a href="index.php?act=edit-taikhoan"><i class="ti-user"></i> My Profile</a>
 													</li>
-													<?php if($vaitro==1) { ?>
+													<?php if($vaitro=="admin") { ?>
 													<li>
 														<a href="admin/index.php"><i class="ti-user"></i> Admin</a>
 													</li>

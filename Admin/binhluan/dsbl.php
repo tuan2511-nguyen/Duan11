@@ -43,8 +43,8 @@
                                 <td>'.$ngaydang.'</td>
                                 <!--
                                 <td class="action-column">
-                                    <a href="'.$suauser.'"> <button class="edit-button">Sửa</button> </a>
-                                    <a href="'.$xoauser.'"> <button class="delete-button">Xóa</button> </a>
+                                    <a href=""> <button class="edit-button">Sửa</button> </a>
+                                    <a href=""> <button class="delete-button">Xóa</button> </a>
                                 </td>-->
                             </tr>
                         </tbody>';

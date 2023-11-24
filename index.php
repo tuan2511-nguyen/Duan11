@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['cart'])) $_SESSION['cart'];
+// if (!isset($_SESSION['cart'])) $_SESSION['cart'];
 include "model/pdo.php";
 include "model/sanpham.php";
 include "model/danhmuc.php";
