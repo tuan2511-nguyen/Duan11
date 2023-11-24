@@ -125,12 +125,17 @@
 							extract($sp);
 							$linksp = "index.php?act=ct_sanpham&id_sp=" . $id_sp;
 							$hinh = $img_path . $img;
+							$linksp = "index.php?act=ct_sanpham&id_sp=" . $id_sp;
 							echo '<div class="col-6 col-md-4 col-xl-3 isotope-item sale">
 							<div class="grid_item">
-								<figure>
+								<figure> 
 									<span class="ribbon off">-30%</span>
 									<a href="' . $linksp . '">
+<<<<<<< HEAD
 										<img class="img-fluid lazy" src="' . $hinh . '">
+=======
+										<img class="img-fluid lazy" src="'. $hinh .'">
+>>>>>>> fa11f1d7531f76be1630e0f0d5343d77c722999f
 									</a>
 									<div data-countdown="2019/05/15" class="countdown"></div>
 								</figure>

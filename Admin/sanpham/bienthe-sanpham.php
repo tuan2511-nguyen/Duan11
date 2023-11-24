@@ -7,7 +7,7 @@
 <div class="admin-container">
             <aside class="admin-sidebar">
                 <h2>Admin Panel</h2>
-                <nav>
+                <nav> 
                     <ul>
                         <li><a href="index.php?act=add-danhmuc" >Thêm Danh mục</a></li>
                         <li>
@@ -48,7 +48,7 @@
                     <div class="form2">
                         <input type="hidden" name="id_sp" value="<?php if(isset($id_sp)&&($id_sp>0)) echo $id_sp;?>">
                         <input type="submit" name="them" value="Thêm">
-                        <a href="index.php?act=list-sanpham" class="button"><input type="button" value="Danh sách"></a>
+                        <a href="index.php?act=listbienthe-sanpham" class="button"><input type="button" value="Danh sách"></a>
                     </div>
                     <?php
                         if(isset($thongbao)&&($thongbao!="")) echo $thongbao;

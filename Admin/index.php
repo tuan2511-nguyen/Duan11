@@ -2,6 +2,8 @@
     include "../model/pdo.php";
     include "../model/danhmuc.php";
     include "../model/sanpham.php";
+    include "../model/taikhoan.php";
+    include "../model/binhluan.php";
     include "header.php";
 
 
@@ -100,6 +102,11 @@
                 $listsanpham=loadall_sanpham();
                 include "sanpham/list-sanpham.php";
                 break;
+            case 'listbienthe-sanpham':
+                $listbienthe=loadall_bienthesanpham();
+                $listsanpham=loadall_sanpham();
+                include "sanpham/listbienthe-sanpham.php";
+                break;
             case 'list-sanpham':
                 if(isset($_POST['listok'])&&($_POST['listok'])){
                     $iddm=$_POST['iddm'];
@@ -161,6 +168,14 @@
                 $listsanpham=loadall_sanpham();
                 include "sanpham/list-sanpham.php";
                 break;
+            case 'dstk':
+                $listtaikhoan=loadall_taikhoan();
+                include "taikhoan/dstk.php";
+            break;
+            case 'dsbl':
+                $listbinhluan=loadall_binhluan();
+                include "binhluan/dsbl.php";
+            break;
             default:
                 include "home.php";
                 break;

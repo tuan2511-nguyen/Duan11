@@ -12,4 +12,9 @@
         $sql="update user set id_user='".$id_user."', username='".$username."', pass='".$pass."',email='".$email."',hoten='".$hoten."',diachi='".$diachi."',sdt='".$sdt."' where id_user=".$id_user;
         pdo_execute($sql);
     }
+    function loadall_taikhoan(){
+        $sql="select * from user order by id_user asc";
+        $listtaikhoan=pdo_query($sql);
+        return $listtaikhoan;
+    }
 ?>
