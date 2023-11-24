@@ -173,7 +173,7 @@
                 include "taikhoan/dstk.php";
             break;
             case 'dsbl':
-                $listbinhluan=loadall_binhluan();
+                $listbinhluan=loadall_bl();
                 include "binhluan/dsbl.php";
             break;
             default:

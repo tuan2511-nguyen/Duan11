@@ -170,11 +170,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
 
             include "user/taikhoan/taikhoan.php";
             break;
-<<<<<<< HEAD
-        case 'update-taikhoan':
-=======
         case 'edit-taikhoan':
->>>>>>> fa11f1d7531f76be1630e0f0d5343d77c722999f
             include "user/taikhoan/edit-taikhoan.php";
             break;
         case 'logout':

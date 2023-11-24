@@ -135,7 +135,7 @@
                                                 <h4>Xin chào <?= $username ?></h4><br>
 												<ul>
 													<li>
-														<a href="index.php?act=update-taikhoan"><i class="ti-user"></i> My Profile</a>
+														<a href="index.php?act=edit-taikhoan"><i class="ti-user"></i> My Profile</a>
 													</li>
 													<?php if($vaitro==1) { ?>
 													<li>
