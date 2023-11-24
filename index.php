@@ -137,8 +137,8 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
 
             include "user/taikhoan/taikhoan.php";
             break;
-        case 'update-taikhoan':
-            include "user/taikhoan/update-taikhoan.php";
+        case 'edit-taikhoan':
+            include "user/taikhoan/edit-taikhoan.php";
             break;
         case 'logout':
             session_unset();
