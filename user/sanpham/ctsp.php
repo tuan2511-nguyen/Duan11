@@ -138,27 +138,39 @@
                         <div class="card-body">
                             <div class="row justify-content-between">
                                 <?php
-                                    foreach($listbl as $bl){
-                                        extract($bl);
-                                        echo '<div class="col-lg-6">
+                                foreach ($listbl as $bl) {
+                                    extract($bl);
+                                    echo '<div class="col-lg-6">
                                         <div class="review_content">
                                             <div class="clearfix add_bottom_10">
                                                 <span class="rating">';
-                                        for($i = 1; $i <= $rating; $i++){
-                                            echo '<i class="icon-star"></i>';
-                                        }
-                                        echo '<em>'.$rating.'.0/5.0</em></span>
-                                                <em>'.$ngaydang.'</em>
+                                    for ($i = 1; $i <= $rating; $i++) {
+                                        echo '<i class="icon-star"></i>';
+                                    }
+                                    echo '<em>' . $rating . '.0/5.0</em></span>
+                                                <em>' . $ngaydang . '</em>
                                             </div>
-                                            <h4>"'.$hoten.'"</h4>
-                                            <p>'.$noidung.'</p>
+                                            <h4>"' . $hoten . '"</h4>
+                                            <p>' . $noidung . '</p>
                                         </div>
                                     </div>';
-                                    }
+                                }
                                 ?>
                             </div>
                             <!-- /row -->
-                            <p class="text-end"><a href="index.php?act=binhluan&id_sp=<?= $ctsp['id_sp'] ?>" class="btn_1">Leave a review</a></p>
+                            <?php
+                            if (isset($_SESSION['username'])) {
+                                extract($_SESSION['username']);
+                            ?>
+                                <p class="text-end"><a href="index.php?act=binhluan&id_sp=<?= $ctsp['id_sp'] ?>" class="btn_1">Leave a review</a></p>
+                            <?php
+                            } else {
+                            ?>
+                                <h4>Đăng nhập để bình luận</h4><br>
+                            <?php
+                            }
+                            ?>
+                            
                         </div>
                         <!-- /card-body -->
                     </div>
@@ -173,9 +185,9 @@
 
     <div class="container margin_60_35">
         <div class="main_title">
-            <h2>Related</h2>
+            <h2>Giày</h2>
             <span>Products</span>
-            <p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
+            <p>Có thể bạn sẽ thích.</p>
         </div>
         <div class="owl-carousel owl-theme products_carousel">
             <?php
