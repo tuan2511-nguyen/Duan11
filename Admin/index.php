@@ -107,7 +107,7 @@
                 $listbienthe=loadall_bienthesanpham();
                 $listsanpham=loadall_sanpham();
                 include "sanpham/listbienthe-sanpham.php";
-                break;
+                break; 
             case 'list-sanpham':
                 if(isset($_POST['listok'])&&($_POST['listok'])){
                     $iddm=$_POST['iddm'];
@@ -176,7 +176,7 @@
                 include "taikhoan/dstk.php";
             break;
             case 'dsbl':
-                $listbinhluan=loadall_bl();
+                $listbinhluan=load_binhluan();
                 include "binhluan/dsbl.php";
             break;
             default:

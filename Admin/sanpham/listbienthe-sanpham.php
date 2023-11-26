@@ -23,7 +23,7 @@
                             extract($sanpham);
                             $bienthe="index.php?act=bienthe&id_sp=".$id_sp;
                             echo '<h4>Sản phẩm: '.$ten_sp.'</h4>';
-                        }
+                        } 
                     ?>
             </div>
         </form>
