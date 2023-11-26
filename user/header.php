@@ -57,7 +57,7 @@
 					<div class="row small-gutters">
 						<div class="col-xl-3 col-lg-3 d-lg-flex align-items-center">
 							<div id="logo">
-								<a href="index.html"><img src="img/logo_black.svg" alt="" width="100" height="35"></a>
+								<a href="index.php"><img src="img/logo_black.svg" alt="" width="100" height="35"></a>
 							</div>
 						</div>
 						<nav class="col-xl-6 col-lg-7">
@@ -137,7 +137,7 @@
 													<li>
 														<a href="index.php?act=update-taikhoan"><i class="ti-user"></i> My Profile</a>
 													</li>
-													<?php if($vaitro==1) { ?>
+													<?php if($vaitro=="admin") { ?>
 													<li>
 														<a href="admin/index.php"><i class="ti-user"></i> Admin</a>
 													</li>

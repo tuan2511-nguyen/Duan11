@@ -164,6 +164,7 @@
                     update_sanpham($id_sp,$iddm,$tensp,$giasp,$giakm,$mota,$hinh);
                     $thongbao="Cập nhật thành công";
                 }
+                
                 $listdanhmuc=loadall_danhmuc();
                 $listsanpham=loadall_sanpham();
                 include "sanpham/list-sanpham.php";
@@ -173,7 +174,7 @@
                 include "taikhoan/dstk.php";
             break;
             case 'dsbl':
-                $listbinhluan=loadall_binhluan();
+                $listbinhluan=loadall_binhluan($id_sp);
                 include "binhluan/dsbl.php";
             break;
             default:
