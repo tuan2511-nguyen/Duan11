@@ -74,7 +74,7 @@
                                             <td>'.$soluong.'</td>
                                         </tr>
                                     </tbody>';
-                                }
+                                } 
                         ?>
                     </table>
                 </form>

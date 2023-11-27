@@ -65,10 +65,6 @@
                         <input type="submit" name="capnhat" value="Cập nhật">
                         <a href="index.php?act=list-sanpham" class="button"><input type="button" value="Danh sách"></a>
                     </div>
-                    <?php
-                        if(isset($thongbao)&&($thongbao!="")) echo $thongbao;
-                    ?>
-
                 </form>
             </main>
 </div>

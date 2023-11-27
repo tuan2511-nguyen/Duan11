@@ -27,6 +27,7 @@
                     <th>SĐT</th>
                     <th>Địa chỉ</th>
                     <th>Vai trò</th>
+                    <th class="action-column">Chức năng</th>
                     <!--
                     <th class="action-column">Chức năng</th>-->
                 </tr>
@@ -47,13 +48,12 @@
                                 <td>'.$sdt.'</td>
                                 <td>'.$diachi.'</td>
                                 <td>'.$vaitro.'</td>
-                                <!--
                                 <td class="action-column">
                                     <a href="'.$suauser.'"> <button class="edit-button">Sửa</button> </a>
                                     <a href="'.$xoauser.'"> <button class="delete-button">Xóa</button> </a>
-                                </td>-->
+                                </td>
                             </tr>
-                        </tbody>';
+                        </tbody>'; 
                 }
             ?>
         </table>

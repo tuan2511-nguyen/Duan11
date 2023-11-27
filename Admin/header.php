@@ -64,13 +64,13 @@
                                     <a href="" class="open_close" id="close_in"><i class="ti-close"></i></a>
                                 </div>
                                 <ul>
-                                    <li class="submenu">
+                                    <li class="">
                                         <a href="../index.php" class="">Home</a>
                                     </li>
                                     <li class="">
 										<a href="javascript:void(0);" class="" onclick="window.location.href='../index.php?act=danhmuc';">Sản phẩm</a>
 									</li>
-                                    <li class="submenu">
+                                    <li class="">
                                         <a href="javascript:void(0);" class="">Extra Pages</a>
                                     </li>
                                     <li>

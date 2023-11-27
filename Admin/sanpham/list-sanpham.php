@@ -53,7 +53,7 @@
                     }else{
                         $hinh="no photo";
                     }
-                    echo '<tbody>
+                    echo '<tbody> 
                             <tr>
                                 <td>'.$id_dm.'</td>
                                 <td>'.$ten_sp.'</td>
@@ -98,7 +98,7 @@
         </div>
         <br>
         <?php
-                        if(isset($thongbao)&&($thongbao!="")) echo $thongbao;
-                    ?>
+            if(isset($thongbao)&&($thongbao!="")) echo $thongbao;
+        ?>
     </main>
 </div>

@@ -71,12 +71,12 @@
 							<!-- Mobile menu button -->
 							<div class="main-menu">
 								<div id="header_menu">
-									<a href="index.html"><img src="img/logo_black.svg" alt="" width="100" height="35"></a>
+									<a href="index.php"><img src="img/logo_black.svg" alt="" width="100" height="35"></a>
 									<a href="#" class="open_close" id="close_in"><i class="ti-close"></i></a>
 								</div>
 								<ul>
 									<li class="">
-										<a href="index.php" class="">Home</a>
+										<a href="index.php" class="">Home</a> 
 									</li>
 									<li class="">
 										<a href="javascript:void(0);" class="" onclick="window.location.href='index.php?act=danhmuc';">Sản phẩm</a>

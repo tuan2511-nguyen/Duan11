@@ -55,7 +55,7 @@
                     $ten_dm=$_POST['ten_dm'];
                     $id_dm=$_POST['id_dm'];
                     update_danhmuc($id_dm,$ten_dm);
-                    $thongbao="Cập nhật thành công";
+                    $thongbao="Cập nhật thành công"; 
                     echo '<script>window.location.href = "index.php?act=list-danhmuc";</script>';
                 }
                 $thongbao="Cập nhật thành công";
@@ -160,8 +160,9 @@
                         //echo "Sorry, there was an error uploading your file.";
                       }
                     update_sanpham($id_sp,$iddm,$tensp,$giasp,$giakm,$mota,$hinh);
-                    echo '<script>window.location.href = "index.php?act=list-sanpham";</script>';
                     $thongbao="Cập nhật thành công";
+                    echo '<script>window.location.href = "index.php?act=list-sanpham";</script>';
+                  
                 }
                 $listdanhmuc=loadall_danhmuc();
                 $listsanpham=loadall_sanpham();
@@ -170,7 +171,37 @@
             case 'dstk':
                 $listtaikhoan=loadall_taikhoan();
                 include "taikhoan/dstk.php";
-            break;
+                break;
+            case 'xoauser':
+                if(isset($_GET['id_user'])&&($_GET['id_user']>0)){
+                    delete_taikhoan($_GET['id_user']);
+                    $thongbao="Xóa thành công";
+                }
+                $listtaikhoan=loadall_taikhoan();
+                include "taikhoan/dstk.php";
+                break;
+            case 'suauser';
+                if(isset($_GET['id_user'])&&($_GET['id_user']>0)){
+                    $taikhoan=loadone_taikhoan($_GET['id_user']);
+                }
+                include "taikhoan/update-taikhoan.php";
+                break;
+            case 'update-taikhoan':
+                if(isset($_POST['thaydoi'])&&($_POST['thaydoi'])){
+                    $id_user=$_POST['id_user'];
+                    $username=$_POST['username'];
+                    $pass=$_POST['pass'];
+                    $email=$_POST['email'];
+                    $hoten=$_POST['hoten'];
+                    $diachi=$_POST['diachi'];
+                    $sdt=$_POST['sdt'];
+                    $vaitro=$_POST['vaitro'];
+                    update_taikhoan($id_user,$username,$pass,$email,$hoten,$diachi,$sdt,$vaitro);
+                    $thongbao="Cập nhật thành công";
+                }
+                $listtaikhoan=loadall_taikhoan();
+                include "taikhoan/dstk.php";
+                break;
             case 'dsbl':
                 $listbinhluan=load_binhluan();
                 include "binhluan/dsbl.php";
