@@ -340,6 +340,16 @@
 		});
 	});
 
+	$(document).ready(function() {
+		$('.qty2').change(function() {
+			var id_sp = $(this).attr('id').split('_')[1];
+			var soluong = $(this).val();
+			var gia_khuyenmai = $('#price_' + id_sp).text().replace('$', '');
+			var total = soluong * gia_khuyenmai;
+			$('#total_' + id_sp).text('$' + total.toFixed(2));
+		});
+	});
+
 	// Popup up
     setTimeout(function () {
         $('.popup_wrapper').css({

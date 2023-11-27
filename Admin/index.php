@@ -164,6 +164,7 @@
                     echo '<script>window.location.href = "index.php?act=list-sanpham";</script>';
                   
                 }
+                
                 $listdanhmuc=loadall_danhmuc();
                 $listsanpham=loadall_sanpham();
                 include "sanpham/list-sanpham.php";
@@ -203,7 +204,11 @@
                 include "taikhoan/dstk.php";
                 break;
             case 'dsbl':
+<<<<<<< HEAD
+                $listbinhluan=loadall_binhluan($id_sp);
+=======
                 $listbinhluan=load_binhluan();
+>>>>>>> e3ba36971e2ab753dbe3d9675ff72d35fb1746a6
                 include "binhluan/dsbl.php";
             break;
             default:

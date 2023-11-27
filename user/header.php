@@ -57,7 +57,7 @@
 					<div class="row small-gutters">
 						<div class="col-xl-3 col-lg-3 d-lg-flex align-items-center">
 							<div id="logo">
-								<a href="index.html"><img src="img/logo_black.svg" alt="" width="100" height="35"></a>
+								<a href="index.php"><img src="img/logo_black.svg" alt="" width="100" height="35"></a>
 							</div>
 						</div>
 						<nav class="col-xl-6 col-lg-7">
@@ -98,7 +98,7 @@
 							<ul class="top_tools">
 								<li>
 									<div class="dropdown dropdown-cart">
-										<a href="cart.html" class="cart_bt"><strong>2</strong></a>
+										<a href="index.php?act=viewcart" class="cart_bt"><strong>2</strong></a>
 										<div class="dropdown-menu">
 											<ul>
 												<li>
@@ -181,7 +181,7 @@
 		<!-- /header -->
 		<div class="top_panel">
 			<div class="container header_panel">
-				<a href="#0" class="btn_close_top_panel"><i class="ti-close"></i></a>
+				<a href="" class="btn_close_top_panel"><i class="ti-close"></i></a>
 				<small>What are you looking for?</small>
 			</div>
 			<!-- /header_panel -->

@@ -61,7 +61,7 @@
                                 <label class="col-xl-5 col-lg-5  col-md-6 col-6"><strong>Quantity</strong></label>
                                 <div class="col-xl-4 col-lg-5 col-md-6 col-6">
                                     <div class="numbers-row">
-                                        <input type="text" value="1" id="quantity_1" class="qty2" name="quantity_1">
+                                        <input type="text" value="1" id="quantity_1" class="qty2" name="soluong" oninput="validateQuantity(this)" maxlength="2">
                                         <div>
                                             <?php
                                             if (isset($thongbao) && ($thongbao != "")) {
@@ -82,8 +82,6 @@
                                 <input type="hidden" name="id_sp" value="<?= $ctsp['id_sp'] ?>">
                                 <input type="hidden" name="ten_sp" value="<?= $ctsp['ten_sp'] ?>">
                                 <input type="hidden" name="gia_khuyenmai" value="<?= $ctsp['gia_khuyenmai'] ?>">
-                                <input type="hidden" name="soluong" id="quantity_hidden" value="1">
-                                <input type="hidden" name="size[]" value="<?= $size['size'] ?>">
                                 <div class="btn_add_to_cart"><input type="submit" class="btn_1" value="Add to Cart"></div>
                             </div>
                         </div>
@@ -255,5 +253,17 @@
         </div>
     </div>
     <!--/feat-->
+    <script>
+        function validateQuantity(input) {
+            var max = 20;
+            var value = parseInt(input.value);
+
+            if (isNaN(value) || value < 1) {
+                input.value = 1;
+            } else if (value > max) {
+                input.value = max;
+            }
+        }
+    </script>
 
 </main>
