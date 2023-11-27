@@ -6,7 +6,7 @@
     function delete_danhmuc($id_dm){
         $sql="delete from danhmuc where id_dm=".$id_dm;
         pdo_execute($sql);
-    }
+    } 
     function loadall_danhmuc(){
         $sql="select * from danhmuc order by id_dm asc";
         $listdanhmuc=pdo_query($sql);

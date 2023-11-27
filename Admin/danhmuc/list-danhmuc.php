@@ -56,7 +56,7 @@
                     echo '<li class="pagi"><a href="index.php?act=list-danhmuc&page='.$i.'">'.$i.'</a></li>';
                 }
             }
-
+ 
             // nếu current_page < $total_page và total_page > 1 mới hiển thị nút prev
             if ($current_page < $total_page && $total_page > 1){
                 echo '<li class="pagi"><a href="index.php?act=list-danhmuc&page='.($current_page+1).'">Next</a> </li>';

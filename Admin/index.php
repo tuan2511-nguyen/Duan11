@@ -4,9 +4,10 @@
     include "../model/sanpham.php";
     include "../model/taikhoan.php";
     include "../model/binhluan.php";
+    include "../model/bienthe.php";
     include "header.php";
 
-
+ 
     if(isset($_GET['act'])){
         $act=$_GET['act'];
         switch ($act) {
@@ -37,7 +38,7 @@
             case 'xoadm':
                 if(isset($_GET['id_dm'])&&($_GET['id_dm']>0)){
                     delete_danhmuc($_GET['id_dm']);
-                    $thongbao="Xóa thành công";
+                    $thongbao="Xóa thành công"; 
                 }
                 $listdanhmuc=loadall_danhmuc();
                 include "danhmuc/list-danhmuc.php";
@@ -57,6 +58,7 @@
                     $thongbao="Cập nhật thành công";
                     echo '<script>window.location.href = "index.php?act=list-danhmuc";</script>';
                 }
+                $thongbao="Cập nhật thành công";
                 $listdanhmuc=loadall_danhmuc();
                 include "danhmuc/list-danhmuc.php";
                 break;
@@ -86,28 +88,22 @@
             case 'bienthe':
                 if(isset($_GET['id_sp'])&&($_GET['id_sp']>0)){
                     $sanpham=loadone_sanpham($_GET['id_sp']);
+                    $listbienthe=loadall_bienthesanpham($_GET['id_sp']);
                 }
-                $listsanpham=loadall_sanpham();
-                include "sanpham/bienthe-sanpham.php";
+                include "bienthe/bienthe-sanpham.php";
                 break;
             case 'bienthe-sanpham':
                 if(isset($_POST['them'])&&($_POST['them'])){
-                    if(isset($_POST['them'])&&($_POST['them'])){
-                        $id_sp=$_POST['id_sp'];
-                        $size=$_POST['size'];
-                        $soluong=$_POST['soluong'];
-                        insert_bienthesanpham($size,$soluong,$id_sp);
-                        $thongbao="Thêm thành công";
-                    }
+                    $id_sp=$_POST['id_sp'];
+                    $size=$_POST['size'];
+                    $soluong=$_POST['soluong'];
+                    insert_bienthesanpham($size,$soluong,$id_sp);
+                    $thongbao="Thêm thành công";
+                    $sanpham=loadone_sanpham($id_sp);
+                    $listbienthe=loadall_bienthesanpham($id_sp);
                 }
-                $listsanpham=loadall_sanpham();
-                include "sanpham/list-sanpham.php";
+                include "bienthe/bienthe-sanpham.php";
                 break;
-            case 'listbienthe-sanpham':
-                $listbienthe=loadall_bienthesanpham();
-                $listsanpham=loadall_sanpham();
-                include "sanpham/listbienthe-sanpham.php";
-                break; 
             case 'list-sanpham':
                 if(isset($_POST['listok'])&&($_POST['listok'])){
                     $iddm=$_POST['iddm'];
