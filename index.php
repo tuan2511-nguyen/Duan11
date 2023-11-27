@@ -174,7 +174,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                             // Thực hiện các kiểm tra khác ở đây, ví dụ như kiểm tra định dạng email
                             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                                 $thongbao = "<div class='notification'>Email không hợp lệ.</div>";
-                            } else {
+                            } else { 
                                 // Check if the username is already taken
                                 if (checkName($username)) {
                                     $thongbao = "<div class='notification'>Tên đăng nhập đã tồn tại. Vui lòng chọn một tên đăng nhập khác.</div>";

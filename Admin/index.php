@@ -14,8 +14,12 @@
             case 'add-danhmuc':
                 if(isset($_POST['themmoi'])&&($_POST['themmoi'])){
                     $ten_dm=$_POST['ten_dm'];
-                    insert_danhmuc($ten_dm);
-                    $thongbao="Thêm thành công";
+                    if (checkName1($ten_dm)) {
+                        $thongbao = "Tên danh mục đã tồn tại";
+                    } else {
+                        insert_danhmuc($ten_dm);
+                        $thongbao="Thêm thành công";
+                    }
                 }
                 include "danhmuc/add-danhmuc.php";
                 break;
@@ -79,8 +83,12 @@
                       } else {
                         //echo "Sorry, there was an error uploading your file.";
                       }
-                    insert_sanpham($tensp,$giasp,$giakm,$mota,$hinh,$iddm);
-                    $thongbao="Thêm thành công";
+                    if (checkName2($tensp)) {
+                        $thongbao = "Tên sản phẩm đã tồn tại";
+                    } else {
+                        insert_sanpham($tensp,$giasp,$giakm,$mota,$hinh,$iddm);
+                        $thongbao="Thêm thành công";
+                    }
                 }
                 $listdanhmuc=loadall_danhmuc();
                 include "sanpham/add-sanpham.php";
@@ -204,11 +212,7 @@
                 include "taikhoan/dstk.php";
                 break;
             case 'dsbl':
-<<<<<<< HEAD
-                $listbinhluan=loadall_binhluan($id_sp);
-=======
                 $listbinhluan=load_binhluan();
->>>>>>> e3ba36971e2ab753dbe3d9675ff72d35fb1746a6
                 include "binhluan/dsbl.php";
             break;
             default:
