@@ -59,7 +59,7 @@
 			<div class="container margin_60_35">
 				<div class="row small-gutters categories_grid">
 					<div class="col-sm-12 col-md-6">
-						<a href="listing-grid-1-full.html">
+						<a href="index.php?act=danhmuc" >
 							<img src="img/img_cat_home_1_placeholder.png" data-src="img/img_cat_home_1.jpg" alt="" class="img-fluid lazy">
 							<div class="wrapper">
 								<h2>Life Style</h2>
@@ -131,11 +131,7 @@
 								<figure> 
 									<span class="ribbon off">-30%</span>
 									<a href="' . $linksp . '">
-<<<<<<< HEAD
-										<img class="img-fluid lazy" src="' . $hinh . '">
-=======
 										<img class="img-fluid lazy" src="'. $hinh .'">
->>>>>>> fa11f1d7531f76be1630e0f0d5343d77c722999f
 									</a>
 									<div data-countdown="2019/05/15" class="countdown"></div>
 								</figure>

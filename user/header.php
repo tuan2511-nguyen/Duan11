@@ -98,7 +98,7 @@
 							<ul class="top_tools">
 								<li>
 									<div class="dropdown dropdown-cart">
-										<a href="cart.html" class="cart_bt"><strong>2</strong></a>
+										<a href="index.php?act=viewcart" class="cart_bt"><strong>2</strong></a>
 										<div class="dropdown-menu">
 											<ul>
 												<li>
@@ -135,7 +135,7 @@
                                                 <h4>Xin chào <?= $username ?></h4><br>
 												<ul>
 													<li>
-														<a href="index.php?act=update-taikhoan"><i class="ti-user"></i> My Profile</a>
+														<a href="index.php?act=edit-taikhoan"><i class="ti-user"></i> My Profile</a>
 													</li>
 													<?php if($vaitro=="admin") { ?>
 													<li>
@@ -181,7 +181,7 @@
 		<!-- /header -->
 		<div class="top_panel">
 			<div class="container header_panel">
-				<a href="#0" class="btn_close_top_panel"><i class="ti-close"></i></a>
+				<a href="" class="btn_close_top_panel"><i class="ti-close"></i></a>
 				<small>What are you looking for?</small>
 			</div>
 			<!-- /header_panel -->

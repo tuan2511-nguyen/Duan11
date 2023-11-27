@@ -17,4 +17,9 @@
         $listtaikhoan=pdo_query($sql);
         return $listtaikhoan;
     }
+    function checkName($username){
+        $sql = "SELECT * FROM user WHERE username='$username'";
+        $check = pdo_query($sql);
+        return $check > 0;
+    }
 ?>

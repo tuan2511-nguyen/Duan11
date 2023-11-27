@@ -12,10 +12,9 @@
         $listbl = pdo_query($sql);
         return $listbl;
     }
-    /*
-    function loadall_binhluan(){
+    function loadall_bl(){
         $sql="select * from binhluan order by id_bl asc";
         $listbinhluan=pdo_query($sql);
         return $listbinhluan;
-    }*/
+    }
 ?>

@@ -60,6 +60,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 $load_random = load_random();
                 $listbl = loadall_binhluan($id_sp);
             }
+
             include "user/sanpham/ctsp.php";
             break;
         case 'binhluan':
@@ -79,33 +80,71 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             include "user/binhluan/binhluan.php";
             break;
         case 'viewcart':
+            $gioi_han_soluong = 20;
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $id_sp = $_POST['id_sp'];
                 $ten_sp = $_POST['ten_sp'];
                 $gia_khuyenmai = $_POST['gia_khuyenmai'];
-                $soluong = $_POST['soluong'];
+                $soluong = intval($_POST['soluong']); // Ép kiểu dữ liệu về int
                 $size = $_POST['size'];
-        
 
-                $product_in_cart = false;
-                foreach ($_SESSION['cart'] as &$product) {
-                    if ($product['id_sp'] == $id_sp) {
-                        $product['soluong'] += $soluong;
-                        $product_in_cart = true;
-                        break;
-                    }
-                }
-        
-                if (!$product_in_cart) {
-                    $product = array(
+                $product_id = $id_sp . '_' . $size; // Tạo ID sản phẩm duy nhất
+
+                if (!isset($_SESSION['cart'][$product_id])) {
+                    $_SESSION['cart'][$product_id] = array(
                         "id_sp" => $id_sp,
                         "ten_sp" => $ten_sp,
                         "gia_khuyenmai" => $gia_khuyenmai,
                         "soluong" => $soluong,
                         "size" => $size
                     );
-        
-                    $_SESSION['cart'][] = $product;
+                } else {
+                    $_SESSION['cart'][$product_id]['soluong'] += $soluong;
+                }
+            }
+
+
+            $total = 0;
+            if (isset($_SESSION['cart']) && count($_SESSION['cart']) > 0) {
+                foreach ($_SESSION['cart'] as $item) {
+                    $total += $item['gia_khuyenmai'] * $item['soluong'];
+                }
+            }
+
+
+            include "user/sanpham/cart.php";
+            break;
+        case "update":
+            if ($_SERVER['REQUEST_METHOD'] === 'POST' ) {
+                // Kiểm tra xem có trường số lượng được gửi lên không
+                foreach ($_POST as $key => $value) {
+                    if (strpos($key, 'quantity_') === 0) {
+                        $itemID = substr($key, strlen('quantity_'));
+                        $newQuantity = (int)$value;
+            
+                        // Tìm sản phẩm trong giỏ hàng và cập nhật số lượng
+                        foreach ($_SESSION['cart'] as &$item) {
+                            if ($item['id_sp'] == $itemID) {
+                                $item['soluong'] = $newQuantity;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            break;
+        case 'remove':
+            if ($_SERVER["REQUEST_METHOD"] == "GET") {
+                if ($_GET['act'] == 'remove') {
+                    $id_sp = $_GET['id_sp'];
+
+                    foreach ($_SESSION['cart'] as $key => $product) {
+                        if ($product['id_sp'] == $id_sp) {
+                            unset($_SESSION['cart'][$key]);
+                            echo '<script>window.location.href = "index.php?act=viewcart";</script>';
+                            break;
+                        }
+                    }
                 }
             }
             include "user/sanpham/cart.php";
@@ -136,15 +175,19 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                                 $thongbao = "<div class='notification'>Email không hợp lệ.</div>";
                             } else {
-                                // Nếu tất cả các kiểm tra đều thành công, thì tiếp tục đăng ký
-                                insert_taikhoan($username, $pass, $email, $hoten, $sdt, $diachi);
-                                $thongbao = "<div class='notification'>Đăng ký thành công. Vui lòng đăng nhập</div>";
+                                // Check if the username is already taken
+                                if (checkName($username)) {
+                                    $thongbao = "<div class='notification'>Tên đăng nhập đã tồn tại. Vui lòng chọn một tên đăng nhập khác.</div>";
+                                } else {
+                                    // Nếu tất cả các kiểm tra đều thành công, thì tiếp tục đăng ký
+                                    insert_taikhoan($username, $pass, $email, $hoten, $sdt, $diachi);
+                                    $thongbao = "<div class='notification'>Đăng ký thành công. Vui lòng đăng nhập</div>";
+                                }
                             }
                         }
                     }
                 }
             }
-
 
             include "user/taikhoan/taikhoan.php";
             break;

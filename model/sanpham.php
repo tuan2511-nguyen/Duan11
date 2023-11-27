@@ -103,5 +103,8 @@ function load_random(){
     $sql = "SELECT * FROM sanpham ORDER BY RAND() LIMIT 5";
     return pdo_query($sql);
 }
-
+function soLuong($id_sp, $size){
+    $sql = "SELECT soluong FROM ct_sanpham WHERE id_sp = $id_sp AND size = $size";
+    return pdo_query($sql);
+}
 ?>

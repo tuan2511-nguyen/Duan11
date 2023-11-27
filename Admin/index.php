@@ -41,6 +41,7 @@
                 }
                 $listdanhmuc=loadall_danhmuc();
                 include "danhmuc/list-danhmuc.php";
+                echo '<script>window.location.href = "index.php?act=list-danhmuc";</script>';
                 break;
             case 'suadm';
                 if(isset($_GET['id_dm'])&&($_GET['id_dm']>0)){
@@ -54,6 +55,7 @@
                     $id_dm=$_POST['id_dm'];
                     update_danhmuc($id_dm,$ten_dm);
                     $thongbao="Cập nhật thành công";
+                    echo '<script>window.location.href = "index.php?act=list-danhmuc";</script>';
                 }
                 $listdanhmuc=loadall_danhmuc();
                 include "danhmuc/list-danhmuc.php";
@@ -92,10 +94,9 @@
                 if(isset($_POST['them'])&&($_POST['them'])){
                     if(isset($_POST['them'])&&($_POST['them'])){
                         $id_sp=$_POST['id_sp'];
-                        $mausac=$_POST['mausac'];
                         $size=$_POST['size'];
                         $soluong=$_POST['soluong'];
-                        insert_bienthesanpham($mausac,$size,$soluong,$id_sp);
+                        insert_bienthesanpham($size,$soluong,$id_sp);
                         $thongbao="Thêm thành công";
                     }
                 }
@@ -132,6 +133,7 @@
             case 'xoasp':
                 if(isset($_GET['id_sp'])&&($_GET['id_sp']>0)){
                     delete_sanpham($_GET['id_sp']);
+                    echo '<script>window.location.href = "index.php?act=list-sanpham";</script>';
                     $thongbao="Xóa thành công";
                 }
                 $listdanhmuc=loadall_danhmuc();
@@ -162,6 +164,7 @@
                         //echo "Sorry, there was an error uploading your file.";
                       }
                     update_sanpham($id_sp,$iddm,$tensp,$giasp,$giakm,$mota,$hinh);
+                    echo '<script>window.location.href = "index.php?act=list-sanpham";</script>';
                     $thongbao="Cập nhật thành công";
                 }
                 
