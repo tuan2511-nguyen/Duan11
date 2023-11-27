@@ -226,3 +226,8 @@ li:hover .submenu {
     cursor: pointer;
     font-size: 16px;
 }
+
+.admin-content1 {
+    padding: 20px;
+    width: 50%;
+}

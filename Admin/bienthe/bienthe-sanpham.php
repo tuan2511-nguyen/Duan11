@@ -19,14 +19,14 @@
                     </ul>
                 </nav>
             </aside>
-            <main class="admin-content">
+            
+            <main class="admin-content1">
                 <!-- Nội dung trang được thay đổi tại đây -->
-                <h1 style="text-align: center;">Trang Thêm biến thể Sản phẩm</h1>
+                <h2 style="text-align: center;">Biến thể Sản phẩm</h2><br>
                 <!-- Nội dung của trang "Thêm Sản Phẩm" -->
                 <form action="index.php?act=bienthe-sanpham" method="post" class="add-product-form">
                     <div class="form1">
-                        <label for="productName">Tên Sản Phẩm:</label>
-                        <input type="text" id="productName" name="tensp" value="<?=$ten_sp?>" required>
+                        <h4><label for="productName">Tên Sản Phẩm: <?=$ten_sp?></label></h4>
 
                         <label for="productSize">Size:</label>
                         <select id="productSize" name="size" required>
@@ -45,12 +45,38 @@
                     <div class="form2">
                         <input type="hidden" name="id_sp" value="<?php if(isset($id_sp)&&($id_sp>0)) echo $id_sp;?>">
                         <input type="submit" name="them" value="Thêm">
-                        <a href="index.php?act=listbienthe-sanpham" class="button"><input type="button" value="Danh sách"></a>
+                        <a href="index.php?act=list-sanpham" class="button"><input type="button" name="danhsach" value="Danh sách"></a>
                     </div>
                     <?php
-                        if(isset($thongbao)&&($thongbao!="")) echo $thongbao;
+                        if(isset($thongbao)&&($thongbao!="")) echo $thongbao; 
                     ?>
 
+                </form>
+            </main>
+            <main class="admin-content1">
+                <br><br><br>
+                <form action="index.php?act=bienthe-sanpham" method="post" class="add-product-form">
+                    <table>
+                        <thead>
+                            <tr> 
+                                <th>Size</th>
+                                <th>Số lượng</th>
+                            </tr>
+                        </thead>
+                        <?php
+                            foreach ($listbienthe as $bienthe){
+                                extract($bienthe);
+                                $suabt="index.php?act=suabt&id_sp=".$id_sp;
+                                $xoabt="index.php?act=xoabt&id_sp=".$id_sp;
+                                echo '<tbody>
+                                        <tr>
+                                            <td>'.$size.'</td>
+                                            <td>'.$soluong.'</td>
+                                        </tr>
+                                    </tbody>';
+                                }
+                        ?>
+                    </table>
                 </form>
             </main>
 </div>
