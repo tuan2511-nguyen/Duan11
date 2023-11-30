@@ -5,25 +5,30 @@
     }
     ?>
 <div class="admin-container">
-            <aside class="admin-sidebar">
-                <h2>Admin Panel</h2>
-                <nav> 
-                    <ul>
-                        <li><a href="index.php?act=add-danhmuc" >Thêm Danh mục</a></li>
-                        <li>
-                            <a href="index.php?act=add-sanpham" class="active">Thêm Sản phẩm</a>
-                        </li>
-                        <li><a href="index.php?act=dstk">QL Tài khoản</a></li>
-                        <li><a href="index.php?act=dsbl">QL Bình luận</a></li>
-                        <li><a href="#index.php?act=thongke">Thống kê</a></li>
-                    </ul>
-                </nav>
-            </aside>
-            
-            <main class="admin-content1">
-                <!-- Nội dung trang được thay đổi tại đây -->
+    <aside class="admin-sidebar">
+        <h2>Admin Panel</h2>
+        <nav> 
+            <ul>
+                <li><a href="index.php?act=add-danhmuc" >Thêm Danh mục</a></li>
+                <li>
+                    <a href="index.php?act=add-sanpham" class="active">Thêm Sản phẩm</a>
+                </li>
+                <li><a href="index.php?act=dstk">QL Tài khoản</a></li>
+                <li><a href="index.php?act=dsbl">QL Bình luận</a></li>
+                <li><a href="#index.php?act=thongke">Thống kê</a></li>
+            </ul>
+        </nav>
+    </aside>
+    
+    <main class="admin-content">
+        <div class="box1">
+        <a href="../index.php">
+                <input type="button" value="Trở về trang bán hàng">
+            </a>
+        </div>
+        <main class="admin-content1">
+            <div class="box3">
                 <h2 style="text-align: center;">Biến thể Sản phẩm</h2><br>
-                <!-- Nội dung của trang "Thêm Sản Phẩm" -->
                 <form action="index.php?act=bienthe-sanpham" method="post" class="add-product-form">
                     <div class="form1">
                         <h4><label for="productName">Tên Sản Phẩm: <?=$ten_sp?></label></h4>
@@ -52,9 +57,8 @@
                     ?>
 
                 </form>
-            </main>
-            <main class="admin-content1">
-                <br><br><br>
+            </div>
+            <div class="box4">
                 <form action="index.php?act=bienthe-sanpham" method="post" class="add-product-form">
                     <table>
                         <thead>
@@ -78,5 +82,7 @@
                         ?>
                     </table>
                 </form>
-            </main>
+            </div>
+        </main>
+    </main>
 </div>

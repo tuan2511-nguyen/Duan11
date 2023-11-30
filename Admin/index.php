@@ -162,11 +162,7 @@
                     $hinh=$_FILES['hinh']['name'];
                     $target_dir="../upload/";
                     $target_file= $target_dir . basename($_FILES["hinh"]["name"]);
-                    if (move_uploaded_file($_FILES["hinh"]["tmp_name"], $target_file)) {
-                        //echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
-                      } else {
-                        //echo "Sorry, there was an error uploading your file.";
-                      }
+                    //
                     update_sanpham($id_sp,$iddm,$tensp,$giasp,$giakm,$mota,$hinh);
                     $thongbao="Cập nhật thành công";
                     echo '<script>window.location.href = "index.php?act=list-sanpham";</script>';
@@ -200,12 +196,8 @@
                     $id_user=$_POST['id_user'];
                     $username=$_POST['username'];
                     $pass=$_POST['pass'];
-                    $email=$_POST['email'];
-                    $hoten=$_POST['hoten'];
-                    $diachi=$_POST['diachi'];
-                    $sdt=$_POST['sdt'];
                     $vaitro=$_POST['vaitro'];
-                    update_taikhoan($id_user,$username,$pass,$email,$hoten,$diachi,$sdt,$vaitro);
+                    update_taikhoan($id_user,$username,$pass,$vaitro);
                     $thongbao="Cập nhật thành công";
                 }
                 $listtaikhoan=loadall_taikhoan();
@@ -222,8 +214,4 @@
     }else{
         include "home.php";
     }
-
-    include "footer.php";
-
-
 ?>
