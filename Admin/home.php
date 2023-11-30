@@ -10,6 +10,7 @@
                         </li>
                         <li><a href="index.php?act=dstk">QL Tài khoản</a></li>
                         <li><a href="index.php?act=dsbl">QL Bình luận</a></li>
+                        <li><a href="index.php?act=dsdh">QL Đơn hàng</a></li>
                         <li><a href="#index.php?act=thongke">Thống kê</a></li>
                     </ul>
                 </nav>

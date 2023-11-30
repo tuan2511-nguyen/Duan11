@@ -5,6 +5,7 @@
     include "../model/taikhoan.php";
     include "../model/binhluan.php";
     include "../model/bienthe.php";
+    include "../model/hoadon.php";
     include "header.php";
 
  
@@ -204,7 +205,7 @@
                 include "taikhoan/dstk.php";
                 break;
             case 'dsbl':
-                $listbinhluan=loadall_binhluan($id_sp);
+                $listbinhluan=load_binhluan();
                 include "binhluan/dsbl.php";
             break;
                 $listtaikhoan =loadall_taikhoan();
@@ -213,6 +214,25 @@
             case 'dsbl':
                 $listbl =loadall_bl();
                 include "binhluan/dsbl.php";
+                break;
+            case 'dsdh':
+                $listdh =loadall_hoadon_all();
+                include "donhang/dsdh.php";
+                break;
+            case 'xacthuc':
+                if(isset($_GET['id_hd'])&&($_GET['id_hd']>0)){
+                    xacthuc_dh($_GET['id_hd']);
+                    echo '<script>window.location.href = "index.php?act=dsdh";</script>';
+                    $thongbao="Xác thực thành công";
+                }
+                $listdh =loadall_hoadon_all();
+                include "donhang/dsdh.php";
+                break;
+            case 'thongke':
+                $listdt =doanhthu();
+                $doanhThu = $listdt[0]['doanh_thu'];
+                $listsp_bc = dssp_bc();
+                include "donhang/thongke.php";
                 break;
             default:
                 include "home.php";
