@@ -293,8 +293,12 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             session_unset();
             echo '<script>window.location.href = "index.php";</script>';
             break;
+        default:
+            include "user/home.php";
+            break;
     }
 } else {
     include "user/home.php";
 }
 include "user/footer.php";
+?>

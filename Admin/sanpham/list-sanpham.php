@@ -57,7 +57,7 @@
                     if(is_file($hinhpath)){
                         $hinh="<img src='".$hinhpath."' height='80px'>";
                     }else{
-                        $hinh="no photo";
+                        $hinh="no photo"; 
                     }
                     echo '<tbody> 
                             <tr>

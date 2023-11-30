@@ -24,7 +24,7 @@
 			<form action="index.php?act=edit-taikhoan" method="POST">
 				<div class="form1">
 				<label for="username">Username:</label>
-				<input type="text" id="username" name="username" value="<?=$username?>" required><br>
+				<input type="text" id="username" name="user" value="<?=$username?>" required><br>
 
 				<label for="password">Password:</label>
 				<input type="password" id="password" name="pass" value="<?=$pass?>"><br>

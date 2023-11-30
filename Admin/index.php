@@ -44,7 +44,7 @@
                     delete_danhmuc($_GET['id_dm']);
                     $thongbao="Xóa thành công"; 
                 }
-                $listdanhmuc=loadall_danhmuc();
+                $listdm=loadall_danhmuc();
                 include "danhmuc/list-danhmuc.php";
                 echo '<script>window.location.href = "index.php?act=list-danhmuc";</script>';
                 break;
@@ -141,7 +141,7 @@
                     $thongbao="Xóa thành công";
                 }
                 $listdanhmuc=loadall_danhmuc();
-                $listsanpham=loadall_sanpham("",0);
+                $listsp=loadall_sanpham("",0);
                 include "sanpham/list-sanpham.php";
                 break;
             case 'suasp';
@@ -207,6 +207,13 @@
                 $listbinhluan=loadall_binhluan($id_sp);
                 include "binhluan/dsbl.php";
             break;
+                $listtaikhoan =loadall_taikhoan();
+                include "taikhoan/dstk.php";
+                break;
+            case 'dsbl':
+                $listbl =loadall_bl();
+                include "binhluan/dsbl.php";
+                break;
             default:
                 include "home.php";
                 break;
@@ -214,5 +221,5 @@
     }else{
         include "home.php";
     }
-    
+
 ?>

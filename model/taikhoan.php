@@ -43,3 +43,4 @@ function loadone_taikhoan($id_user)
         return $check;
     }
 ?>
+?>
