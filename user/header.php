@@ -149,7 +149,6 @@
 														<a href="index.php?act=logout"><i class="ti-help-alt"></i>Đăng xuất</a>
 													</li>
 												</ul>
-<<<<<<< Updated upstream
 
 											<?php
 											} else {
@@ -158,33 +157,6 @@
 											<?php
 											}
 											?>
-=======
-												<?php if($role==admin){ ?>
-												<ul>
-													<li>
-														<a href="Amin/index.php"><i class="ti-user"></i> Admin</a>
-													</li>
-												</ul>
-												<?php } ?>
-                                            <?php
-                                            } else {
-                                            ?>
-                                                <a href="index.php?act=dangky" class="btn_1">Sign In or Sign Up</a>
-                                            <?php
-                                            }
-                                            ?>
-											<ul>
-												<li>
-													<a href="track-order.html"><i class="ti-truck"></i>Track your Order</a>
-												</li>
-												<li>
-													<a href="account.html"><i class="ti-package"></i>My Orders</a>
-												</li>
-												<li>
-													<a href="index.php?act=logout"><i class="ti-help-alt"></i>Đăng xuất</a>
-												</li>
-											</ul>
->>>>>>> Stashed changes
 										</div>
 									</div>
 									<!-- /dropdown-access-->
