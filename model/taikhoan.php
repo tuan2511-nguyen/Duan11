@@ -37,13 +37,9 @@ function loadone_taikhoan($id_user)
         $check = pdo_query($sql);
         return $check;
     }
-<<<<<<< HEAD
     function loadone_tk($username){
         $sql = "SELECT * FROM user WHERE username=:username";
         $check = pdo_query_one($sql, array(':username' => $username));
         return $check;
     }
 ?>
-=======
-?>
->>>>>>> 66808ad118b063725e313d9322f7fd630b7a4966
