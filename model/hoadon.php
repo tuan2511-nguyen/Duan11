@@ -53,4 +53,27 @@ function loadall_hoadon($id_user){
     $sql = "SELECT * FROM hoadon JOIN ct_hoadon ON hoadon.id_hd = ct_hoadon.id_hd JOIN sanpham ON ct_hoadon.id_sp = sanpham.id_sp WHERE hoadon.id_user = ?";
     return pdo_query($sql, $id_user);
 }
+function loadall_hoadon_all(){
+    $sql = "SELECT * FROM hoadon JOIN ct_hoadon ON hoadon.id_hd = ct_hoadon.id_hd JOIN sanpham ON ct_hoadon.id_sp = sanpham.id_sp";
+    return pdo_query($sql);
+}
+function xacthuc_dh($id_hd){
+    $sql = "UPDATE hoadon SET trangthai = 'Đã xác nhận' WHERE id_hd = ?";
+    return pdo_execute($sql,$id_hd);
+}
+function doanhthu(){
+    $sql = "SELECT SUM(tonggia) AS doanh_thu FROM hoadon WHERE trangthai = 'Đã xác nhận'";
+    return pdo_query($sql);
+}
+function dssp_bc(){
+    $sql = "SELECT sp.ten_sp, SUM(cthd.soluong) AS So_luong_da_ban
+    FROM ct_hoadon cthd
+    JOIN sanpham sp ON cthd.id_sp = sp.id_sp
+    JOIN hoadon hd ON cthd.id_hd = hd.id_hd
+    WHERE hd.trangthai = 'Đã xác nhận'
+    GROUP BY cthd.id_sp
+    ORDER BY So_luong_da_ban DESC
+    ";
+    return pdo_query($sql);
+}
 

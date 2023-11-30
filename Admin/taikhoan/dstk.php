@@ -3,19 +3,20 @@
         <h2>Admin Panel</h2>
         <nav>
             <ul>
-                <li><a href="index.php?act=add-danhmuc" >Thêm Danh mục</a></li>
+                <li><a href="index.php?act=add-danhmuc">Thêm Danh mục</a></li>
                 <li>
-                            <a href="index.php?act=add-sanpham">Thêm Sản phẩm</a>
-                        </li>
+                    <a href="index.php?act=add-sanpham">Thêm Sản phẩm</a>
+                </li>
                 <li><a href="index.php?act=dstk" class="active">QL Tài khoản</a></li>
                 <li><a href="index.php?act=dsbl">QL Bình luận</a></li>
-                <li><a href="#index.php?act=thongke">Thống kê</a></li>
+                <li><a href="index.php?act=dsdh">QL Đơn hàng</a></li>
+                <li><a href="index.php?act=thongke">Thống kê</a></li>
             </ul>
         </nav>
     </aside>
     <main class="admin-content">
         <div class="box1">
-        <a href="../index.php">
+            <a href="../index.php">
                 <input type="button" value="Trở về trang bán hàng">
             </a>
         </div>
@@ -39,28 +40,28 @@
                     </tr>
                 </thead>
                 <?php
-                    foreach ($listtaikhoan as $taikhoan){
-                        extract($taikhoan);
-                        $suauser="index.php?act=suauser&id_user=".$id_user;
-                        $xoauser="index.php?act=xoauser&id_user=".$id_user;
+                foreach ($listtaikhoan as $taikhoan) {
+                    extract($taikhoan);
+                    $suauser = "index.php?act=suauser&id_user=" . $id_user;
+                    $xoauser = "index.php?act=xoauser&id_user=" . $id_user;
 
-                        echo '<tbody>
+                    echo '<tbody>
                                 <tr>
-                                    <td>'.$id_user.'</td>
-                                    <td>'.$username.'</td>
-                                    <td>'.$pass.'</td>
-                                    <td>'.$email.'</td>
-                                    <td>'.$hoten.'</td>
-                                    <td>'.$sdt.'</td>
-                                    <td>'.$diachi.'</td>
-                                    <td>'.$vaitro.'</td>
+                                    <td>' . $id_user . '</td>
+                                    <td>' . $username . '</td>
+                                    <td>' . $pass . '</td>
+                                    <td>' . $email . '</td>
+                                    <td>' . $hoten . '</td>
+                                    <td>' . $sdt . '</td>
+                                    <td>' . $diachi . '</td>
+                                    <td>' . $vaitro . '</td>
                                     <td class="action-column">
-                                        <a href="'.$suauser.'"> <button class="edit-button">Sửa</button> </a>
-                                        <a href="'.$xoauser.'"> <button class="delete-button">Xóa</button> </a>
+                                        <a href="' . $suauser . '"> <button class="edit-button">Sửa</button> </a>
+                                        <a href="' . $xoauser . '"> <button class="delete-button">Xóa</button> </a>
                                     </td>
                                 </tr>
-                            </tbody>'; 
-                    }
+                            </tbody>';
+                }
                 ?>
             </table>
             <div><!--
@@ -70,9 +71,8 @@
             </div>
             <br>
             <?php
-                if(isset($thongbao)&&($thongbao!="")) echo $thongbao;
+            if (isset($thongbao) && ($thongbao != "")) echo $thongbao;
             ?>
-        </div>            
+        </div>
     </main>
 </div>
-

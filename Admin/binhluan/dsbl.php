@@ -5,17 +5,18 @@
             <ul>
                 <li><a href="index.php?act=add-danhmuc">Thêm Danh mục</a></li>
                 <li>
-                            <a href="index.php?act=add-sanpham">Thêm Sản phẩm</a>
-                        </li>
-                <li><a href="index.php?act=dstk" >QL Tài khoản</a></li>
-                <li><a href="index.php?act=dsbl"  class="active">QL Bình luận</a></li>
-                <li><a href="#index.php?act=thongke">Thống kê</a></li>
+                    <a href="index.php?act=add-sanpham">Thêm Sản phẩm</a>
+                </li>
+                <li><a href="index.php?act=dstk">QL Tài khoản</a></li>
+                <li><a href="index.php?act=dsbl" class="active">QL Bình luận</a></li>
+                <li><a href="index.php?act=dsdh">QL Đơn hàng</a></li>
+                <li><a href="index.php?act=thongke">Thống kê</a></li>
             </ul>
         </nav>
     </aside>
     <main class="admin-content">
         <div class="box1">
-        <a href="../index.php">
+            <a href="../index.php">
                 <input type="button" value="Trở về trang bán hàng">
             </a>
         </div>
@@ -35,18 +36,18 @@
                     </tr>
                 </thead>
                 <?php
-                    foreach ($listbinhluan as $binhluan){
-                        extract($binhluan);
-                        $suabl="index.php?act=suabl&id_bl=".$id_bl;
-                        $xoabl="index.php?act=xoabl&id_bl=".$id_bl;
+                foreach ($listbinhluan as $binhluan) {
+                    extract($binhluan);
+                    $suabl = "index.php?act=suabl&id_bl=" . $id_bl;
+                    $xoabl = "index.php?act=xoabl&id_bl=" . $id_bl;
 
-                        echo '<tbody>
+                    echo '<tbody>
                                 <tr>
-                                    <td>'.$id_bl.'</td>
-                                    <td>'.$ten_sp.'</td>
-                                    <td>'.$username.'</td>
-                                    <td>'.$noidung.'</td>
-                                    <td>'.$ngaydang.'</td>
+                                    <td>' . $id_bl . '</td>
+                                    <td>' . $ten_sp . '</td>
+                                    <td>' . $username . '</td>
+                                    <td>' . $noidung . '</td>
+                                    <td>' . $ngaydang . '</td>
                                     <!--
                                     <td class="action-column">
                                         <a href=""> <button class="edit-button">Sửa</button> </a>
@@ -54,7 +55,7 @@
                                     </td>-->
                                 </tr>
                             </tbody>';
-                    }
+                }
                 ?>
             </table>
             <div><!--
@@ -64,9 +65,8 @@
             </div>
             <br>
             <?php
-                            if(isset($thongbao)&&($thongbao!="")) echo $thongbao;
-                        ?>
-        </div>            
+            if (isset($thongbao) && ($thongbao != "")) echo $thongbao;
+            ?>
+        </div>
     </main>
 </div>
-

@@ -1,28 +1,27 @@
 <?php
-    if(is_array($sanpham)){
-        extract($sanpham);
-
-    }
-    ?>
+if (is_array($sanpham)) {
+    extract($sanpham);
+}
+?>
 <div class="admin-container">
     <aside class="admin-sidebar">
         <h2>Admin Panel</h2>
-        <nav> 
+        <nav>
             <ul>
-                <li><a href="index.php?act=add-danhmuc" >Thêm Danh mục</a></li>
+                <li><a href="index.php?act=add-danhmuc">Thêm Danh mục</a></li>
                 <li>
                     <a href="index.php?act=add-sanpham" class="active">Thêm Sản phẩm</a>
                 </li>
                 <li><a href="index.php?act=dstk">QL Tài khoản</a></li>
                 <li><a href="index.php?act=dsbl">QL Bình luận</a></li>
-                <li><a href="#index.php?act=thongke">Thống kê</a></li>
+                <li><a href="index.php?act=thongke">Thống kê</a></li>
             </ul>
         </nav>
     </aside>
-    
+
     <main class="admin-content">
         <div class="box1">
-        <a href="../index.php">
+            <a href="../index.php">
                 <input type="button" value="Trở về trang bán hàng">
             </a>
         </div>
@@ -31,7 +30,7 @@
                 <h2 style="text-align: center;">Biến thể Sản phẩm</h2><br>
                 <form action="index.php?act=bienthe-sanpham" method="post" class="add-product-form">
                     <div class="form1">
-                        <h4><label for="productName">Tên Sản Phẩm: <?=$ten_sp?></label></h4>
+                        <h4><label for="productName">Tên Sản Phẩm: <?= $ten_sp ?></label></h4>
 
                         <label for="productSize">Size:</label>
                         <select id="productSize" name="size" required>
@@ -48,12 +47,12 @@
 
                     </div>
                     <div class="form2">
-                        <input type="hidden" name="id_sp" value="<?php if(isset($id_sp)&&($id_sp>0)) echo $id_sp;?>">
+                        <input type="hidden" name="id_sp" value="<?php if (isset($id_sp) && ($id_sp > 0)) echo $id_sp; ?>">
                         <input type="submit" name="them" value="Thêm">
                         <a href="index.php?act=list-sanpham" class="button"><input type="button" name="danhsach" value="Danh sách"></a>
                     </div>
                     <?php
-                        if(isset($thongbao)&&($thongbao!="")) echo $thongbao; 
+                    if (isset($thongbao) && ($thongbao != "")) echo $thongbao;
                     ?>
 
                 </form>
@@ -62,23 +61,23 @@
                 <form action="index.php?act=bienthe-sanpham" method="post" class="add-product-form">
                     <table>
                         <thead>
-                            <tr> 
+                            <tr>
                                 <th>Size</th>
                                 <th>Số lượng</th>
                             </tr>
                         </thead>
                         <?php
-                            foreach ($listbienthe as $bienthe){
-                                extract($bienthe);
-                                $suabt="index.php?act=suabt&id_sp=".$id_sp;
-                                $xoabt="index.php?act=xoabt&id_sp=".$id_sp;
-                                echo '<tbody>
+                        foreach ($listbienthe as $bienthe) {
+                            extract($bienthe);
+                            $suabt = "index.php?act=suabt&id_sp=" . $id_sp;
+                            $xoabt = "index.php?act=xoabt&id_sp=" . $id_sp;
+                            echo '<tbody>
                                         <tr>
-                                            <td>'.$size.'</td>
-                                            <td>'.$soluong.'</td>
+                                            <td>' . $size . '</td>
+                                            <td>' . $soluong . '</td>
                                         </tr>
                                     </tbody>';
-                                } 
+                        }
                         ?>
                     </table>
                 </form>
