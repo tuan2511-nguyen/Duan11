@@ -120,7 +120,7 @@
 				</div>
 				<div class="isotope-wrapper">
 					<div class="row small-gutters">
-						<?php
+						<?php 
 						foreach ($spnew as $sp) {
 							extract($sp);
 							$linksp = "index.php?act=ct_sanpham&id_sp=" . $id_sp;

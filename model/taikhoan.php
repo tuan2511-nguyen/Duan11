@@ -8,12 +8,17 @@
         $kq = pdo_query_one($sql);
         return $kq;
     }
+<<<<<<< Updated upstream
     function update_taikhoan($id_user,$username,$pass,$vaitro){
         $sql="update user set id_user='".$id_user."', username='".$username."', pass='".$pass."',vaitro='".$vaitro."' where id_user=".$id_user;
         pdo_execute($sql);
     }
     function update_taikhoan1($id_user,$username,$pass,$email,$hoten,$diachi,$sdt){
         $sql="update user set id_user='".$id_user."', username='".$username."', pass='".$pass."',email='".$email."',hoten='".$hoten."',diachi='".$diachi."',sdt='".$sdt."' where id_user=".$id_user;
+=======
+    function update_taikhoan($id_user,$user,$pass,$email,$hoten,$diachi,$sdt){
+        $sql="update user set id_user='".$id_user."', username='".$user."', pass='".$pass."',email='".$email."',hoten='".$hoten."',diachi='".$diachi."',sdt='".$sdt."' where id_user=".$id_user;
+>>>>>>> Stashed changes
         pdo_execute($sql);
     }
     function loadall_taikhoan(){
@@ -21,6 +26,7 @@
         $listtaikhoan=pdo_query($sql);
         return $listtaikhoan;
     }
+<<<<<<< Updated upstream
     function delete_taikhoan($id_user)
 {
     $sql = "delete from user where id_user=" . $id_user;
@@ -43,3 +49,6 @@ function loadone_taikhoan($id_user)
         return $check;
     }
 ?>
+=======
+?>
+>>>>>>> Stashed changes

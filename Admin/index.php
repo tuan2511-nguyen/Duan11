@@ -4,7 +4,10 @@
     include "../model/sanpham.php";
     include "../model/taikhoan.php";
     include "../model/binhluan.php";
+<<<<<<< Updated upstream
     include "../model/bienthe.php";
+=======
+>>>>>>> Stashed changes
     include "header.php";
 
  
@@ -44,7 +47,7 @@
                     delete_danhmuc($_GET['id_dm']);
                     $thongbao="Xóa thành công"; 
                 }
-                $listdanhmuc=loadall_danhmuc();
+                $listdm=loadall_danhmuc();
                 include "danhmuc/list-danhmuc.php";
                 echo '<script>window.location.href = "index.php?act=list-danhmuc";</script>';
                 break;
@@ -141,7 +144,7 @@
                     $thongbao="Xóa thành công";
                 }
                 $listdanhmuc=loadall_danhmuc();
-                $listsanpham=loadall_sanpham("",0);
+                $listsp=loadall_sanpham("",0);
                 include "sanpham/list-sanpham.php";
                 break;
             case 'suasp';
@@ -174,6 +177,7 @@
                 include "sanpham/list-sanpham.php";
                 break;
             case 'dstk':
+<<<<<<< Updated upstream
                 $listtaikhoan=loadall_taikhoan();
                 include "taikhoan/dstk.php";
                 break;
@@ -207,6 +211,15 @@
                 $listbinhluan=load_binhluan();
                 include "binhluan/dsbl.php";
             break;
+=======
+                $listtaikhoan =loadall_taikhoan();
+                include "taikhoan/dstk.php";
+                break;
+            case 'dsbl':
+                $listbl =loadall_bl();
+                include "binhluan/dsbl.php";
+                break;
+>>>>>>> Stashed changes
             default:
                 include "home.php";
                 break;

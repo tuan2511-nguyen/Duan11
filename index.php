@@ -275,6 +275,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             include "user/taikhoan/taikhoan.php";
             break;
         case 'edit-taikhoan':
+<<<<<<< Updated upstream
             if(isset($_POST['thaydoi'])&&($_POST['thaydoi'])){
                 $id_user=$_POST['id_user'];
                 $username=$_POST['username'];
@@ -286,6 +287,18 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 update_taikhoan1($id_user,$username,$pass,$email,$hoten,$diachi,$sdt);
                 $thongbao="Cập nhật thành công";
                 session_unset();
+=======
+            if (isset($_POST['thaydoi']) && ($_POST['thaydoi'])) {
+                $user = $_POST['user'];
+                $pass = $_POST['pass'];
+                $email = $_POST['email'];
+                $hoten = $_POST['hoten'];
+                $diachi = $_POST['diachi'];
+                $sdt = $_POST['sdt'];
+                $id_user = $_POST['id_user'];
+                update_taikhoan($id_user,$user,$pass,$email,$hoten,$diachi,$sdt);
+                $_SESSION['username'] = check_user($user,$pass);
+>>>>>>> Stashed changes
             }
             include "user/taikhoan/edit-taikhoan.php";
             break;
@@ -293,8 +306,12 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             session_unset();
             echo '<script>window.location.href = "index.php";</script>';
             break;
+        default:
+            include "user/home.php";
+            break;
     }
 } else {
     include "user/home.php";
 }
 include "user/footer.php";
+?>
