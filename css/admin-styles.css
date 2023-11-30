@@ -7,24 +7,22 @@ body {
     display: flex;
     background-color: #FFFFFF;
     height: auto;
+    border: #ccc solid 3px;
 }
 
 .admin-sidebar {
-    height: fit-content;
-    margin-top: 100px;
-    margin-bottom: 100px;
-    margin-left: 50px;
-    margin-right: 50px;
-    width: 400px;
-    background-color: white;
-    color: black;
+    width: 20%;
+    background-color: #0077cc;
     padding: 20px;
-    border: black solid 3px;
+    border: solid 1px;
+    height: 120vh;
 }
 
 .admin-sidebar h2 {
-    color: black;
-    margin-bottom: 20px;
+    color: white;
+    margin-bottom: 25px;
+    border-bottom: 1px solid white;
+    /* Đường line màu xanh nhạt */
 }
 
 .admin-sidebar nav ul {
@@ -34,14 +32,14 @@ body {
 
 .admin-sidebar nav a {
     text-decoration: none;
-    color: black;
+    color: #ccc;
     padding: 10px;
     display: block;
     transition: background-color 0.3s;
 }
 
 .admin-sidebar nav a:hover {
-    background-color: #D0D0D0;
+    background-color: #005580;
 }
 
 .admin-sidebar nav a.active {
@@ -50,8 +48,8 @@ body {
 }
 
 .admin-content {
-    padding: 20px;
-    width: 100%;
+    width: 80%;
+    background-color: #f4eeee;
 }
 
 .add-product-form {
@@ -103,7 +101,7 @@ textarea {
 .form input {
     margin-top: 10px;
     width: 150px;
-    background-color: #004DDA;
+    background-color: #0077cc;
     color: #fff;
     padding: 10px 15px;
     border: none;
@@ -114,7 +112,7 @@ textarea {
 .form2 button,
 .form2 input {
     width: 49%;
-    background-color: #004DDA;
+    background-color: #0077cc;
     color: #fff;
     padding: 10px 15px;
     border: none;
@@ -141,7 +139,8 @@ td {
 }
 
 th {
-    background-color: #f2f2f2;
+    background-color: #0077cc;
+    color: white;
 }
 
 .action-column {
@@ -219,7 +218,7 @@ li:hover .submenu {
 .form3 input {
     margin-left: 200px;
     width: 49%;
-    background-color: #004DDA;
+    background-color: #0077cc;
     color: #fff;
     padding: 10px 15px;
     border: none;
@@ -229,5 +228,47 @@ li:hover .submenu {
 
 .admin-content1 {
     padding: 20px;
-    width: 50%;
+    background-color: #f4eeee;
+    display: flex;
+    width: 100%;
+}
+
+.box1 {
+    background-color: white;
+    height: 60px;
+    width: 100%;
+}
+
+.box1 input {
+    float: right;
+    width: 180px;
+    background-color: #0077cc;
+    color: #fff;
+    padding: 8px;
+    margin-top: 8px;
+    margin-right: 8px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.box2 {
+    padding: 20px;
+}
+
+.box21 {
+    padding: 20px;
+    padding-left: 40px;
+}
+
+.box3 {
+    flex: 1;
+    padding: 20px;
+    padding-left: 100px;
+}
+
+.box4 {
+    flex: 1;
+    padding: 20px;
+    margin-top: 50px;
 }

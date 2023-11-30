@@ -26,8 +26,14 @@
                 </nav>
             </aside>
             <main class="admin-content">
+                <div class="box1">
+                <a href="../index.php">
+                        <input type="button" value="Trở về trang bán hàng">
+                    </a>
+                </div>
+                <div class="box21">
                 <!-- Nội dung trang được thay đổi tại đây -->
-                <h1 style="text-align: center;">Trang Cập Nhật Sản phẩm</h1>
+                <h2 style="text-align: center;">Trang Cập Nhật Sản phẩm</h2>
                 <!-- Nội dung của trang "Thêm Sản Phẩm" -->
                 <form action="index.php?act=update-sanpham" method="post" enctype="multipart/form-data" class="add-product-form">
                     <div class="form1">
@@ -47,8 +53,8 @@
                         <label for="productName">Tên Sản Phẩm:</label>
                         <input type="text" id="productName" name="tensp" value="<?=$ten_sp?>" required>
 
-                        <label for="productName">Hình Sản Phẩm:</label>
-                        <input type="file" id="productName" multiple name="hinh"><?=$hinh?>
+                        <label for="productName">Hình Sản Phẩm:</label><?=$hinh?>
+                        <input type="file" id="productName" multiple name="hinh">
 
                         <label for="productPrice">Giá:</label>
                         <input type="text" id="productPrice" name="giasp" value="<?=$gia_goc?>" required>
@@ -65,10 +71,7 @@
                         <input type="submit" name="capnhat" value="Cập nhật">
                         <a href="index.php?act=list-sanpham" class="button"><input type="button" value="Danh sách"></a>
                     </div>
-                    <?php
-                        if(isset($thongbao)&&($thongbao!="")) echo $thongbao;
-                    ?>
-
                 </form>
+                </div>
             </main>
 </div>

@@ -71,12 +71,12 @@
 							<!-- Mobile menu button -->
 							<div class="main-menu">
 								<div id="header_menu">
-									<a href="index.html"><img src="img/logo_black.svg" alt="" width="100" height="35"></a>
+									<a href="index.php"><img src="img/logo_black.svg" alt="" width="100" height="35"></a>
 									<a href="#" class="open_close" id="close_in"><i class="ti-close"></i></a>
 								</div>
 								<ul>
 									<li class="">
-										<a href="index.php" class="">Home</a>
+										<a href="index.php" class="">Home</a> 
 									</li>
 									<li class="">
 										<a href="javascript:void(0);" class="" onclick="window.location.href='index.php?act=danhmuc';">Sản phẩm</a>
@@ -128,11 +128,19 @@
 									<div class="dropdown dropdown-access">
 										<a href="index.php?act=dangky" class="access_link"><span>Account</span></a>
 										<div class="dropdown-menu">
+<<<<<<< HEAD
 											<?php
 											if (isset($_SESSION['username'])) {
 												extract($_SESSION['username']);
 											?>
 												<h4>Xin chào <?= $username ?></h4><br>
+=======
+										<?php
+                                            if (isset($_SESSION['username'])) { 
+                                                extract($_SESSION['username']);
+                                            ?>
+                                                <h4>Xin chào <?= $username ?></h4><br>
+>>>>>>> 66808ad118b063725e313d9322f7fd630b7a4966
 												<ul>
 													<li>
 														<a href="index.php?act=edit-taikhoan"><i class="ti-user"></i> My Profile</a>

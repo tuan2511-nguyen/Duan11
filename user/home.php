@@ -10,7 +10,7 @@
 									<div class="slide-text white">
 										<h3>Armor Air<br>Max 720 Sage Low</h3>
 										<p>Limited items available at this price</p>
-										<a class="btn_1" href="#0" role="button">Shop Now</a>
+										<a class="btn_1" onclick="window.location.href='index.php?act=danhmuc';" role="button">Shop Now</a>
 									</div>
 								</div>
 							</div>
@@ -60,9 +60,9 @@
 				<div class="row small-gutters categories_grid">
 					<div class="col-sm-12 col-md-6">
 						<a href="index.php?act=danhmuc" >
-							<img src="img/img_cat_home_1_placeholder.png" data-src="img/img_cat_home_1.jpg" alt="" class="img-fluid lazy">
+							<img src="img/brands/Adidas-Logo-1991.jpg" alt="" class="img-fluid lazy">
 							<div class="wrapper">
-								<h2>Life Style</h2>
+								<h2>Adidas</h2>
 								<p>115 Products</p>
 							</div>
 						</a>
@@ -71,27 +71,27 @@
 						<div class="row small-gutters mt-md-0 mt-sm-2">
 							<div class="col-sm-6">
 								<a href="listing-grid-1-full.html">
-									<img src="img/img_cat_home_2_placeholder.png" data-src="img/img_cat_home_2.jpg" alt="" class="img-fluid lazy">
+									<img src="img/brands/tải xuống (1).png" class="img-fluid lazy">
 									<div class="wrapper">
-										<h2>Running</h2>
+										<h2>MLB</h2>
 										<p>150 Products</p>
 									</div>
 								</a>
 							</div>
 							<div class="col-sm-6">
 								<a href="listing-grid-1-full.html">
-									<img src="img/img_cat_home_2_placeholder.png" data-src="img/img_cat_home_3.jpg" alt="" class="img-fluid lazy">
+									<img src="img/brands/tải xuống.png" class="img-fluid lazy">
 									<div class="wrapper">
-										<h2>Football</h2>
+										<h2>Nike</h2>
 										<p>90 Products</p>
 									</div>
 								</a>
 							</div>
 							<div class="col-sm-12 mt-sm-2">
 								<a href="listing-grid-1-full.html">
-									<img src="img/img_cat_home_4_placeholder.png" data-src="img/img_cat_home_4.jpg" alt="" class="img-fluid lazy">
+									<img src="img/brands/33b0ccc2706f56fb337bd2bc51b3217c.jpg" class="img-fluid lazy">
 									<div class="wrapper">
-										<h2>Training</h2>
+										<h2>Vans</h2>
 										<p>120 Products</p>
 									</div>
 								</a>
@@ -159,7 +159,7 @@
 			</div>
 			<!-- /container -->
 
-			<div class="featured lazy" data-bg="url(img/featured_home.jpg)">
+			<div class="featured lazy" data-bg="url(img/brands/banner_ADIDAS.webp)">
 				<div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.5)">
 					<div class="container margin_60">
 						<div class="row justify-content-center justify-content-md-start">
@@ -171,7 +171,7 @@
 										<span class="new_price">$90.00</span>
 										<span class="old_price">$170.00</span>
 									</div>
-									<a class="btn_1" href="listing-grid-1-full.html" role="button">Shop Now</a>
+									<a class="btn_1" onclick="window.location.href='index.php?act=danhmuc';" role="button">Shop Now</a>
 								</div>
 							</div>
 						</div>

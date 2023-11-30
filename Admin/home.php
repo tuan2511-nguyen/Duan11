@@ -15,8 +15,14 @@
                 </nav>
             </aside>
             <main class="admin-content">
+                <div class="box1">
+                    <a href="../index.php">
+                        <input type="button" value="Trở về trang bán hàng">
+                    </a>
+                </div>
+                <div class="box2">
                 <!-- Nội dung trang được thay đổi tại đây -->
-                <h1 style="text-align: center;">Trang Admin Panel</h1>
-
+                <h2 style="text-align: center;">Trang Admin Panel</h2>
+                </div>
             </main>
         </div>

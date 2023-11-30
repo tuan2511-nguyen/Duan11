@@ -12,7 +12,7 @@
 				<h1>Shoes - Grid listing</h1>
 			</div>
 		</div>
-		<img src="img/bg_cat_shoes.jpg" class="img-fluid" alt="">
+		<img src="img/brands/banner_ADIDAS.webp" class="img-fluid" alt="">
 	</div>
 	<!-- /top_banner -->
 	<div id="stick_here"></div>

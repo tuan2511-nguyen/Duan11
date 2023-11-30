@@ -14,53 +14,59 @@
         </nav>
     </aside>
     <main class="admin-content">
-        <h2 style="text-align: center;">Danh sách bình luận</h2>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Mã bình luận</th>
-                    <th>Mã sản phẩm</th>
-                    <th>Mã tài khoản</th>
-                    <th>Nội dung</th>
-                    <th>Ngày đăng</th>
-                    <!--
-                    <th class="action-column">Chức năng</th>-->
-                </tr>
-            </thead>
-            <?php
-                foreach ($listbinhluan as $binhluan){
-                    extract($binhluan);
-                    $suabl="index.php?act=suabl&id_bl=".$id_bl;
-                    $xoabl="index.php?act=xoabl&id_bl=".$id_bl;
-
-                    echo '<tbody>
-                            <tr>
-                                <td>'.$id_bl.'</td>
-                                <td>'.$id_sp.'</td>
-                                <td>'.$id_user.'</td>
-                                <td>'.$noidung.'</td>
-                                <td>'.$ngaydang.'</td>
-                                <!--
-                                <td class="action-column">
-                                    <a href=""> <button class="edit-button">Sửa</button> </a>
-                                    <a href=""> <button class="delete-button">Xóa</button> </a>
-                                </td>-->
-                            </tr>
-                        </tbody>';
-                }
-            ?>
-        </table>
-        <div><!--
-            <a href="index.php?act=add-danhmuc"  class="form">
-                <input type="button" value="Thêm Danh mục">
-            </a>-->
+        <div class="box1">
+        <a href="../index.php">
+                <input type="button" value="Trở về trang bán hàng">
+            </a>
         </div>
-        <br>
-        <?php
-                        if(isset($thongbao)&&($thongbao!="")) echo $thongbao;
-                    ?>
-                    
+        <div class="box2">
+            <h2 style="text-align: center;">Danh sách bình luận</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Mã bình luận</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Tên tài khoản</th>
+                        <th>Nội dung</th>
+                        <th>Ngày đăng</th>
+                        <!--
+                        <th class="action-column">Chức năng</th>-->
+                    </tr>
+                </thead>
+                <?php
+                    foreach ($listbinhluan as $binhluan){
+                        extract($binhluan);
+                        $suabl="index.php?act=suabl&id_bl=".$id_bl;
+                        $xoabl="index.php?act=xoabl&id_bl=".$id_bl;
+
+                        echo '<tbody>
+                                <tr>
+                                    <td>'.$id_bl.'</td>
+                                    <td>'.$ten_sp.'</td>
+                                    <td>'.$username.'</td>
+                                    <td>'.$noidung.'</td>
+                                    <td>'.$ngaydang.'</td>
+                                    <!--
+                                    <td class="action-column">
+                                        <a href=""> <button class="edit-button">Sửa</button> </a>
+                                        <a href=""> <button class="delete-button">Xóa</button> </a>
+                                    </td>-->
+                                </tr>
+                            </tbody>';
+                    }
+                ?>
+            </table>
+            <div><!--
+                <a href="index.php?act=add-danhmuc"  class="form">
+                    <input type="button" value="Thêm Danh mục">
+                </a>-->
+            </div>
+            <br>
+            <?php
+                            if(isset($thongbao)&&($thongbao!="")) echo $thongbao;
+                        ?>
+        </div>            
     </main>
 </div>
 

@@ -234,7 +234,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                             // Thực hiện các kiểm tra khác ở đây, ví dụ như kiểm tra định dạng email
                             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                                 $thongbao = "<div class='notification'>Email không hợp lệ.</div>";
-                            } else {
+                            } else { 
                                 // Check if the username is already taken
                                 if (checkName($username) > 0) {
                                     $thongbao = "<div class='notification'>Tên đăng nhập đã tồn tại. Vui lòng chọn một tên đăng nhập khác.</div>";
@@ -274,7 +274,19 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
 
             include "user/taikhoan/taikhoan.php";
             break;
-        case 'update-taikhoan':
+        case 'edit-taikhoan':
+            if(isset($_POST['thaydoi'])&&($_POST['thaydoi'])){
+                $id_user=$_POST['id_user'];
+                $username=$_POST['username'];
+                $pass=$_POST['pass'];
+                $email=$_POST['email'];
+                $hoten=$_POST['hoten'];
+                $diachi=$_POST['diachi'];
+                $sdt=$_POST['sdt'];
+                update_taikhoan1($id_user,$username,$pass,$email,$hoten,$diachi,$sdt);
+                $thongbao="Cập nhật thành công";
+                session_unset();
+            }
             include "user/taikhoan/edit-taikhoan.php";
             break;
         case 'logout':

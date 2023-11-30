@@ -19,6 +19,7 @@
 				if(isset($_SESSION['username'])&&($_SESSION['username'])){
 					extract(($_SESSION['username']));
 				}
+				
 			?>
 			<form action="index.php?act=edit-taikhoan" method="POST">
 				<div class="form1">

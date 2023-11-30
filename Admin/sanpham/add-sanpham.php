@@ -14,8 +14,14 @@
                 </nav>
             </aside>
             <main class="admin-content">
+                <div class="box1">
+                <a href="../index.php">
+                        <input type="button" value="Trở về trang bán hàng">
+                    </a>
+                </div>
+                <div class="box21">
                 <!-- Nội dung trang được thay đổi tại đây -->
-                <h1 style="text-align: center;">Trang Thêm Sản phẩm</h1>
+                <h2 style="text-align: center;">Trang Thêm Sản phẩm</h2>
                 <!-- Nội dung của trang "Thêm Sản Phẩm" -->
                 <form action="index.php?act=add-sanpham" method="post" enctype="multipart/form-data" class="add-product-form">
                     <div class="form1">
@@ -52,7 +58,7 @@
                     <?php
                         if(isset($thongbao)&&($thongbao!="")) echo $thongbao;
                     ?>
-
                 </form>
+                </div>
             </main>
 </div>

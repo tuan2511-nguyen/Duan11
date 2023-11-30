@@ -29,5 +29,10 @@
     function get_total_dm(){
         $sql = "SELECT COUNT(*) as total FROM danhmuc";
         return pdo_query_value($sql);
+    }  
+    function checkName1($ten_dm){
+        $sql = "SELECT * FROM danhmuc WHERE ten_dm='$ten_dm'";
+        $check = pdo_query($sql);
+        return $check;
     }
 ?>

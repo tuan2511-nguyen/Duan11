@@ -13,8 +13,8 @@
         return $listbl;
     }
     function load_binhluan(){
-        $sql="select * from binhluan order by id_bl asc";
+        $sql="select * from binhluan left join sanpham on binhluan.id_sp = sanpham.id_sp left join user on binhluan.id_user = user.id_user order by id_bl asc";
         $listbinhluan=pdo_query($sql);
         return $listbinhluan;
-    }
+    } 
 ?>

@@ -73,6 +73,11 @@ function load_sanpham($start, $limit, $kw = "", $whereConditions = []) {
         $sql = "SELECT COUNT(*) as total FROM sanpham";
         return pdo_query_value($sql);
     }
+    function checkName2($tensp){
+        $sql = "SELECT * FROM sanpham WHERE ten_sp='$tensp'";
+        $check = pdo_query($sql);
+        return $check; 
+    }
 //load-sản phẩm chi tiết
 function load_spct($id_sp)
 {

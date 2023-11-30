@@ -14,6 +14,12 @@
         </nav>
     </aside>
     <main class="admin-content">
+        <div class="box1">
+        <a href="../index.php">
+                <input type="button" value="Trở về trang bán hàng">
+            </a>
+        </div>
+        <div class="box2">
         <h2 style="text-align: center;">Danh sách sản phẩm</h2>
         <form action="index.php?act=list-sanpham" method="post" class="add-product-form">
             <div class="form12">
@@ -53,7 +59,7 @@
                     }else{
                         $hinh="no photo";
                     }
-                    echo '<tbody>
+                    echo '<tbody> 
                             <tr>
                                 <td>'.$id_dm.'</td>
                                 <td>'.$ten_sp.'</td>
@@ -98,7 +104,8 @@
         </div>
         <br>
         <?php
-                        if(isset($thongbao)&&($thongbao!="")) echo $thongbao;
-                    ?>
+            if(isset($thongbao)&&($thongbao!="")) echo $thongbao;
+        ?>
     </main>
+    </div>
 </div>

@@ -14,8 +14,12 @@
             case 'add-danhmuc':
                 if(isset($_POST['themmoi'])&&($_POST['themmoi'])){
                     $ten_dm=$_POST['ten_dm'];
-                    insert_danhmuc($ten_dm);
-                    $thongbao="Thêm thành công";
+                    if (checkName1($ten_dm)) {
+                        $thongbao = "Tên danh mục đã tồn tại";
+                    } else {
+                        insert_danhmuc($ten_dm);
+                        $thongbao="Thêm thành công";
+                    }
                 }
                 include "danhmuc/add-danhmuc.php";
                 break;
@@ -55,7 +59,7 @@
                     $ten_dm=$_POST['ten_dm'];
                     $id_dm=$_POST['id_dm'];
                     update_danhmuc($id_dm,$ten_dm);
-                    $thongbao="Cập nhật thành công";
+                    $thongbao="Cập nhật thành công"; 
                     echo '<script>window.location.href = "index.php?act=list-danhmuc";</script>';
                 }
                 $thongbao="Cập nhật thành công";
@@ -79,8 +83,12 @@
                       } else {
                         //echo "Sorry, there was an error uploading your file.";
                       }
-                    insert_sanpham($tensp,$giasp,$giakm,$mota,$hinh,$iddm);
-                    $thongbao="Thêm thành công";
+                    if (checkName2($tensp)) {
+                        $thongbao = "Tên sản phẩm đã tồn tại";
+                    } else {
+                        insert_sanpham($tensp,$giasp,$giakm,$mota,$hinh,$iddm);
+                        $thongbao="Thêm thành công";
+                    }
                 }
                 $listdanhmuc=loadall_danhmuc();
                 include "sanpham/add-sanpham.php";
@@ -154,14 +162,11 @@
                     $hinh=$_FILES['hinh']['name'];
                     $target_dir="../upload/";
                     $target_file= $target_dir . basename($_FILES["hinh"]["name"]);
-                    if (move_uploaded_file($_FILES["hinh"]["tmp_name"], $target_file)) {
-                        //echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
-                      } else {
-                        //echo "Sorry, there was an error uploading your file.";
-                      }
+                    //
                     update_sanpham($id_sp,$iddm,$tensp,$giasp,$giakm,$mota,$hinh);
-                    echo '<script>window.location.href = "index.php?act=list-sanpham";</script>';
                     $thongbao="Cập nhật thành công";
+                    echo '<script>window.location.href = "index.php?act=list-sanpham";</script>';
+                  
                 }
                 
                 $listdanhmuc=loadall_danhmuc();
@@ -171,9 +176,39 @@
             case 'dstk':
                 $listtaikhoan=loadall_taikhoan();
                 include "taikhoan/dstk.php";
-            break;
+                break;
+            case 'xoauser':
+                if(isset($_GET['id_user'])&&($_GET['id_user']>0)){
+                    delete_taikhoan($_GET['id_user']);
+                    $thongbao="Xóa thành công";
+                }
+                $listtaikhoan=loadall_taikhoan();
+                include "taikhoan/dstk.php";
+                break;
+            case 'suauser';
+                if(isset($_GET['id_user'])&&($_GET['id_user']>0)){
+                    $taikhoan=loadone_taikhoan($_GET['id_user']);
+                }
+                include "taikhoan/update-taikhoan.php";
+                break;
+            case 'update-taikhoan':
+                if(isset($_POST['thaydoi'])&&($_POST['thaydoi'])){
+                    $id_user=$_POST['id_user'];
+                    $username=$_POST['username'];
+                    $pass=$_POST['pass'];
+                    $vaitro=$_POST['vaitro'];
+                    update_taikhoan($id_user,$username,$pass,$vaitro);
+                    $thongbao="Cập nhật thành công";
+                }
+                $listtaikhoan=loadall_taikhoan();
+                include "taikhoan/dstk.php";
+                break;
             case 'dsbl':
+<<<<<<< HEAD
                 $listbinhluan=loadall_binhluan($id_sp);
+=======
+                $listbinhluan=load_binhluan();
+>>>>>>> 66808ad118b063725e313d9322f7fd630b7a4966
                 include "binhluan/dsbl.php";
             break;
             default:
@@ -183,8 +218,4 @@
     }else{
         include "home.php";
     }
-
-    include "footer.php";
-
-
 ?>
