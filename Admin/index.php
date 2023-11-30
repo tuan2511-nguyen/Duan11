@@ -4,10 +4,7 @@
     include "../model/sanpham.php";
     include "../model/taikhoan.php";
     include "../model/binhluan.php";
-<<<<<<< Updated upstream
     include "../model/bienthe.php";
-=======
->>>>>>> Stashed changes
     include "header.php";
 
  
@@ -177,7 +174,6 @@
                 include "sanpham/list-sanpham.php";
                 break;
             case 'dstk':
-<<<<<<< Updated upstream
                 $listtaikhoan=loadall_taikhoan();
                 include "taikhoan/dstk.php";
                 break;
@@ -211,7 +207,6 @@
                 $listbinhluan=load_binhluan();
                 include "binhluan/dsbl.php";
             break;
-=======
                 $listtaikhoan =loadall_taikhoan();
                 include "taikhoan/dstk.php";
                 break;
@@ -219,7 +214,6 @@
                 $listbl =loadall_bl();
                 include "binhluan/dsbl.php";
                 break;
->>>>>>> Stashed changes
             default:
                 include "home.php";
                 break;
@@ -227,5 +221,5 @@
     }else{
         include "home.php";
     }
-    
+
 ?>
