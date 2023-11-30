@@ -35,6 +35,6 @@ function loadone_taikhoan($id_user)
     function checkName($username){
         $sql = "SELECT * FROM user WHERE username='$username'";
         $check = pdo_query($sql);
-        return $check > 0;
+        return $check;
     }
 ?>

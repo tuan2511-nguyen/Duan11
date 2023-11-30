@@ -76,7 +76,7 @@ function load_sanpham($start, $limit, $kw = "", $whereConditions = []) {
     function checkName2($tensp){
         $sql = "SELECT * FROM sanpham WHERE ten_sp='$tensp'";
         $check = pdo_query($sql);
-        return $check;
+        return $check; 
     }
 //load-sản phẩm chi tiết
 function load_spct($id_sp)
