@@ -128,19 +128,11 @@
 									<div class="dropdown dropdown-access">
 										<a href="index.php?act=dangky" class="access_link"><span>Account</span></a>
 										<div class="dropdown-menu">
-<<<<<<< HEAD
-											<?php
-											if (isset($_SESSION['username'])) {
-												extract($_SESSION['username']);
-											?>
-												<h4>Xin chào <?= $username ?></h4><br>
-=======
 										<?php
                                             if (isset($_SESSION['username'])) { 
                                                 extract($_SESSION['username']);
                                             ?>
                                                 <h4>Xin chào <?= $username ?></h4><br>
->>>>>>> 66808ad118b063725e313d9322f7fd630b7a4966
 												<ul>
 													<li>
 														<a href="index.php?act=edit-taikhoan"><i class="ti-user"></i> My Profile</a>
