@@ -1,11 +1,11 @@
 <?php
 session_start();
-if (!isset($_SESSION['cart'])) $_SESSION['cart'];
 include "model/pdo.php";
 include "model/sanpham.php";
 include "model/danhmuc.php";
 include "model/taikhoan.php";
 include "model/binhluan.php";
+include "model/hoadon.php";
 include "user/header.php";
 include "global.php";
 
@@ -80,7 +80,6 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             include "user/binhluan/binhluan.php";
             break;
         case 'viewcart':
-            $gioi_han_soluong = 20;
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $id_sp = $_POST['id_sp'];
                 $ten_sp = $_POST['ten_sp'];
@@ -88,6 +87,9 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 $soluong = intval($_POST['soluong']); // Ép kiểu dữ liệu về int
                 $size = $_POST['size'];
 
+                if (!isset($_SESSION['cart'])) {
+                    $_SESSION['cart'] = array();
+                }
                 $product_id = $id_sp . '_' . $size; // Tạo ID sản phẩm duy nhất
 
                 if (!isset($_SESSION['cart'][$product_id])) {
@@ -115,23 +117,29 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             include "user/sanpham/cart.php";
             break;
         case "update":
-            if ($_SERVER['REQUEST_METHOD'] === 'POST' ) {
-                // Kiểm tra xem có trường số lượng được gửi lên không
-                foreach ($_POST as $key => $value) {
-                    if (strpos($key, 'quantity_') === 0) {
-                        $itemID = substr($key, strlen('quantity_'));
-                        $newQuantity = (int)$value;
-            
-                        // Tìm sản phẩm trong giỏ hàng và cập nhật số lượng
-                        foreach ($_SESSION['cart'] as &$item) {
-                            if ($item['id_sp'] == $itemID) {
-                                $item['soluong'] = $newQuantity;
-                                break;
-                            }
-                        }
+            if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id_sp']) && isset($_POST['quantity_' . $_POST['id_sp']])) {
+                $product_id = $_POST['id_sp'];
+                $quantity = $_POST['quantity_' . $product_id];
+
+                // Update the quantity in the cart
+                foreach ($_SESSION['cart'] as $key => $product) {
+                    if ($product['id_sp'] == $product_id) {
+                        $_SESSION['cart'][$key]['soluong'] = $quantity;
+                        break;
                     }
                 }
             }
+
+
+
+            $total = 0;
+            if (isset($_SESSION['cart']) && count($_SESSION['cart']) > 0) {
+                foreach ($_SESSION['cart'] as $item) {
+                    $total += $item['gia_khuyenmai'] * $item['soluong'];
+                }
+            }
+
+            include "user/sanpham/cart.php";
             break;
         case 'remove':
             if ($_SERVER["REQUEST_METHOD"] == "GET") {
@@ -148,6 +156,58 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 }
             }
             include "user/sanpham/cart.php";
+            break;
+
+        case 'thanhtoan':
+            if (isset($_SESSION['username']) && isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
+                // var_dump($_SESSION['username']);
+                // var_dump($_SESSION['cart']);
+                $user = $_SESSION['username'];
+                $cart = $_SESSION['cart'];
+                $tong_gia = 0;
+                foreach ($cart as $san_pham) {
+                    $tong_gia += $san_pham['gia_khuyenmai'] * $san_pham['soluong'];
+                }
+                if (isset($_POST['btn_save']) && ($_POST['btn_save'])) {
+                    $diachi = $_POST['diachi'];
+                    $vanchuyen = $_POST['vanchuyen'];
+                    $thanhtoan = $_POST['thanhtoan'];
+                    $hoa_don = array(
+                        'ID_User' => $user['id_user'],
+                        'Họ tên' => $user['hoten'],
+                        'Email' => $user['email'],
+                        'Số điện thoại' => $user['sdt'],
+                        'Địa chỉ' => $diachi,
+                        'Phương thức vận chuyển' => $vanchuyen, // Phương thức vận chuyển, người dùng cần chọn trong quá trình thanh toán
+                        'Phương thức thanh toán' => $thanhtoan, // Phương thức thanh toán, người dùng cần chọn trong quá trình thanh toán
+                        'Tổng giá' => $tong_gia,
+                    );
+                    $hoa_don_id = insert_hoadon($hoa_don);
+                    foreach ($cart as $san_pham) {
+                        $chi_tiet_hoa_don = array(
+                            'ID_HD' => $hoa_don_id,
+                            'ID_SP' => $san_pham['id_sp'],
+                            'Size' => $san_pham['size'],
+                            'So_luong' => $san_pham['soluong'],
+                            'Gia_ban' => $san_pham['gia_khuyenmai']
+                        );
+                        insert_cthd($chi_tiet_hoa_don, $hoa_don_id);
+                    }
+                    clearCart();
+                    echo '<script>window.location.href = "index.php?act=confirm";</script>';
+                }
+            }
+            include "user/sanpham/thanhtoan.php";
+            break;
+        case 'confirm':
+            include "user/sanpham/confirm.php";
+            break;
+        case 'myorder':
+            if(isset($_SESSION['username'])){
+                $id_user = $_SESSION['username']['id_user'];
+                $hoadon = loadall_hoadon($id_user);
+            }
+            include "user/sanpham/myorder.php";
             break;
         case 'dangky':
 
@@ -176,7 +236,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                                 $thongbao = "<div class='notification'>Email không hợp lệ.</div>";
                             } else {
                                 // Check if the username is already taken
-                                if (checkName($username)) {
+                                if (checkName($username) > 0) {
                                     $thongbao = "<div class='notification'>Tên đăng nhập đã tồn tại. Vui lòng chọn một tên đăng nhập khác.</div>";
                                 } else {
                                     // Nếu tất cả các kiểm tra đều thành công, thì tiếp tục đăng ký
@@ -189,6 +249,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 }
             }
 
+
             include "user/taikhoan/taikhoan.php";
             break;
 
@@ -199,14 +260,14 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
 
                 // Kiểm tra xem tên người dùng và mật khẩu có trống không
                 if (empty($user) || empty($pass)) {
-                    $thongbao = "Tên người dùng và mật khẩu không được để trống.";
+                    $thongbao1 = "Tên người dùng và mật khẩu không được để trống.";
                 } else {
                     $checkUser = check_user($user, $pass);
                     if (is_array($checkUser)) {
                         $_SESSION['username'] = $checkUser;
                         echo '<script>window.location.href = "index.php";</script>';
                     } else {
-                        $thongbao = "Tài khoản không tồn tại. Vui lòng kiểm tra hoặc đăng ký.";
+                        $thongbao1 = "Tài khoản không tồn tại. Vui lòng kiểm tra hoặc đăng ký.";
                     }
                 }
             }

@@ -128,40 +128,35 @@
 									<div class="dropdown dropdown-access">
 										<a href="index.php?act=dangky" class="access_link"><span>Account</span></a>
 										<div class="dropdown-menu">
-										<?php
-                                            if (isset($_SESSION['username'])) {
-                                                extract($_SESSION['username']);
-                                            ?>
-                                                <h4>Xin chào <?= $username ?></h4><br>
+											<?php
+											if (isset($_SESSION['username'])) {
+												extract($_SESSION['username']);
+											?>
+												<h4>Xin chào <?= $username ?></h4><br>
 												<ul>
 													<li>
 														<a href="index.php?act=edit-taikhoan"><i class="ti-user"></i> My Profile</a>
 													</li>
-													<?php if($vaitro=="admin") { ?>
-													<li>
-														<a href="admin/index.php"><i class="ti-user"></i> Admin</a>
-													</li>
+													<?php if ($vaitro == "admin") { ?>
+														<li>
+															<a href="admin/index.php"><i class="ti-user"></i> Admin</a>
+														</li>
 													<?php } ?>
+													<li>
+														<a href="index.php?act=myorder"><i class="ti-package"></i>My Orders</a>
+													</li>
+													<li>
+														<a href="index.php?act=logout"><i class="ti-help-alt"></i>Đăng xuất</a>
+													</li>
 												</ul>
 
-                                            <?php
-                                            } else {
-                                            ?>
-                                                <a href="index.php?act=dangky" class="btn_1">Sign In or Sign Up</a>
-                                            <?php
-                                            }
-                                            ?>
-											<ul>
-												<li>
-													<a href="track-order.html"><i class="ti-truck"></i>Track your Order</a>
-												</li>
-												<li>
-													<a href="account.html"><i class="ti-package"></i>My Orders</a>
-												</li>
-												<li>
-													<a href="index.php?act=logout"><i class="ti-help-alt"></i>Đăng xuất</a>
-												</li>
-											</ul>
+											<?php
+											} else {
+											?>
+												<a href="index.php?act=dangky" class="btn_1">Sign In or Sign Up</a>
+											<?php
+											}
+											?>
 										</div>
 									</div>
 									<!-- /dropdown-access-->

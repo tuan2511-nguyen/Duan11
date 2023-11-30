@@ -22,4 +22,9 @@
         $check = pdo_query($sql);
         return $check > 0;
     }
+    function loadone_tk($username){
+        $sql = "SELECT * FROM user WHERE username=:username";
+        $check = pdo_query_one($sql, array(':username' => $username));
+        return $check;
+    }
 ?>

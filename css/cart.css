@@ -16,21 +16,22 @@
 }
 
 .table.cart-list th:nth-child(1) {
-  width: 70%;
+  width: 5%;
 }
 .table.cart-list th:nth-child(2) {
-  width: 15%;
+  width: 30%;
 }
 .table.cart-list th:nth-child(3) {
-  width: 20%;
+  width: 30%;
 }
 .table.cart-list th:nth-child(4) {
-  width: 5%;
+  width: 20%;
 }
 
 .table.cart-list td {
   vertical-align: middle;
   border: 0;
+  height: 100px;
 }
 .table.cart-list td strong {
   font-weight: 500;
@@ -155,13 +156,12 @@
 .item_cart {
   float: left;
   width: 65%;
-  margin: 25px 0 0 10px;
+  margin: 0px 0 0 10px;
   line-height: 1.3;
   font-weight: 500;
 }
 @media (max-width: 991px) {
   .item_cart {
-    margin: 5px 0 0 0;
     width: 100%;
     float: none;
   }

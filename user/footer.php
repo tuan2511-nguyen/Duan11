@@ -110,7 +110,6 @@
 <script src="js/carousel-home.js"></script>
 <script src="js/carousel-home-2.js"></script>
 <script src="js/carousel-home.min.js"></script>
-<script src="js/js.js"></script>
 <script src="js/sticky_sidebar.min.js"></script>
 <script src="js/specific_listing.js"></script>
 <script src="js/sticky_sidebar.min.js"></script>

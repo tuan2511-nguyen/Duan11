@@ -39,8 +39,8 @@
 							<div class="text-center"><input type="submit" value="Log In" class="btn_1 full-width" name="btn_login">
 							</div>
 							<?php
-							if (isset($thongbao) && ($thongbao != "")) {
-								echo $thongbao;
+							if (isset($thongbao1) && ($thongbao1 != "")) {
+								echo $thongbao1;
 							}
 							?>
 							<div id="forgot_pw">

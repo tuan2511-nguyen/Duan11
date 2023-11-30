@@ -76,29 +76,29 @@
 								<ul>
 									<li>
 										<label class="container_check">
-											0đ-1000000đ
-											<input type="checkbox" name="price_range[]" value="0-1000000">
+											0$$-100$
+											<input type="checkbox" name="price_range[]" value="0-100">
 											<span class="checkmark"></span>
 										</label>
 									</li>
 									<li>
 										<label class="container_check">
-											1000000đ-2000000đ
-											<input type="checkbox" name="price_range[]" value="1000000-2000000">
+											100$-200$
+											<input type="checkbox" name="price_range[]" value="100-200">
 											<span class="checkmark"></span>
 										</label>
 									</li>
 									<li>
 										<label class="container_check">
-											2000000đ-3000000đ
-											<input type="checkbox" name="price_range[]" value="2000000-3000000">
+											200$-300$
+											<input type="checkbox" name="price_range[]" value="200-3000">
 											<span class="checkmark"></span>
 										</label>
 									</li>
 									<li>
 										<label class="container_check">
-											3000000đ-6000000đ
-											<input type="checkbox" name="price_range[]" value="3000000-6000000">
+											300$-600$
+											<input type="checkbox" name="price_range[]" value="300-600">
 											<span class="checkmark"></span>
 										</label>
 									</li>
