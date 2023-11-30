@@ -204,7 +204,11 @@
                 include "taikhoan/dstk.php";
                 break;
             case 'dsbl':
+<<<<<<< HEAD
                 $listbinhluan=loadall_binhluan($id_sp);
+=======
+                $listbinhluan=load_binhluan();
+>>>>>>> 06de5b53c05c3729aaa6492159acb8bd6fc823af
                 include "binhluan/dsbl.php";
             break;
             default:
