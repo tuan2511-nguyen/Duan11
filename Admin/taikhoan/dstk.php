@@ -27,7 +27,7 @@
                     <tr>
                         <th>Mã user</th>
                         <th>Username</th>
-                        <th>Pas</th>
+                        <th>Pass</th>
                         <th>Email</th>
                         <th>Fullname</th>
                         <th>SĐT</th>
