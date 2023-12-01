@@ -59,6 +59,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 $bienthe = load_bienthe($id_sp);
                 $load_random = load_random();
                 $listbl = loadall_binhluan($id_sp);
+                $sp=loadone_sanpham($id_sp);
             }
 
             include "user/sanpham/ctsp.php";
