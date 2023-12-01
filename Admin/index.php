@@ -197,8 +197,12 @@
                     $id_user=$_POST['id_user'];
                     $username=$_POST['username'];
                     $pass=$_POST['pass'];
-                    $vaitro=$_POST['vaitro'];
-                    update_taikhoan($id_user,$username,$pass,$vaitro);
+                    $email=$_POST['email'];
+                    $hoten=$_POST['hoten'];
+                    $diachi=$_POST['diachi'];
+                    $sdt=$_POST['sdt'];
+                    $vaitro=$_POST['vaitro']; 
+                    update_taikhoan($id_user,$username,$email,$hoten,$diachi,$sdt,$pass,$vaitro);
                     $thongbao="Cập nhật thành công";
                 }
                 $listtaikhoan=loadall_taikhoan();

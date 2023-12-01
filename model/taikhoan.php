@@ -8,8 +8,8 @@
         $kq = pdo_query_one($sql);
         return $kq;
     }
-    function update_taikhoan($id_user,$username,$pass,$vaitro){
-        $sql="update user set id_user='".$id_user."', username='".$username."', pass='".$pass."',vaitro='".$vaitro."' where id_user=".$id_user;
+    function update_taikhoan($id_user,$username,$email,$hoten,$diachi,$sdt,$pass,$vaitro){
+        $sql="update user set id_user='".$id_user."', username='".$username."', pass='".$pass."',email='".$email."',hoten='".$hoten."',diachi='".$diachi."',sdt='".$sdt."',vaitro='".$vaitro."' where id_user=".$id_user;
         pdo_execute($sql);
     }
     function update_taikhoan1($id_user,$username,$pass,$email,$hoten,$diachi,$sdt){
