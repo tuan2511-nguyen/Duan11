@@ -79,11 +79,29 @@
                     $hinh=$_FILES['hinh']['name'];
                     $target_dir="../upload/";
                     $target_file= $target_dir . basename($_FILES["hinh"]["name"]);
-                    if (move_uploaded_file($_FILES["hinh"]["tmp_name"], $target_file)) {
-                        //echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
-                      } else {
-                        //echo "Sorry, there was an error uploading your file.";
-                      }
+                    $uploadOk = 1;
+                    $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+                        // Kiểm tra file upload lên có phải là ảnh không?
+
+                        $check = getimagesize($_FILES["hinh"]["tmp_name"]);
+                        if($check !== false) {
+                            echo "File có định dạng - " . $check["mime"] . ".";
+                            $uploadOk = 1;
+                        } else {
+                            $thongbao1 = "Chỉ cho phép hình ảnh";
+                            $uploadOk = 0;
+                        }
+                    // Kiểm tra kích thước file 500000 byte
+                    if ($_FILES["hinh"]["size"] > 500000) {
+                        $thongbao2 = "file quá lớn";
+                        $uploadOk = 0;
+                    }else {
+                        if (move_uploaded_file($_FILES["hinh"]["tmp_name"], $target_file)) {
+                    
+                        } else {
+                         
+                        }
+                    }
                     if (checkName2($tensp)) {
                         $thongbao = "Tên sản phẩm đã tồn tại";
                     } else {
