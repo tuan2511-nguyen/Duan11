@@ -22,25 +22,24 @@
         return $listtaikhoan;
     }
     function delete_taikhoan($id_user)
-{
-    $sql = "delete from user where id_user=" . $id_user;
-    pdo_execute($sql);
-}
-function loadone_taikhoan($id_user)
-{
-    $sql = "select * from user where id_user=" . $id_user;
-    $taikhoan = pdo_query_one($sql);
-    return $taikhoan;
-}
-    function checkName($username){
-        $sql = "SELECT * FROM user WHERE username='$username'";
-        $check = pdo_query($sql);
-        return $check;
+    {
+        $sql = "delete from user where id_user=" . $id_user;
+        pdo_execute($sql);
     }
-    function loadone_tk($username){
-        $sql = "SELECT * FROM user WHERE username=:username";
-        $check = pdo_query_one($sql, array(':username' => $username));
-        return $check;
+    function loadone_taikhoan($id_user)
+    {
+        $sql = "select * from user where id_user=" . $id_user;
+        $taikhoan = pdo_query_one($sql);
+        return $taikhoan;
     }
-?>
+        function checkName($username){
+            $sql = "SELECT * FROM user WHERE username='$username'";
+            $check = pdo_query($sql);
+            return $check;
+        }
+        function loadone_tk($username){
+            $sql = "SELECT * FROM user WHERE username=:username";
+            $check = pdo_query_one($sql, array(':username' => $username));
+            return $check;
+        }
 ?>
