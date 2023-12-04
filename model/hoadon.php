@@ -77,3 +77,7 @@ function dssp_bc(){
     return pdo_query($sql);
 }
 
+function donhang(){
+    $sql = "SELECT * FROM hoadon WHERE trangthai = 'Đã xác nhận'";
+    return pdo_query($sql);
+}

@@ -232,6 +232,7 @@
                 $listdt =doanhthu();
                 $doanhThu = $listdt[0]['doanh_thu'];
                 $listsp_bc = dssp_bc();
+                $donhang = donhang();
                 include "donhang/thongke.php";
                 break;
             default:
