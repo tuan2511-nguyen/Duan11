@@ -23,24 +23,48 @@
         <br><br><br>
         <div class="box2">
             <div class="form12">
-                <h3>Tổng doanh thu: <?= $doanhThu ?>$</h3>
+                <h3>Doanh thu</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Tổng tiền đơn hàng</th>
+                            <th>Trạng thái</th>
+                        </tr>
+                    </thead>
+                    <?php
+                    $stt = 1;
+                    foreach ($donhang as $dh) {
+                        extract($dh);
+                        echo '<tbody><tr><td>' . $stt++ . '</td><td>' . $tonggia . '$</td><td>' . $trangthai . '</td></tr></tbody>';
+                    }
+                    ?>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2"></td>
+                            <td><strong>Tổng doanh thu: <?= $doanhThu ?>$</strong></td>
+                        </tr>
+                    </tfoot>
+                </table>
+
             </div>
-            <h4 style="text-align: center;">Danh sách sản phẩm bán chạy</h4>
+            <br><br>
+            <h4>Danh sách sản phẩm bán chạy</h4>
             <table>
                 <thead>
                     <tr>
-                        <th>Stt</th>
+                        <th>STT</th>
                         <th>Tên sản phẩm</th>
                         <th>Số lượng đã bán</th>
                     </tr>
                 </thead>
                 <?php
-                $stt = 1;
+                $STT = 1;
                 foreach ($listsp_bc as $spbc) {
                     extract($spbc);
                     echo '<tbody>
                                 <tr>
-                                    <td>' . $stt++ . '</td>
+                                    <td>' . $STT++ . '</td>
                                     <td>' . $ten_sp . '</td>
                                     <td>' . $So_luong_da_ban . '</td>
                                 </tr>
@@ -49,23 +73,23 @@
                 ?>
             </table>
             <!-- <?php
-            if ($current_page > 1 && $total_page > 1) {
-                echo '<li class="pagi"><a href="index.php?act=thongke&page=' . ($current_page - 1) . '">Prev</a> </li>';
-            }
-            for ($i = 1; $i <= $total_page; $i++) {
+                    if ($current_page > 1 && $total_page > 1) {
+                        echo '<li class="pagi"><a href="index.php?act=thongke&page=' . ($current_page - 1) . '">Prev</a> </li>';
+                    }
+                    for ($i = 1; $i <= $total_page; $i++) {
 
-                if ($i == $current_page) {
-                    echo '<li class="pagi"><a>' . $i . '</a></li>';
-                } else {
-                    echo '<li class="pagi"><a href="index.php?act=thongke&page=' . $i . '">' . $i . '</a></li>';
-                }
-            }
+                        if ($i == $current_page) {
+                            echo '<li class="pagi"><a>' . $i . '</a></li>';
+                        } else {
+                            echo '<li class="pagi"><a href="index.php?act=thongke&page=' . $i . '">' . $i . '</a></li>';
+                        }
+                    }
 
-            // nếu current_page < $total_page và total_page > 1 mới hiển thị nút prev
-            if ($current_page < $total_page && $total_page > 1) {
-                echo '<li class="pagi"><a href="index.php?act=thongke&page=' . ($current_page + 1) . '">Next</a> </li>';
-            }
-            ?> -->
+                    // nếu current_page < $total_page và total_page > 1 mới hiển thị nút prev
+                    if ($current_page < $total_page && $total_page > 1) {
+                        echo '<li class="pagi"><a href="index.php?act=thongke&page=' . ($current_page + 1) . '">Next</a> </li>';
+                    }
+                    ?> -->
             <br><br><br><br>
             <br>
             <?php

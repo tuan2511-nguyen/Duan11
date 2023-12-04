@@ -1,6 +1,5 @@
+
 <main class="bg_gray">
-
-
 	<form action="index.php?act=thanhtoan" method="post" class="container margin_30">
 		<div class="page_header">
 			<div class="breadcrumbs">
@@ -55,9 +54,7 @@
 							</div>
 							<div id="other_addr_c" class="pt-2">
 							</div>
-							<!-- /other_addr_c -->
 						</div>
-						<!-- /tab_1 -->
 					</div>
 				</div>
 			</div>
@@ -115,7 +112,6 @@
 
 				</div>
 			</div>
-
 		</div>
 		<div class="col-lg-4 col-md-6">
 			<div class="step last">
