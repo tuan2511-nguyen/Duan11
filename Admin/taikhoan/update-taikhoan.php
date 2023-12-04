@@ -4,7 +4,7 @@ if (is_array($taikhoan)) {
 }
 ?>
 <div class="admin-container">
-    <aside class="admin-sidebar">
+    <aside class="admin-sidebar"> 
         <h2>Admin Panel</h2>
         <nav>
             <ul>
@@ -31,11 +31,23 @@ if (is_array($taikhoan)) {
             <!-- Nội dung của trang "Thêm Sản Phẩm" -->
             <form action="index.php?act=update-taikhoan" method="POST" class="add-product-form">
                 <div class="form1">
-                    <label for="username">Username:</label>
+                    <label for="username">Username:</label> 
                     <input type="text" id="username" name="username" value="<?= $username ?>" required><br>
 
                     <label for="password">Password:</label>
                     <input type="password" id="password" name="pass" value="<?= $pass ?>"><br>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" value="<?=$email?>" required><br>
+
+                    <label for="fullname">Full Name:</label>
+                    <input type="text" id="fullname" name="hoten" value="<?=$hoten?>" required><br>
+
+                    <label for="address">Address:</label>
+                    <input type="text" id="address" name="diachi" value="<?=$diachi?>" required><br>
+
+                    <label for="phone">Phone:</label>
+                    <input type="tel" id="phone" name="sdt" value="<?=$sdt?>" required><br>
 
                     <label for="phone">Vai trò:</label>
                     <input type="tel" id="phone" name="vaitro" value="<?= $vaitro ?>" required><br>

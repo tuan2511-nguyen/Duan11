@@ -58,6 +58,12 @@
                 </div>
                 <?php
                 if (isset($thongbao) && ($thongbao != "")) echo $thongbao;
+                ?><br>
+                <?php
+                if (isset($thongbao1) && ($thongbao1 != "")) echo $thongbao1;
+                ?><br>
+                <?php
+                if (isset($thongbao2) && ($thongbao2 != "")) echo $thongbao2;
                 ?>
             </form>
         </div>

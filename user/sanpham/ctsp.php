@@ -1,11 +1,17 @@
+<?php
+if (is_array($sp)) {
+    extract($sp);
+    $hinh = $img_path . $img;
+}
+?>
 <main>
     <div class="container margin_30">
         <div class="row">
             <div class="col-md-6">
                 <div class="all">
                     <div class="slider">
-                        <div class="owl-carousel owl-theme main">
-                            <div style="background-image: url(img/products/shoes/1.jpg);" class="item-box"></div>
+                        <div class="owl-carousel owl-theme main"> 
+                            <div style="background-image: url(<?=$hinh?>);" class="item-box"></div>
                             <div style="background-image: url(img/products/shoes/2.jpg);" class="item-box"></div>
                             <div style="background-image: url(img/products/shoes/3.jpg);" class="item-box"></div>
                             <div style="background-image: url(img/products/shoes/4.jpg);" class="item-box"></div>
@@ -194,12 +200,14 @@
         <div class="owl-carousel owl-theme products_carousel">
             <?php
             foreach ($load_random as $sp_random) {
+                extract($sp_random);
                 $linksp = "index.php?act=ct_sanpham&id_sp=" . $sp_random['id_sp'];
+                $hinh = $img_path . $img;
                 echo '<div class="item">
 					<div class="grid_item">
 						<figure>
 							<a href="' . $linksp . '">
-								<img class="owl-lazy" src="img/products/product_placeholder_square_medium.jpg" data-src="img/products/shoes/4.jpg" alt="">
+								<img class="owl-lazy" src="'.$hinh.'">
 							</a>
 						</figure>
 						<div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
