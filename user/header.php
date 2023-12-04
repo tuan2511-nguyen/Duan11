@@ -85,7 +85,7 @@
 										<a href="javascript:void(0);" class="">Extra Pages</a>
 									</li>
 									<li>
-										<a href="blog.html">Blog</a>
+										<a href="../blog.html">Blog</a>
 									</li>
 									<li>
 										<a href="#0">Buy Template</a>

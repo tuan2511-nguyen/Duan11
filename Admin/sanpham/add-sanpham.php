@@ -40,7 +40,10 @@
                     <input type="text" id="productName" name="tensp" required>
 
                     <label for="productName">Hình Sản Phẩm:</label>
-                    <input type="file" id="productName" name="hinh" multiple required>
+                    <input type="file" id="productName" name="hinh" required>
+
+                    <label for="productName">Hình Mô Tả:</label>
+                    <input type="file" id="productName" name="hinhs[]" multiple required>
 
                     <label for="productPrice">Giá:</label>
                     <input type="text" id="productPrice" name="giasp" required>

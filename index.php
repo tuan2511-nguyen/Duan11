@@ -87,6 +87,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 $gia_khuyenmai = $_POST['gia_khuyenmai'];
                 $soluong = intval($_POST['soluong']); // Ép kiểu dữ liệu về int
                 $size = $_POST['size'];
+                $sp=loadone_sanpham($id_sp);
 
                 if (!isset($_SESSION['cart'])) {
                     $_SESSION['cart'] = array();
