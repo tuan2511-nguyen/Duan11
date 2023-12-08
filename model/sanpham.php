@@ -13,7 +13,7 @@ function loadall_sanpham($iddm = 0)
 {
     $sql = "select * from sanpham where 1";
     if ($iddm > 0) {
-        $sql .= " and id_dm ='" . $iddm . "'"; 
+        $sql .= " and id_dm ='" . $iddm . "'";
     }
     $sql .= " order by id_dm asc";
     $listsanpham = pdo_query($sql);
@@ -39,7 +39,8 @@ function loadall_sanpham_home()
     $listsanpham = pdo_query($sql);
     return $listsanpham;
 }
-function load_sanpham($start, $limit, $kw = "", $whereConditions = []) {
+function load_sanpham($start, $limit, $kw = "", $whereConditions = [])
+{
     $sql = "SELECT * FROM sanpham";
 
     if ($kw !== "") {
@@ -56,28 +57,32 @@ function load_sanpham($start, $limit, $kw = "", $whereConditions = []) {
     $listsp = pdo_query($sql);
     return $listsp;
 }
-    function get_total_products(){
-        $sql = "SELECT COUNT(*) as total FROM sanpham";
-        return pdo_query_value($sql);
+function get_total_products()
+{
+    $sql = "SELECT COUNT(*) as total FROM sanpham";
+    return pdo_query_value($sql);
+}
+function load_sp($start, $limit, $iddm = 0)
+{
+    $sql = "select * from sanpham where 1";
+    if ($iddm > 0) {
+        $sql .= " and id_dm ='" . $iddm . "'";
     }
-    function load_sp($start, $limit, $iddm = 0){
-        $sql = "select * from sanpham where 1";
-        if ($iddm > 0) {
-            $sql .= " and id_dm ='" . $iddm . "'";
-        }
-        $sql .= " LIMIT $start, $limit";
-        $listsp = pdo_query($sql);
-        return $listsp;
-    }
-    function get_total_sp(){
-        $sql = "SELECT COUNT(*) as total FROM sanpham";
-        return pdo_query_value($sql);
-    }
-    function checkName2($tensp){
-        $sql = "SELECT * FROM sanpham WHERE ten_sp='$tensp'";
-        $check = pdo_query($sql);
-        return $check; 
-    }
+    $sql .= " LIMIT $start, $limit";
+    $listsp = pdo_query($sql);
+    return $listsp;
+}
+function get_total_sp()
+{
+    $sql = "SELECT COUNT(*) as total FROM sanpham";
+    return pdo_query_value($sql);
+}
+function checkName2($tensp)
+{
+    $sql = "SELECT * FROM sanpham WHERE ten_sp='$tensp'";
+    $check = pdo_query($sql);
+    return $check;
+}
 //load-sản phẩm chi tiết
 function load_spct($id_sp)
 {
@@ -89,12 +94,13 @@ function load_bienthe($id_sp)
     $sql = "SELECT DISTINCT size FROM ct_sanpham WHERE id_sp = $id_sp";
     return pdo_query($sql);
 }
-function load_random(){
+function load_random()
+{
     $sql = "SELECT * FROM sanpham ORDER BY RAND() LIMIT 5";
     return pdo_query($sql);
 }
-function soLuong($id_sp, $size){
+function soLuong($id_sp, $size)
+{
     $sql = "SELECT soluong FROM ct_sanpham WHERE id_sp = $id_sp AND size = $size";
     return pdo_query($sql);
 }
-?>

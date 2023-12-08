@@ -7,7 +7,7 @@
                 <li>
                     <a href="index.php?act=add-sanpham">Thêm Sản phẩm</a>
                 </li>
-                <li><a href="index.php?act=dstk" >QL Tài khoản</a></li>
+                <li><a href="index.php?act=dstk">QL Tài khoản</a></li>
                 <li><a href="index.php?act=dsbl">QL Bình luận</a></li>
                 <li><a href="index.php?act=dsdh" class="active">QL Đơn hàng</a></li>
                 <li><a href="index.php?act=thongke">Thống kê</a></li>
@@ -21,7 +21,7 @@
             </a>
         </div>
         <div class="box2">
-            <h2 style="text-align: center;">Danh sách tài khoản</h2>
+            <h2 style="text-align: center;">Danh sách đơn hàng</h2>
 
             <table>
                 <thead>
@@ -48,7 +48,10 @@
                                         <td>' . $current_hd['thanhtoan'] . '</td>
                                         <td>' . $current_hd['tonggia'] . '$</td>
                                         <td>' . $current_hd['trangthai'] . '</td>
-                                        <td><button class="confirm-order" data-order-id="' . $current_hd['id_hd'] . '">Confirm Order</button></td>
+                                        <td>
+                                            <button class="cancel-order" data-order-id="' . $current_hd['id_hd'] . '">Hủy đơn</button>
+                                            <button class="ct-order" data-order-id="' . $current_hd['id_hd'] . '">Chi tiết</button> 
+                                        </td>
                                     </tr>';
                             }
                             echo '<tr>
@@ -67,17 +70,28 @@
                                 <td>' . $current_hd['thanhtoan'] . '</td>
                                 <td>' . $current_hd['tonggia'] . '$</td>
                                 <td>' . $current_hd['trangthai'] . '</td>
-                                <td><button class="confirm-order" data-order-id="' . $current_hd['id_hd'] . '">Confirm Order</button></td>
+                                <td>
+                                    <button class="cancel-order" data-order-id="' . $current_hd['id_hd'] . '">Hủy đơn</button>
+                                    <button class="ct-order" data-order-id="' . $current_hd['id_hd'] . '">Chi tiết</button>                                    
+                                </td>
                             </tr>';
                     }
                     ?>
                 </tbody>
             </table>
             <script>
-                document.querySelectorAll('.confirm-order').forEach(function(button) {
+                document.querySelectorAll('.cancel-order').forEach(function(button) {
                     button.addEventListener('click', function() {
                         var orderId = this.dataset.orderId;
-                        window.location.href = 'index.php?act=xacthuc&id_hd=' + orderId;
+                        window.location.href = 'index.php?act=huy_dh&id_hd=' + orderId;
+                    });
+                });
+            </script>
+            <script>
+                document.querySelectorAll('.ct-order').forEach(function(button) {
+                    button.addEventListener('click', function() {
+                        var orderId = this.dataset.orderId;
+                        window.location.href = 'index.php?act=ctdh&id_hd=' + orderId;
                     });
                 });
             </script>

@@ -48,8 +48,8 @@
 								<td>
 								<form action="index.php?act=update" method="post" class="update-form">
 									<input type="hidden" name="id_sp" value="' . $item['id_sp'] . '">
-									<div class="numbers-row">
-										<input type="number" value="' . $item['soluong'] . '" class="qty2" name="quantity_' . $item['id_sp'] . '" onclick="updateTotalPrice(this)">
+									<div >
+									<input type="number" value="' . $item['soluong'] . '" class="qty2" name="quantity_' . $item['id_sp'] . '" oninput="updateQuantity(this)" min="1" max="20" style="margin-right:160px; width: 50px; height: 40px; background-color:white">
 									</div>
 								</form>
 
@@ -75,13 +75,25 @@
 			</div>
 			<div class="col-sm-8">
 				<div class="apply-coupon">
-					<div class="form-group">
-						<div class="row g-2">
-							<div class="col-md-6"><input type="text" name="coupon-code" value="" placeholder="Promo code" class="form-control"></div>
-							<div class="col-md-4"><button type="button" class="btn_1 outline">Apply Coupon</button></div>
+					<form action="index.php?act=apply_coupon" method="post">
+						<div class="form-group">
+							<div class="row g-2">
+								<div class="col-md-6">
+									<input type="text" name="coupon-code" placeholder="Promo code" class="form-control">
+								</div>
+								<div class="col-md-4">
+									<button type="submit" class="btn_1 outline">Apply Coupon</button>
+								</div>
+							</div>
 						</div>
-					</div>
+					</form>
+					<?php
+					if (isset($thongbao) && ($thongbao != "")) {
+						echo $thongbao;
+					}
+					?>
 				</div>
+
 			</div>
 		</div>
 		<!-- /cart_actions -->
@@ -93,17 +105,40 @@
 		<div class="container">
 			<div class="row justify-content-end">
 				<div class="col-xl-4 col-lg-4 col-md-6">
+					<!-- Trong trang hiện tại hoặc trang giỏ hàng -->
 					<ul>
 						<li>
 							<span>Subtotal</span> $<?php echo number_format($total, 2); ?>
 						</li>
-						<li>
-							<span>Shipping</span> $7.00
-						</li>
-						<li>
-							<span>Total</span> $<?php echo number_format($total + 7, 2); ?>
-						</li>
+						<?php
+						// Kiểm tra giỏ hàng có sản phẩm không để quyết định hiển thị phí vận chuyển và giảm giá
+						if (!empty($_SESSION['cart'])) {
+							echo '<li>
+									<span>Shipping</span> $7.00
+								</li>';
+							if (isset($_POST['coupon-code'])&& $couponInfo) {
+								echo '<li>
+										<span>Discount</span> -$' . number_format($discount, 2) . '
+									</li>';
+
+								echo '<li>
+										<span>Total</span> $' . number_format($discountedTotal + 7, 2) . '
+									</li>';
+							} else {
+								// Nếu không có mã giảm giá, hiển thị tổng giá không giảm giá
+								echo '<li>
+										<span>Total</span> $' . number_format($total + 7, 2) . '
+									</li>';
+							}
+						} else {
+							// Nếu giỏ hàng trống, hiển thị thông báo hoặc thực hiện hành động khác
+							echo '<li>
+									<span>Total</span> $' . number_format($total, 2) . '
+								</li>';
+						}
+						?>
 					</ul>
+
 					<?php
 					if (isset($_SESSION['username'])) {
 						// Kiểm tra nếu giỏ hàng không trống
@@ -128,6 +163,20 @@
 
 	<!-- /box_cart -->
 	<script>
+		function updateQuantity(inputElement) {
+			// Lấy giá trị hiện tại của input
+			var currentValue = inputElement.value;
+
+			// Chuyển đổi giá trị thành số nguyên
+			var intValue = parseInt(currentValue, 10);
+
+			// Kiểm tra giới hạn tối đa
+			if (intValue > 20) {
+				// Nếu vượt quá giới hạn, đặt giá trị mới là 20
+				inputElement.value = 20;
+			}
+		}
+
 		function updateQuantity(element, operation) {
 			var input = element.parentElement.querySelector('input[type="text"]');
 			var currentQuantity = parseInt(input.value);

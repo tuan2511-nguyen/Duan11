@@ -6,6 +6,7 @@ include "model/danhmuc.php";
 include "model/taikhoan.php";
 include "model/binhluan.php";
 include "model/hoadon.php";
+include "model/voucher.php";
 include "user/header.php";
 include "global.php";
 
@@ -59,7 +60,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 $bienthe = load_bienthe($id_sp);
                 $load_random = load_random();
                 $listbl = loadall_binhluan($id_sp);
-                $sp=loadone_sanpham($id_sp);
+                $sp = loadone_sanpham($id_sp);
             }
 
             include "user/sanpham/ctsp.php";
@@ -112,34 +113,73 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 foreach ($_SESSION['cart'] as $item) {
                     $total += $item['gia_khuyenmai'] * $item['soluong'];
                 }
+                $_SESSION['total'] = $total; // Lưu tổng vào session
             }
 
 
             include "user/sanpham/cart.php";
             break;
-        case "update":
-            if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id_sp']) && isset($_POST['quantity_' . $_POST['id_sp']])) {
-                $product_id = $_POST['id_sp'];
-                $quantity = $_POST['quantity_' . $product_id];
+            case "update":
+                if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id_sp']) && isset($_POST['quantity_' . $_POST['id_sp']])) {
+                    $product_id = $_POST['id_sp'];
+                    $quantity = $_POST['quantity_' . $product_id];
+            
+                    // Update the quantity in the cart
+                    foreach ($_SESSION['cart'] as $key => $product) {
+                        if ($product['id_sp'] == $product_id) {
+                            $_SESSION['cart'][$key]['soluong'] = $quantity;
+                            break;
+                        }
+                    }
+                }
+            
+                // Tính toán giảm giá và cập nhật vào session
+                $total = 0;
+                if (isset($_SESSION['cart']) && count($_SESSION['cart']) > 0) {
+                    foreach ($_SESSION['cart'] as $item) {
+                        $total += $item['gia_khuyenmai'] * $item['soluong'];
+                    }
+                    $_SESSION['total'] = $total;
+            
+                    // Kiểm tra xem mã giảm giá có tồn tại không
+                    if (isset($_SESSION['discount'])) {
+                        $discount = $_SESSION['discount'];
+                        $discountedTotal = $total - $discount;
+                        $_SESSION['discountedTotal'] = $discountedTotal;
+                    } else {
+                        // Nếu không có mã giảm giá, giảm giá sẽ bằng 0
+                        $_SESSION['discountedTotal'] = $total;
+                    }
+                }
+            
+                include "user/sanpham/cart.php";
+                break;
+            
+        case 'apply_coupon':
+            // Lấy giá tiền từ session hoặc giá trị mặc định nếu không tồn tại
+            $total = isset($_SESSION['total']) ? $_SESSION['total'] : 0;
 
-                // Update the quantity in the cart
-                foreach ($_SESSION['cart'] as $key => $product) {
-                    if ($product['id_sp'] == $product_id) {
-                        $_SESSION['cart'][$key]['soluong'] = $quantity;
-                        break;
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                if (isset($_POST['coupon-code'])) {
+                    $couponCode = $_POST['coupon-code'];
+                    $couponInfo = load_voucher($couponCode);
+
+                    // Kiểm tra xem mã giảm giá có hợp lệ không
+                    if ($couponInfo) {
+                        // Mã giảm giá hợp lệ, tiến hành xử lý
+                        extract($couponInfo);
+                        $discount = intval($loaikhuyenmai);
+                        $discountedTotal = $total - $discount;
+
+                        // Cập nhật giá tiền mới sau khi áp dụng mã giảm giá vào session
+                        $_SESSION['discount'] = $discount;
+                        $_SESSION['discountedTotal'] = $discountedTotal;
+                    } else {
+                        // Mã giảm giá không hợp lệ, hiển thị thông báo
+                        $thongbao = "Mã giảm giá không hợp lệ. Vui lòng kiểm tra lại.";
                     }
                 }
             }
-
-
-
-            $total = 0;
-            if (isset($_SESSION['cart']) && count($_SESSION['cart']) > 0) {
-                foreach ($_SESSION['cart'] as $item) {
-                    $total += $item['gia_khuyenmai'] * $item['soluong'];
-                }
-            }
-
             include "user/sanpham/cart.php";
             break;
         case 'remove':
@@ -161,54 +201,82 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
 
         case 'thanhtoan':
             if (isset($_SESSION['username']) && isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
-                // var_dump($_SESSION['username']);
-                // var_dump($_SESSION['cart']);
                 $user = $_SESSION['username'];
                 $cart = $_SESSION['cart'];
-                $tong_gia = 0;
-                foreach ($cart as $san_pham) {
-                    $tong_gia += $san_pham['gia_khuyenmai'] * $san_pham['soluong'];
+                $tong_gia = $_SESSION['total'];
+
+                if (isset($_SESSION['discountedTotal'])) {
+                    // Nếu tồn tại, gán giá trị cho $giamgia từ $_SESSION['discountedTotal']
+                    $giamgia = $_SESSION['discount'];
+                } else {
+                    // Nếu không tồn tại, gán giá trị mặc định là 0 cho $giamgia
+                    $giamgia = 0;
                 }
+
                 if (isset($_POST['btn_save']) && ($_POST['btn_save'])) {
                     $diachi = $_POST['diachi'];
                     $vanchuyen = $_POST['vanchuyen'];
                     $thanhtoan = $_POST['thanhtoan'];
+                    // Tính toán tổng giá với giảm giá
+                    $tong_gia_sau_giam_gia = $tong_gia - $giamgia;
+
                     $hoa_don = array(
                         'ID_User' => $user['id_user'],
                         'Họ tên' => $user['hoten'],
                         'Email' => $user['email'],
                         'Số điện thoại' => $user['sdt'],
                         'Địa chỉ' => $diachi,
-                        'Phương thức vận chuyển' => $vanchuyen, // Phương thức vận chuyển, người dùng cần chọn trong quá trình thanh toán
-                        'Phương thức thanh toán' => $thanhtoan, // Phương thức thanh toán, người dùng cần chọn trong quá trình thanh toán
-                        'Tổng giá' => $tong_gia,
+                        'Phương thức vận chuyển' => $vanchuyen,
+                        'Phương thức thanh toán' => $thanhtoan,
+                        'Tổng giá' => $tong_gia_sau_giam_gia, // Sử dụng giá tiền mới sau giảm giá
                     );
+
                     $hoa_don_id = insert_hoadon($hoa_don);
+
                     foreach ($cart as $san_pham) {
                         $chi_tiet_hoa_don = array(
                             'ID_HD' => $hoa_don_id,
                             'ID_SP' => $san_pham['id_sp'],
                             'Size' => $san_pham['size'],
                             'So_luong' => $san_pham['soluong'],
-                            'Gia_ban' => $san_pham['gia_khuyenmai']
+                            'Gia_ban' => $san_pham['gia_khuyenmai'],
                         );
                         insert_cthd($chi_tiet_hoa_don, $hoa_don_id);
                     }
+
                     clearCart();
                     echo '<script>window.location.href = "index.php?act=confirm";</script>';
                 }
             }
             include "user/sanpham/thanhtoan.php";
             break;
+
         case 'confirm':
             include "user/sanpham/confirm.php";
             break;
         case 'myorder':
-            if(isset($_SESSION['username'])){
+            if (isset($_SESSION['username'])) {
                 $id_user = $_SESSION['username']['id_user'];
                 $hoadon = loadall_hoadon($id_user);
             }
             include "user/sanpham/myorder.php";
+            break;
+        case 'huy_dh':
+            if (isset($_GET['id_hd']) && ($_GET['id_hd'] > 0)) {
+                huy_dh($_GET['id_hd']);
+                echo '<script>window.location.href = "index.php?act=myorder";</script>';
+            }
+            if (isset($_SESSION['username'])) {
+                $id_user = $_SESSION['username']['id_user'];
+                $hoadon = loadall_hoadon($id_user);
+            }
+            include "user/sanpham/myorder.php";
+            break;
+        case 'ct_order':
+            if (isset($_GET['id_hd']) && ($_GET['id_hd'] > 0)) {
+                $dh = loadone_hoadon($_GET['id_hd']);
+            }
+            include "user/sanpham/ctdh.php";
             break;
         case 'dangky':
 
@@ -235,7 +303,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                             // Thực hiện các kiểm tra khác ở đây, ví dụ như kiểm tra định dạng email
                             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                                 $thongbao = "<div class='notification'>Email không hợp lệ.</div>";
-                            } else { 
+                            } else {
                                 // Check if the username is already taken
                                 if (checkName($username) > 0) {
                                     $thongbao = "<div class='notification'>Tên đăng nhập đã tồn tại. Vui lòng chọn một tên đăng nhập khác.</div>";
@@ -276,16 +344,16 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             include "user/taikhoan/taikhoan.php";
             break;
         case 'edit-taikhoan':
-            if(isset($_POST['thaydoi'])&&($_POST['thaydoi'])){
-                $id_user=$_POST['id_user'];
-                $username=$_POST['username'];
-                $pass=$_POST['pass'];
-                $email=$_POST['email'];
-                $hoten=$_POST['hoten'];
-                $diachi=$_POST['diachi'];
-                $sdt=$_POST['sdt'];
-                update_taikhoan1($id_user,$username,$pass,$email,$hoten,$diachi,$sdt);
-                $thongbao="Cập nhật thành công";
+            if (isset($_POST['thaydoi']) && ($_POST['thaydoi'])) {
+                $id_user = $_POST['id_user'];
+                $username = $_POST['username'];
+                $pass = $_POST['pass'];
+                $email = $_POST['email'];
+                $hoten = $_POST['hoten'];
+                $diachi = $_POST['diachi'];
+                $sdt = $_POST['sdt'];
+                update_taikhoan1($id_user, $username, $pass, $email, $hoten, $diachi, $sdt);
+                $thongbao = "Cập nhật thành công";
                 session_unset();
             }
             include "user/taikhoan/edit-taikhoan.php";
@@ -302,4 +370,3 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
     include "user/home.php";
 }
 include "user/footer.php";
-?>

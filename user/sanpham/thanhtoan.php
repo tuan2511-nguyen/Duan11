@@ -1,4 +1,3 @@
-
 <main class="bg_gray">
 	<form action="index.php?act=thanhtoan" method="post" class="container margin_30">
 		<div class="page_header">
@@ -120,7 +119,7 @@
 					<ul>
 						<?php foreach ($cart as $san_pham) : ?>
 							<li class="clearfix">
-								<em><?= $san_pham['soluong'] ?>x <?= $san_pham['ten_sp'] ?></em>
+								<em><?= $san_pham['ten_sp'] ?> x <?= $san_pham['soluong'] ?></em>
 								<span>$<?= $san_pham['gia_khuyenmai'] * $san_pham['soluong'] ?></span>
 							</li>
 						<?php endforeach; ?>
@@ -128,8 +127,24 @@
 					<ul>
 						<li class="clearfix"><em><strong>Subtotal</strong></em> <span>$<?= number_format($tong_gia, 2) ?></span></li>
 						<li class="clearfix"><em><strong>Shipping</strong></em> <span>$7</span></li>
+						<?php if (isset($_SESSION['discount'])) : ?>
+							<li class="clearfix"><em><strong>Discount</strong></em> <span>-$<?= number_format($_SESSION['discount'], 2) ?></span></li>
+							<li class="clearfix"><em><strong>Total</strong></em> <span>$<?= number_format($_SESSION['discountedTotal'] + 7, 2) ?></span></li>
+						<?php else : ?>
+							<li class="clearfix"><em><strong>Total</strong></em> <span>$<?= number_format($tong_gia + 7, 2) ?></span></li>
+						<?php endif; ?>
 					</ul>
-					<div class="total clearfix">TOTAL <span>$<?= number_format($tong_gia + 7, 2) ?></span></div>
+
+					<div class="total clearfix">TOTAL <span>$
+							<?php
+							if (isset($_SESSION['discount'])) {
+								echo number_format($_SESSION['discountedTotal'] + 7, 2);
+							} else {
+								echo number_format($tong_gia + 7, 2);
+							}
+							?>
+						</span></div>
+
 
 					<input type="submit" class="btn_1 full-width" value="Xác thực thông tin đơn hàng" name="btn_save">
 					<?php

@@ -126,7 +126,7 @@
 								</li>
 								<li>
 									<div class="dropdown dropdown-access">
-										<a href="index.php?act=dangky" class="access_link"><span>Account</span></a>
+										<a href="" class="access_link"><span class="access_link">Account</span></a>
 										<div class="dropdown-menu">
 											<?php
 											if (isset($_SESSION['username'])) {
