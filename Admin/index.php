@@ -77,6 +77,7 @@
                     $giakm=$_POST['giakm'];
                     $mota=$_POST['mota'];
                     $hinh=$_FILES['hinh']['name'];
+                    $hinhs=$_FILES['hinhs']['name'];
                     $target_dir="../upload/";
                     $target_file= $target_dir . basename($_FILES["hinh"]["name"]);
                     $uploadOk = 1;
@@ -85,7 +86,6 @@
 
                         $check = getimagesize($_FILES["hinh"]["tmp_name"]);
                         if($check !== false) {
-                            echo "File có định dạng - " . $check["mime"] . ".";
                             $uploadOk = 1;
                         } else {
                             $thongbao1 = "Chỉ cho phép hình ảnh";
@@ -102,10 +102,17 @@
                          
                         }
                     }
+                    $hinh_name= implode(",",$hinhs);
+                    if(!empty($hinh)){
+                        foreach ($hinhs as $key => $val) {
+                            $target_files= $target_dir . $val;
+                            move_uploaded_file($_FILES["hinhs"]["tmp_name"][$key], $target_files);
+                        }
+                    }
                     if (checkName2($tensp)) {
                         $thongbao = "Tên sản phẩm đã tồn tại";
                     } else {
-                        insert_sanpham($tensp,$giasp,$giakm,$mota,$hinh,$iddm);
+                        insert_sanpham($tensp,$giasp,$giakm,$mota,$hinh,$hinh_name,$iddm);
                         $thongbao="Thêm thành công";
                     }
                 }

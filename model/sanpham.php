@@ -1,7 +1,7 @@
 <?php
-function insert_sanpham($tensp, $giasp, $giakm, $mota, $hinh, $iddm)
+function insert_sanpham($tensp, $giasp, $giakm, $mota, $hinh, $hinh_name, $iddm)
 {
-    $sql = "insert into sanpham(ten_sp,gia_goc,gia_khuyenmai,mota,img,id_dm) values('$tensp','$giasp','$giakm','$mota','$hinh','$iddm')";
+    $sql = "insert into sanpham(ten_sp,gia_goc,gia_khuyenmai,mota,img,imgs,id_dm) values('$tensp','$giasp','$giakm','$mota','$hinh','$hinh_name','$iddm')";
     pdo_execute($sql);
 }
 function delete_sanpham($id_sp)

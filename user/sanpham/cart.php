@@ -1,3 +1,13 @@
+<?php
+if(isset($sp)){
+	if (is_array($sp)) {
+		extract($sp);
+		$hinh = $img_path . $img;
+	}
+}else{
+	
+}
+?>
 <main class="bg_gray">
 	<div class="container margin_30">
 		<div class="page_header">
@@ -38,7 +48,7 @@
 						echo '<tr data-id="' . $item['id_sp'] . '">
 								<td>
 									<div class="thumb_cart">
-										<img src="img/products/product_placeholder_square_small.jpg" data-src="img/products/shoes/1.jpg" class="lazy" alt="Ảnh">
+										<img src="'.$hinh.'" class="lazy" alt="Ảnh">
 									</div>
 									<span class="item_cart">' . $item['ten_sp'] . ' (Size: ' . $item['size'] . ')</span>
 								</td>
