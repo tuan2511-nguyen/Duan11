@@ -4,8 +4,8 @@ function insert_hoadon($hoa_don)
     $conn = pdo_get_connection();
     try {
         $conn->beginTransaction();
-        $sql = "INSERT INTO hoadon (id_user, hoten, email, sdt, diachi, vanchuyen, thanhtoan, tonggia) VALUES (?, ?, ?, ?, ?, ?, ?,?)";
-        pdo_execute($sql, $hoa_don['ID_User'], $hoa_don['Họ tên'], $hoa_don['Email'], $hoa_don['Số điện thoại'], $hoa_don['Địa chỉ'], $hoa_don['Phương thức vận chuyển'], $hoa_don['Phương thức thanh toán'], $hoa_don['Tổng giá']);
+        $sql = "INSERT INTO hoadon (id_user, hoten, email, sdt, diachi, vanchuyen, thanhtoan, tonggia, ma_hd) VALUES (?, ?, ?, ?, ?, ?, ?,?,?)";
+        pdo_execute($sql, $hoa_don['ID_User'], $hoa_don['Họ tên'], $hoa_don['Email'], $hoa_don['Số điện thoại'], $hoa_don['Địa chỉ'], $hoa_don['Phương thức vận chuyển'], $hoa_don['Phương thức thanh toán'], $hoa_don['Tổng giá'], $hoa_don['Mã đơn hàng']);
         $conn->commit();
 
         // Lấy ID hóa đơn cuối cùng
@@ -56,12 +56,17 @@ function loadall_hoadon($id_user)
     $sql = "SELECT * FROM hoadon JOIN ct_hoadon ON hoadon.id_hd = ct_hoadon.id_hd JOIN sanpham ON ct_hoadon.id_sp = sanpham.id_sp WHERE hoadon.id_user = ?  ORDER BY hoadon.id_hd DESC ";
     return pdo_query($sql, $id_user);
 }
-function loadall_hoadon_all()
+function get_total_hd()
+{
+    $sql = "SELECT COUNT(*) as total FROM hoadon";
+    return pdo_query_value($sql);
+}
+function loadall_hoadon_all($start, $limit)
 {
     $sql = "SELECT * FROM hoadon 
             JOIN ct_hoadon ON hoadon.id_hd = ct_hoadon.id_hd 
             JOIN sanpham ON ct_hoadon.id_sp = sanpham.id_sp 
-            ORDER BY hoadon.id_hd DESC";
+            ORDER BY hoadon.id_hd DESC LIMIT $start, $limit";
     return pdo_query($sql);
 }
 
@@ -113,3 +118,4 @@ function loadone_hoadon($id_hd)
             ORDER BY hoadon.id_hd DESC";
     return pdo_query($sql, $id_hd);
 }
+

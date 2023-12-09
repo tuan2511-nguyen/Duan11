@@ -7,6 +7,7 @@ include "model/taikhoan.php";
 include "model/binhluan.php";
 include "model/hoadon.php";
 include "model/voucher.php";
+include "model/vnpay.php";
 include "user/header.php";
 include "global.php";
 
@@ -88,7 +89,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 $gia_khuyenmai = $_POST['gia_khuyenmai'];
                 $soluong = intval($_POST['soluong']); // Ép kiểu dữ liệu về int
                 $size = $_POST['size'];
-                $sp=loadone_sanpham($id_sp);
+                // $sp = loadone_sanpham($id_sp);
 
                 if (!isset($_SESSION['cart'])) {
                     $_SESSION['cart'] = array();
@@ -120,42 +121,42 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
 
             include "user/sanpham/cart.php";
             break;
-            case "update":
-                if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id_sp']) && isset($_POST['quantity_' . $_POST['id_sp']])) {
-                    $product_id = $_POST['id_sp'];
-                    $quantity = $_POST['quantity_' . $product_id];
-            
-                    // Update the quantity in the cart
-                    foreach ($_SESSION['cart'] as $key => $product) {
-                        if ($product['id_sp'] == $product_id) {
-                            $_SESSION['cart'][$key]['soluong'] = $quantity;
-                            break;
-                        }
+        case "update":
+            if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id_sp']) && isset($_POST['size']) && isset($_POST['quantity_' . $_POST['id_sp'] . '_' . $_POST['size']])) {
+                $product_id = $_POST['id_sp'] . '_' . $_POST['size'];
+                $quantity = $_POST['quantity_' . $product_id];
+
+                // Update the quantity in the cart
+                foreach ($_SESSION['cart'] as $key => $product) {
+                    if ($key == $product_id) {
+                        $_SESSION['cart'][$key]['soluong'] = $quantity;
+                        break;
                     }
                 }
-            
-                // Tính toán giảm giá và cập nhật vào session
-                $total = 0;
-                if (isset($_SESSION['cart']) && count($_SESSION['cart']) > 0) {
-                    foreach ($_SESSION['cart'] as $item) {
-                        $total += $item['gia_khuyenmai'] * $item['soluong'];
-                    }
-                    $_SESSION['total'] = $total;
-            
-                    // Kiểm tra xem mã giảm giá có tồn tại không
-                    if (isset($_SESSION['discount'])) {
-                        $discount = $_SESSION['discount'];
-                        $discountedTotal = $total - $discount;
-                        $_SESSION['discountedTotal'] = $discountedTotal;
-                    } else {
-                        // Nếu không có mã giảm giá, giảm giá sẽ bằng 0
-                        $_SESSION['discountedTotal'] = $total;
-                    }
+            }
+
+            // Tính toán giảm giá và cập nhật vào session
+            $total = 0;
+            if (isset($_SESSION['cart']) && count($_SESSION['cart']) > 0) {
+                foreach ($_SESSION['cart'] as $item) {
+                    $total += $item['gia_khuyenmai'] * $item['soluong'];
                 }
-            
-                include "user/sanpham/cart.php";
-                break;
-            
+                $_SESSION['total'] = $total;
+
+                // Kiểm tra xem mã giảm giá có tồn tại không
+                if (isset($_SESSION['discount'])) {
+                    $discount = $_SESSION['discount'];
+                    $discountedTotal = $total - $discount;
+                    $_SESSION['discountedTotal'] = $discountedTotal;
+                } else {
+                    // Nếu không có mã giảm giá, giảm giá sẽ bằng 0
+                    $_SESSION['discountedTotal'] = $total;
+                }
+            }
+
+            include "user/sanpham/cart.php";
+            break;
+
         case 'apply_coupon':
             // Lấy giá tiền từ session hoặc giá trị mặc định nếu không tồn tại
             $total = isset($_SESSION['total']) ? $_SESSION['total'] : 0;
@@ -187,9 +188,10 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             if ($_SERVER["REQUEST_METHOD"] == "GET") {
                 if ($_GET['act'] == 'remove') {
                     $id_sp = $_GET['id_sp'];
+                    $size = $_GET['size']; // Thêm dòng này để lấy kích thước
 
                     foreach ($_SESSION['cart'] as $key => $product) {
-                        if ($product['id_sp'] == $id_sp) {
+                        if ($product['id_sp'] == $id_sp && $product['size'] == $size) {
                             unset($_SESSION['cart'][$key]);
                             echo '<script>window.location.href = "index.php?act=viewcart";</script>';
                             break;
@@ -200,13 +202,14 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             include "user/sanpham/cart.php";
             break;
 
+
         case 'thanhtoan':
             if (isset($_SESSION['username']) && isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
                 $user = $_SESSION['username'];
                 $cart = $_SESSION['cart'];
                 $tong_gia = $_SESSION['total'];
 
-                if (isset($_SESSION['discountedTotal'])) {
+                if (isset($_SESSION['discount'])) {
                     // Nếu tồn tại, gán giá trị cho $giamgia từ $_SESSION['discountedTotal']
                     $giamgia = $_SESSION['discount'];
                 } else {
@@ -218,35 +221,107 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                     $diachi = $_POST['diachi'];
                     $vanchuyen = $_POST['vanchuyen'];
                     $thanhtoan = $_POST['thanhtoan'];
+                    $orderCode = 'G' . rand(1, 10000);
                     // Tính toán tổng giá với giảm giá
                     $tong_gia_sau_giam_gia = $tong_gia - $giamgia;
+                    if ($thanhtoan == 'Thanh toán khi nhận hàng') {
 
-                    $hoa_don = array(
-                        'ID_User' => $user['id_user'],
-                        'Họ tên' => $user['hoten'],
-                        'Email' => $user['email'],
-                        'Số điện thoại' => $user['sdt'],
-                        'Địa chỉ' => $diachi,
-                        'Phương thức vận chuyển' => $vanchuyen,
-                        'Phương thức thanh toán' => $thanhtoan,
-                        'Tổng giá' => $tong_gia_sau_giam_gia, // Sử dụng giá tiền mới sau giảm giá
-                    );
-
-                    $hoa_don_id = insert_hoadon($hoa_don);
-
-                    foreach ($cart as $san_pham) {
-                        $chi_tiet_hoa_don = array(
-                            'ID_HD' => $hoa_don_id,
-                            'ID_SP' => $san_pham['id_sp'],
-                            'Size' => $san_pham['size'],
-                            'So_luong' => $san_pham['soluong'],
-                            'Gia_ban' => $san_pham['gia_khuyenmai'],
+                        $hoa_don = array(
+                            'ID_User' => $user['id_user'],
+                            'Họ tên' => $user['hoten'],
+                            'Email' => $user['email'],
+                            'Số điện thoại' => $user['sdt'],
+                            'Địa chỉ' => $diachi,
+                            'Phương thức vận chuyển' => $vanchuyen,
+                            'Phương thức thanh toán' => $thanhtoan,
+                            'Tổng giá' => $tong_gia_sau_giam_gia, // Sử dụng giá tiền mới sau giảm giá
+                            'Mã đơn hàng' => $orderCode
                         );
-                        insert_cthd($chi_tiet_hoa_don, $hoa_don_id);
-                    }
 
-                    clearCart();
-                    echo '<script>window.location.href = "index.php?act=confirm";</script>';
+                        $hoa_don_id = insert_hoadon($hoa_don);
+
+                        foreach ($cart as $san_pham) {
+                            $chi_tiet_hoa_don = array(
+                                'ID_HD' => $hoa_don_id,
+                                'ID_SP' => $san_pham['id_sp'],
+                                'Size' => $san_pham['size'],
+                                'So_luong' => $san_pham['soluong'],
+                                'Gia_ban' => $san_pham['gia_khuyenmai'],
+                            );
+                            insert_cthd($chi_tiet_hoa_don, $hoa_don_id);
+                        }
+                        clearCart();
+                        echo '<script>window.location.href = "index.php?act=confirm";</script>';
+                    } else if ($thanhtoan == 'vnpay') {
+                        $vnp_TxnRef = $orderCode;
+                        $vnp_Amount = $tong_gia_sau_giam_gia;
+                        $vnp_Locale = "vn"; //Ngôn ngữ chuyển hướng thanh toán
+                        $vnp_BankCode = "NCB"; //Mã phương thức thanh toán
+                        $vnp_IpAddr = $_SERVER['REMOTE_ADDR']; //IP Khách hàng thanh toán
+                        $inputData = array(
+                            "vnp_Version" => "2.1.0",
+                            "vnp_TmnCode" => $vnp_TmnCode,
+                            "vnp_Amount" => $vnp_Amount * 100,
+                            "vnp_Command" => "pay",
+                            "vnp_CreateDate" => date('YmdHis'),
+                            "vnp_CurrCode" => "VND",
+                            "vnp_IpAddr" => $vnp_IpAddr,
+                            "vnp_Locale" => $vnp_Locale,
+                            "vnp_OrderInfo" => "Thanh toan GD: " . $vnp_TxnRef,
+                            "vnp_OrderType" => "other",
+                            "vnp_ReturnUrl" => $vnp_Returnurl,
+                            "vnp_TxnRef" => $vnp_TxnRef,
+                            "vnp_ExpireDate" => $expire
+                        );
+                        if (isset($vnp_BankCode) && $vnp_BankCode != "") {
+                            $inputData['vnp_BankCode'] = $vnp_BankCode;
+                        }
+                        ksort($inputData);
+                        $query = "";
+                        $i = 0;
+                        $hashdata = "";
+                        foreach ($inputData as $key => $value) {
+                            if ($i == 1) {
+                                $hashdata .= '&' . urlencode($key) . "=" . urlencode($value);
+                            } else {
+                                $hashdata .= urlencode($key) . "=" . urlencode($value);
+                                $i = 1;
+                            }
+                            $query .= urlencode($key) . "=" . urlencode($value) . '&';
+                        }
+                        $hoa_don = array(
+                            'ID_User' => $user['id_user'],
+                            'Họ tên' => $user['hoten'],
+                            'Email' => $user['email'],
+                            'Số điện thoại' => $user['sdt'],
+                            'Địa chỉ' => $diachi,
+                            'Phương thức vận chuyển' => $vanchuyen,
+                            'Phương thức thanh toán' => $thanhtoan,
+                            'Tổng giá' => $tong_gia_sau_giam_gia, // Sử dụng giá tiền mới sau giảm giá
+                            'Mã đơn hàng' => $orderCode
+                        );
+
+                        $hoa_don_id = insert_hoadon($hoa_don);
+
+                        foreach ($cart as $san_pham) {
+                            $chi_tiet_hoa_don = array(
+                                'ID_HD' => $hoa_don_id,
+                                'ID_SP' => $san_pham['id_sp'],
+                                'Size' => $san_pham['size'],
+                                'So_luong' => $san_pham['soluong'],
+                                'Gia_ban' => $san_pham['gia_khuyenmai'],
+                            );
+                            insert_cthd($chi_tiet_hoa_don, $hoa_don_id);
+                        }
+                        clearCart();
+                        $vnp_Url = $vnp_Url . "?" . $query;
+                        if (isset($vnp_HashSecret)) {
+                            $vnpSecureHash =   hash_hmac('sha512', $hashdata, $vnp_HashSecret); //  
+                            $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
+                        }
+                        echo '<script>window.location.href = "' . $vnp_Url . '";</script>';
+                        die();
+                    }
                 }
             }
             include "user/sanpham/thanhtoan.php";

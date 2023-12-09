@@ -1,12 +1,12 @@
 <?php
-if(isset($sp)){
-	if (is_array($sp)) {
-		extract($sp);
-		$hinh = $img_path . $img;
-	}
-}else{
+// if(isset($sp)){
+// 	if (is_array($sp)) {
+// 		extract($sp);
+// 		$hinh = $img_path . $img;
+// 	}
+// }else{
 	
-}
+// }
 ?>
 <main class="bg_gray">
 	<div class="container margin_30">
@@ -42,40 +42,43 @@ if(isset($sp)){
 				</tr>
 			</thead>
 			<tbody>
-				<?php
+			<?php
 				if (isset($_SESSION['cart']) && count($_SESSION['cart']) > 0) {
 					foreach ($_SESSION['cart'] as $item) {
-						echo '<tr data-id="' . $item['id_sp'] . '">
+						$product_id = $item['id_sp'] . '_' . $item['size'];
+						echo '<tr data-id="' . $product_id . '">
 								<td>
 									<div class="thumb_cart">
-										<img src="'.$hinh.'" class="lazy" alt="Ảnh">
+										<img src="" class="lazy" alt="Ảnh">
 									</div>
 									<span class="item_cart">' . $item['ten_sp'] . ' (Size: ' . $item['size'] . ')</span>
 								</td>
-								<td id="price_' . $item['id_sp'] . '">
+								<td id="price_' . $product_id . '">
 									<strong>$' . $item['gia_khuyenmai'] . '</strong>
 								</td>
 								<td>
-								<form action="index.php?act=update" method="post" class="update-form">
-									<input type="hidden" name="id_sp" value="' . $item['id_sp'] . '">
-									<div >
-									<input type="number" value="' . $item['soluong'] . '" class="qty2" name="quantity_' . $item['id_sp'] . '" oninput="updateQuantity(this)" min="1" max="20" style="margin-right:160px; width: 50px; height: 40px; background-color:white">
-									</div>
-								</form>
-
+									<form action="index.php?act=update" method="post" class="update-form">
+										<input type="hidden" name="id_sp" value="' . $item['id_sp'] . '">
+										<input type="hidden" name="size" value="' . $item['size'] . '">
+										<div>
+											<input type="number" value="' . $item['soluong'] . '" class="qty2" name="quantity_' . $product_id . '" oninput="updateQuantity(this)" min="1"  style="margin-right:160px; width: 50px; height: 40px; background-color:white">
+										</div>
+									</form>
 								</td>
-								<td id="total_' . $item['id_sp'] . '">
+								<td id="total_' . $product_id . '">
 									<strong>$' . ($item['gia_khuyenmai'] * $item['soluong']) . '</strong>
 								</td>
 								<td class="options">
-									<a href="index.php?act=remove&id_sp=' . $item['id_sp'] . '"><i class="ti-trash"></i></a>
+									<a href="index.php?act=remove&id_sp=' . $item['id_sp'] . '&size=' . $item['size'] . '"><i class="ti-trash"></i></a>
 								</td>
+
 							</tr>';
 					}
 				} else {
 					echo "<h3 style='text-align:center;'>Your cart is empty!</h3>";
 				}
 				?>
+
 			</tbody>
 		</table>
 
@@ -173,19 +176,19 @@ if(isset($sp)){
 
 	<!-- /box_cart -->
 	<script>
-		function updateQuantity(inputElement) {
-			// Lấy giá trị hiện tại của input
-			var currentValue = inputElement.value;
+		// function updateQuantity(inputElement) {
+		// 	// Lấy giá trị hiện tại của input
+		// 	var currentValue = inputElement.value;
 
-			// Chuyển đổi giá trị thành số nguyên
-			var intValue = parseInt(currentValue, 10);
+		// 	// Chuyển đổi giá trị thành số nguyên
+		// 	var intValue = parseInt(currentValue, 10);
 
-			// Kiểm tra giới hạn tối đa
-			if (intValue > 20) {
-				// Nếu vượt quá giới hạn, đặt giá trị mới là 20
-				inputElement.value = 20;
-			}
-		}
+		// 	// Kiểm tra giới hạn tối đa
+		// 	if (intValue > 20) {
+		// 		// Nếu vượt quá giới hạn, đặt giá trị mới là 20
+		// 		inputElement.value = 20;
+		// 	}
+		// }
 
 		function updateQuantity(element, operation) {
 			var input = element.parentElement.querySelector('input[type="text"]');
@@ -232,8 +235,6 @@ if(isset($sp)){
 			}
 		});
 	</script>
-
-
 
 </main>
 <!--/main-->

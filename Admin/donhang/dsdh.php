@@ -79,6 +79,26 @@
                     ?>
                 </tbody>
             </table>
+            <div>
+                <?php
+                if ($current_page > 1 && $total_page > 1) {
+                    echo '<li class="pagi"><a href="index.php?act=dsdh&page=' . ($current_page - 1) . '">Prev</a> </li>';
+                }
+                for ($i = 1; $i <= $total_page; $i++) {
+
+                    if ($i == $current_page) {
+                        echo '<li class="pagi"><a>' . $i . '</a></li>';
+                    } else {
+                        echo '<li class="pagi"><a href="index.php?act=dsdh&page=' . $i . '">' . $i . '</a></li>';
+                    }
+                }
+
+                // nếu current_page < $total_page và total_page > 1 mới hiển thị nút prev
+                if ($current_page < $total_page && $total_page > 1) {
+                    echo '<li class="pagi"><a href="index.php?act=dsdh&page=' . ($current_page + 1) . '">Next</a> </li>';
+                }
+                ?>
+            </div>
             <script>
                 document.querySelectorAll('.cancel-order').forEach(function(button) {
                     button.addEventListener('click', function() {

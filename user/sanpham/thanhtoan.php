@@ -62,26 +62,14 @@
 					<h3>2. Payment and Shipping</h3>
 					<ul>
 						<li>
-							<label class="container_radio">Credit Card
-								<input type="radio" name="thanhtoan" value="Credit Card" checked>
+							<label class="container_radio">Thanh toán khi nhận hàng
+								<input type="radio" name="thanhtoan" value="Thanh toán khi nhận hàng" checked>
 								<span class="checkmark"></span>
 							</label>
 						</li>
 						<li>
-							<label class="container_radio">Paypal
-								<input type="radio" name="thanhtoan" value="Paypal">
-								<span class="checkmark"></span>
-							</label>
-						</li>
-						<li>
-							<label class="container_radio">Cash on delivery
-								<input type="radio" name="thanhtoan" value="Cash on delivery">
-								<span class="checkmark"></span>
-							</label>
-						</li>
-						<li>
-							<label class="container_radio">Bank Transfer
-								<input type="radio" name="thanhtoan" value="Bank Transfer">
+							<label class="container_radio">VNPay
+								<input type="radio" name="thanhtoan" value="vnpay">
 								<span class="checkmark"></span>
 							</label>
 						</li>

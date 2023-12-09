@@ -36,6 +36,11 @@ function load_binhluan($start, $limit)
     $listbinhluan = pdo_query($sql);
     return $listbinhluan;
 }
+function get_total_bl()
+{
+    $sql = "SELECT COUNT(*) as total FROM binhluan";
+    return pdo_query_value($sql);
+}
 function loadall_bl()
 {
     $sql = "select * from binhluan order by id_bl asc";

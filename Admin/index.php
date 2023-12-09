@@ -236,7 +236,7 @@
             case 'dsbl':
                 $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
                 $limit = 20;
-                $total_records = get_total_sp(); // Truyền điều kiện tìm kiếm vào get_total_products
+                $total_records = get_total_bl(); // Truyền điều kiện tìm kiếm vào get_total_products
                 $total_records = intval($total_records);
                 $total_page = ceil($total_records / $limit);
                 if ($current_page > $total_page) {
@@ -257,7 +257,18 @@
                 include "binhluan/dsbl.php";
                 break;
             case 'dsdh':
-                $listdh =loadall_hoadon_all();
+                $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+                $limit = 20;
+                $total_records = get_total_hd(); // Truyền điều kiện tìm kiếm vào get_total_products
+                $total_records = intval($total_records);
+                $total_page = ceil($total_records / $limit);
+                if ($current_page > $total_page) {
+                    $current_page = $total_page;
+                } else if ($current_page < 1) {
+                    $current_page = 1;
+                }
+                $start = ($current_page - 1) * $limit;
+                $listdh =loadall_hoadon_all($start, $limit);
                 include "donhang/dsdh.php";
                 break;
             case 'ctdh':
@@ -271,7 +282,7 @@
                     huy_dh($_GET['id_hd']);
                     echo '<script>window.location.href = "index.php?act=dsdh";</script>';
                 }
-                $listdh =loadall_hoadon_all();
+                $listdh =loadall_hoadon_all($start, $limit);
                 include "donhang/dsdh.php";
                 break;
             case 'capnhat_trangthai':
