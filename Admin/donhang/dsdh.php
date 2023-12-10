@@ -27,7 +27,7 @@
                 <thead>
                     <tr>
                         <th>STT</th>
-                        <th>Tên sản phẩm</th>
+                        <th>Mã đơn hàng</th>
                         <th>Tên khách hàng</th>
                         <th>Phương thức thanh toán</th>
                         <th>Tổng giá tiền</th>
@@ -40,11 +40,13 @@
                     $stt = 1;
                     $current_order_id = null;
                     $current_hd = null;
+
                     foreach ($listdh as $hd) {
                         if ($hd['id_hd'] != $current_order_id) {
+                            // Khi bắt đầu một đơn hàng mới, đóng hàng trước đó nếu có
                             if ($current_order_id !== null) {
                                 echo '</td>
-                                        <td>' . $current_hd['hoten'] . '</td> <!-- Add this line -->
+                                        <td>' . $current_hd['hoten'] . '</td>
                                         <td>' . $current_hd['thanhtoan'] . '</td>
                                         <td>' . $current_hd['tonggia'] . '$</td>
                                         <td>' . $current_hd['trangthai'] . '</td>
@@ -54,19 +56,22 @@
                                         </td>
                                     </tr>';
                             }
+
+                            // Bắt đầu một hàng mới
                             echo '<tr>
                                     <td>' . $stt++ . '</td>
                                     <td>';
+                            echo $hd['ma_hd'];
                             $current_order_id = $hd['id_hd'];
-                        } else {
-                            echo ', ';
                         }
-                        echo $hd['ten_sp'];
+                        // Lưu thông tin chi tiết của đơn hàng hiện tại
                         $current_hd = $hd;
                     }
+
+                    // Đóng hàng cuối cùng
                     if ($current_order_id !== null) {
                         echo '</td>
-                                <td>' . $current_hd['hoten'] . '</td> <!-- Add this line -->
+                                <td>' . $current_hd['hoten'] . '</td>
                                 <td>' . $current_hd['thanhtoan'] . '</td>
                                 <td>' . $current_hd['tonggia'] . '$</td>
                                 <td>' . $current_hd['trangthai'] . '</td>
@@ -79,6 +84,7 @@
                     ?>
                 </tbody>
             </table>
+
             <div>
                 <?php
                 if ($current_page > 1 && $total_page > 1) {

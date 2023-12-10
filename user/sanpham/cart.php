@@ -61,7 +61,7 @@
 										<input type="hidden" name="id_sp" value="' . $item['id_sp'] . '">
 										<input type="hidden" name="size" value="' . $item['size'] . '">
 										<div>
-											<input type="number" value="' . $item['soluong'] . '" class="qty2" name="quantity_' . $product_id . '" oninput="updateQuantity(this)" min="1"  style="margin-right:160px; width: 50px; height: 40px; background-color:white">
+											<input type="number" value="' . $item['soluong'] . '" class="qty2" name="quantity_' . $product_id . '" oninput="updateQuantity(this)" min="1" max="20"  style="margin-right:160px; width: 50px; height: 40px; background-color:white">
 										</div>
 									</form>
 								</td>
@@ -129,7 +129,7 @@
 							echo '<li>
 									<span>Shipping</span> $7.00
 								</li>';
-							if (isset($_POST['coupon-code'])&& $couponInfo) {
+							if (isset($_POST['coupon-code'])&& $couponInfo && !$couponInfo['trangthai'] && strtotime($couponInfo['ngaybatdau']) < time()) {
 								echo '<li>
 										<span>Discount</span> -$' . number_format($discount, 2) . '
 									</li>';
@@ -176,19 +176,19 @@
 
 	<!-- /box_cart -->
 	<script>
-		// function updateQuantity(inputElement) {
-		// 	// Lấy giá trị hiện tại của input
-		// 	var currentValue = inputElement.value;
+		function updateQuantity(inputElement) {
+			// Lấy giá trị hiện tại của input
+			var currentValue = inputElement.value;
 
-		// 	// Chuyển đổi giá trị thành số nguyên
-		// 	var intValue = parseInt(currentValue, 10);
+			// Chuyển đổi giá trị thành số nguyên
+			var intValue = parseInt(currentValue, 10);
 
-		// 	// Kiểm tra giới hạn tối đa
-		// 	if (intValue > 20) {
-		// 		// Nếu vượt quá giới hạn, đặt giá trị mới là 20
-		// 		inputElement.value = 20;
-		// 	}
-		// }
+			// Kiểm tra giới hạn tối đa
+			if (intValue > 20) {
+				// Nếu vượt quá giới hạn, đặt giá trị mới là 20
+				inputElement.value = 20;
+			}
+		}
 
 		function updateQuantity(element, operation) {
 			var input = element.parentElement.querySelector('input[type="text"]');
