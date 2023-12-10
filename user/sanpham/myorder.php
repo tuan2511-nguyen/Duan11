@@ -14,21 +14,12 @@
 		<table>
 			<thead>
 				<tr>
-					<th>
-						STT
-					</th>
-					<th>
-						Tên sản phẩm
-					</th>
-					<th>
-						Phương thức thanh toán
-					</th>
-					<th>
-						Tổng giá tiền
-					</th>
-					<th>
-						Trạng thái
-					</th>
+					<th>STT</th>
+					<th>Tên sản phẩm</th>
+					<th>Phương thức thanh toán</th>
+					<th>Tổng giá tiền</th>
+					<th>Trạng thái</th>
+					<th>Thao tác</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -40,15 +31,18 @@
 					if ($hd['id_hd'] != $current_order_id) {
 						// Nếu đây là một đơn hàng mới, kết thúc hàng hiện tại và bắt đầu một hàng mới
 						if ($current_order_id !== null) {
-							echo '</td>
-									<td>' . $current_hd['thanhtoan'] . '</td>
+							echo '<td>' . $current_hd['thanhtoan'] . '</td>
 									<td>' . $current_hd['tonggia'] . '$</td>
 									<td>' . $current_hd['trangthai'] . '</td>
+									<td>
+										<button class="cancel-order" data-order-id="' . $current_hd['id_hd'] . '">Hủy đơn</button>
+										<button class="ct-order" data-order-id="' . $current_hd['id_hd'] . '">Chi tiết</button>
+									</td>
 								</tr>';
 						}
 						echo '<tr>
-							<td>' . $stt++ . '</td>
-							<td>';
+								<td>' . $stt++ . '</td>
+								<td>';
 						$current_order_id = $hd['id_hd'];
 					} else {
 						// Nếu đây là cùng một đơn hàng, thêm một dấu phẩy và một khoảng trắng trước tên sản phẩm
@@ -58,17 +52,35 @@
 					$current_hd = $hd;
 				}
 				if ($current_order_id !== null) {
-					echo '</td>
-							<td>' . $current_hd['thanhtoan'] . '</td>
+					echo '<td>' . $current_hd['thanhtoan'] . '</td>
 							<td>' . $current_hd['tonggia'] . '$</td>
 							<td>' . $current_hd['trangthai'] . '</td>
+							<td>
+								<button class="cancel-order" data-order-id="' . $current_hd['id_hd'] . '">Hủy đơn</button>
+								<button class="ct-order" data-order-id="' . $current_hd['id_hd'] . '">Chi tiết</button>
+							</td>
 						</tr>';
 				}
 				?>
 			</tbody>
 		</table>
+		<script>
+			document.querySelectorAll('.cancel-order').forEach(function(button) {
+				button.addEventListener('click', function() {
+					var orderId = this.dataset.orderId;
+					window.location.href = 'index.php?act=huy_dh&id_hd=' + orderId;
+				});
+			});
+		</script>
+		<script>
+			document.querySelectorAll('.ct-order').forEach(function(button) {
+				button.addEventListener('click', function() {
+					var orderId = this.dataset.orderId;
+					window.location.href = 'index.php?act=ct_order&id_hd=' + orderId;
+				});
+			});
+		</script>
 	</div>
-	<!-- /cart_actions -->
 
 	</div>
 	<!-- /container -->

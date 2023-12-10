@@ -7,7 +7,7 @@
                 <li>
                     <a href="index.php?act=add-sanpham">Thêm Sản phẩm</a>
                 </li>
-                <li><a href="index.php?act=dstk" >QL Tài khoản</a></li>
+                <li><a href="index.php?act=dstk">QL Tài khoản</a></li>
                 <li><a href="index.php?act=dsbl">QL Bình luận</a></li>
                 <li><a href="index.php?act=dsdh" class="active">QL Đơn hàng</a></li>
                 <li><a href="index.php?act=thongke">Thống kê</a></li>
@@ -48,7 +48,10 @@
                                         <td>' . $current_hd['thanhtoan'] . '</td>
                                         <td>' . $current_hd['tonggia'] . '$</td>
                                         <td>' . $current_hd['trangthai'] . '</td>
-                                        <td><button class="confirm-order" data-order-id="' . $current_hd['id_hd'] . '">Confirm Order</button></td>
+                                        <td>
+                                            <button class="cancel-order" data-order-id="' . $current_hd['id_hd'] . '">Hủy đơn</button>
+                                            <button class="ct-order" data-order-id="' . $current_hd['id_hd'] . '">Chi tiết</button> 
+                                        </td>
                                     </tr>';
                             }
                             echo '<tr>
@@ -67,17 +70,48 @@
                                 <td>' . $current_hd['thanhtoan'] . '</td>
                                 <td>' . $current_hd['tonggia'] . '$</td>
                                 <td>' . $current_hd['trangthai'] . '</td>
-                                <td><button class="confirm-order" data-order-id="' . $current_hd['id_hd'] . '">Confirm Order</button></td>
+                                <td>
+                                    <button class="cancel-order" data-order-id="' . $current_hd['id_hd'] . '">Hủy đơn</button>
+                                    <button class="ct-order" data-order-id="' . $current_hd['id_hd'] . '">Chi tiết</button>                                    
+                                </td>
                             </tr>';
                     }
                     ?>
                 </tbody>
             </table>
+            <div>
+                <?php
+                if ($current_page > 1 && $total_page > 1) {
+                    echo '<li class="pagi"><a href="index.php?act=dsdh&page=' . ($current_page - 1) . '">Prev</a> </li>';
+                }
+                for ($i = 1; $i <= $total_page; $i++) {
+
+                    if ($i == $current_page) {
+                        echo '<li class="pagi"><a>' . $i . '</a></li>';
+                    } else {
+                        echo '<li class="pagi"><a href="index.php?act=dsdh&page=' . $i . '">' . $i . '</a></li>';
+                    }
+                }
+
+                // nếu current_page < $total_page và total_page > 1 mới hiển thị nút prev
+                if ($current_page < $total_page && $total_page > 1) {
+                    echo '<li class="pagi"><a href="index.php?act=dsdh&page=' . ($current_page + 1) . '">Next</a> </li>';
+                }
+                ?>
+            </div>
             <script>
-                document.querySelectorAll('.confirm-order').forEach(function(button) {
+                document.querySelectorAll('.cancel-order').forEach(function(button) {
                     button.addEventListener('click', function() {
                         var orderId = this.dataset.orderId;
-                        window.location.href = 'index.php?act=xacthuc&id_hd=' + orderId;
+                        window.location.href = 'index.php?act=huy_dh&id_hd=' + orderId;
+                    });
+                });
+            </script>
+            <script>
+                document.querySelectorAll('.ct-order').forEach(function(button) {
+                    button.addEventListener('click', function() {
+                        var orderId = this.dataset.orderId;
+                        window.location.href = 'index.php?act=ctdh&id_hd=' + orderId;
                     });
                 });
             </script>

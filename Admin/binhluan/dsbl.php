@@ -38,9 +38,7 @@
                 <?php
                 foreach ($listbinhluan as $binhluan) {
                     extract($binhluan);
-                    $suabl = "index.php?act=suabl&id_bl=" . $id_bl;
-                    $xoabl = "index.php?act=xoabl&id_bl=" . $id_bl;
-
+                    $xoabl = "index.php?act=xoa_bl&id_bl=" . $id_bl;
                     echo '<tbody>
                                 <tr>
                                     <td>' . $id_bl . '</td>
@@ -48,20 +46,32 @@
                                     <td>' . $username . '</td>
                                     <td>' . $noidung . '</td>
                                     <td>' . $ngaydang . '</td>
-                                    <!--
                                     <td class="action-column">
-                                        <a href=""> <button class="edit-button">Sửa</button> </a>
-                                        <a href=""> <button class="delete-button">Xóa</button> </a>
-                                    </td>-->
+                                        <a href="' . $xoabl . '"> <button class="delete-button">Xóa</button> </a>
                                 </tr>
                             </tbody>';
                 }
                 ?>
             </table>
-            <div><!--
-                <a href="index.php?act=add-danhmuc"  class="form">
-                    <input type="button" value="Thêm Danh mục">
-                </a>-->
+            <div>
+                <?php
+                if ($current_page > 1 && $total_page > 1) {
+                    echo '<li class="pagi"><a href="index.php?act=list-sanpham&page=' . ($current_page - 1) . '">Prev</a> </li>';
+                }
+                for ($i = 1; $i <= $total_page; $i++) {
+
+                    if ($i == $current_page) {
+                        echo '<li class="pagi"><a>' . $i . '</a></li>';
+                    } else {
+                        echo '<li class="pagi"><a href="index.php?act=list-sanpham&page=' . $i . '">' . $i . '</a></li>';
+                    }
+                }
+
+                // nếu current_page < $total_page và total_page > 1 mới hiển thị nút prev
+                if ($current_page < $total_page && $total_page > 1) {
+                    echo '<li class="pagi"><a href="index.php?act=list-sanpham&page=' . ($current_page + 1) . '">Next</a> </li>';
+                }
+                ?>
             </div>
             <br>
             <?php

@@ -1,4 +1,3 @@
-
 <main class="bg_gray">
 	<form action="index.php?act=thanhtoan" method="post" class="container margin_30">
 		<div class="page_header">
@@ -63,26 +62,14 @@
 					<h3>2. Payment and Shipping</h3>
 					<ul>
 						<li>
-							<label class="container_radio">Credit Card
-								<input type="radio" name="thanhtoan" value="Credit Card" checked>
+							<label class="container_radio">Thanh toán khi nhận hàng
+								<input type="radio" name="thanhtoan" value="Thanh toán khi nhận hàng" checked>
 								<span class="checkmark"></span>
 							</label>
 						</li>
 						<li>
-							<label class="container_radio">Paypal
-								<input type="radio" name="thanhtoan" value="Paypal">
-								<span class="checkmark"></span>
-							</label>
-						</li>
-						<li>
-							<label class="container_radio">Cash on delivery
-								<input type="radio" name="thanhtoan" value="Cash on delivery">
-								<span class="checkmark"></span>
-							</label>
-						</li>
-						<li>
-							<label class="container_radio">Bank Transfer
-								<input type="radio" name="thanhtoan" value="Bank Transfer">
+							<label class="container_radio">VNPay
+								<input type="radio" name="thanhtoan" value="vnpay">
 								<span class="checkmark"></span>
 							</label>
 						</li>
@@ -120,7 +107,7 @@
 					<ul>
 						<?php foreach ($cart as $san_pham) : ?>
 							<li class="clearfix">
-								<em><?= $san_pham['soluong'] ?>x <?= $san_pham['ten_sp'] ?></em>
+								<em><?= $san_pham['ten_sp'] ?> x <?= $san_pham['soluong'] ?></em>
 								<span>$<?= $san_pham['gia_khuyenmai'] * $san_pham['soluong'] ?></span>
 							</li>
 						<?php endforeach; ?>
@@ -128,8 +115,24 @@
 					<ul>
 						<li class="clearfix"><em><strong>Subtotal</strong></em> <span>$<?= number_format($tong_gia, 2) ?></span></li>
 						<li class="clearfix"><em><strong>Shipping</strong></em> <span>$7</span></li>
+						<?php if (isset($_SESSION['discount'])) : ?>
+							<li class="clearfix"><em><strong>Discount</strong></em> <span>-$<?= number_format($_SESSION['discount'], 2) ?></span></li>
+							<li class="clearfix"><em><strong>Total</strong></em> <span>$<?= number_format($_SESSION['discountedTotal'] + 7, 2) ?></span></li>
+						<?php else : ?>
+							<li class="clearfix"><em><strong>Total</strong></em> <span>$<?= number_format($tong_gia + 7, 2) ?></span></li>
+						<?php endif; ?>
 					</ul>
-					<div class="total clearfix">TOTAL <span>$<?= number_format($tong_gia + 7, 2) ?></span></div>
+
+					<div class="total clearfix">TOTAL <span>$
+							<?php
+							if (isset($_SESSION['discount'])) {
+								echo number_format($_SESSION['discountedTotal'] + 7, 2);
+							} else {
+								echo number_format($tong_gia + 7, 2);
+							}
+							?>
+						</span></div>
+
 
 					<input type="submit" class="btn_1 full-width" value="Xác thực thông tin đơn hàng" name="btn_save">
 					<?php

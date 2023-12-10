@@ -234,28 +234,66 @@
                 include "taikhoan/dstk.php";
                 break;
             case 'dsbl':
-                $listbinhluan=load_binhluan();
+                $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+                $limit = 20;
+                $total_records = get_total_bl(); // Truyền điều kiện tìm kiếm vào get_total_products
+                $total_records = intval($total_records);
+                $total_page = ceil($total_records / $limit);
+                if ($current_page > $total_page) {
+                    $current_page = $total_page;
+                } else if ($current_page < 1) {
+                    $current_page = 1;
+                }
+                $start = ($current_page - 1) * $limit;
+                $listbinhluan=load_binhluan($start, $limit);
                 include "binhluan/dsbl.php";
-            break;
-                $listtaikhoan =loadall_taikhoan();
-                include "taikhoan/dstk.php";
                 break;
-            case 'dsbl':
+            case 'xoa_bl':
+                if(isset($_GET['id_bl'])&&($_GET['id_bl']>0)){
+                    delete_bl($_GET['id_bl']);
+                    echo '<script>window.location.href = "index.php?act=dsbl";</script>';
+                }
                 $listbl =loadall_bl();
                 include "binhluan/dsbl.php";
                 break;
             case 'dsdh':
-                $listdh =loadall_hoadon_all();
+                $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+                $limit = 20;
+                $total_records = get_total_hd(); // Truyền điều kiện tìm kiếm vào get_total_products
+                $total_records = intval($total_records);
+                $total_page = ceil($total_records / $limit);
+                if ($current_page > $total_page) {
+                    $current_page = $total_page;
+                } else if ($current_page < 1) {
+                    $current_page = 1;
+                }
+                $start = ($current_page - 1) * $limit;
+                $listdh =loadall_hoadon_all($start, $limit);
                 include "donhang/dsdh.php";
                 break;
-            case 'xacthuc':
+            case 'ctdh':
                 if(isset($_GET['id_hd'])&&($_GET['id_hd']>0)){
-                    xacthuc_dh($_GET['id_hd']);
-                    echo '<script>window.location.href = "index.php?act=dsdh";</script>';
-                    $thongbao="Xác thực thành công";
+                    $dh = loadone_hoadon($_GET['id_hd']);
                 }
-                $listdh =loadall_hoadon_all();
+                include "donhang/ctdh.php";
+                break;
+            case 'huy_dh':
+                if(isset($_GET['id_hd'])&&($_GET['id_hd']>0)){
+                    huy_dh($_GET['id_hd']);
+                    echo '<script>window.location.href = "index.php?act=dsdh";</script>';
+                }
+                $listdh =loadall_hoadon_all($start, $limit);
                 include "donhang/dsdh.php";
+                break;
+            case 'capnhat_trangthai':
+                if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_hd'], $_POST['trangthai'])) {
+                    $id_hd = $_POST['id_hd'];
+                    $trangthai_moi = $_POST['trangthai'];
+                
+                    // Thực hiện cập nhật trạng thái trong CSDL, ví dụ:
+                    capnhat_trangthai_hoadon($id_hd, $trangthai_moi);
+                    echo '<script>window.location.href = "index.php?act=dsdh";</script>';
+                }
                 break;
             case 'thongke':
                 $listdt =doanhthu();
