@@ -48,7 +48,7 @@ if(isset($sp)){
 						echo '<tr data-id="' . $item['id_sp'] . '">
 								<td>
 									<div class="thumb_cart">
-										<img src="'.$hinh.'" class="lazy" alt="Ảnh">
+										<img src="" class="lazy" alt="Ảnh">
 									</div>
 									<span class="item_cart">' . $item['ten_sp'] . ' (Size: ' . $item['size'] . ')</span>
 								</td>

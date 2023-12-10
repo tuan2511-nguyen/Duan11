@@ -120,8 +120,10 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             break;
         case "update":
             if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id_sp']) && isset($_POST['quantity_' . $_POST['id_sp']])) {
+                $id_sp = $_POST['id_sp'];
                 $product_id = $_POST['id_sp'];
                 $quantity = $_POST['quantity_' . $product_id];
+                $sp=loadone_sanpham($id_sp);
 
                 // Update the quantity in the cart
                 foreach ($_SESSION['cart'] as $key => $product) {

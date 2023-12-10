@@ -21,7 +21,7 @@
             </a>
         </div>
         <div class="box2">
-            <h2 style="text-align: center;">Danh sách tài khoản</h2>
+            <h2 style="text-align: center;">Danh sách đơn hàng</h2>
 
             <table>
                 <thead>
