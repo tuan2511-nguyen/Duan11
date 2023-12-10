@@ -113,7 +113,7 @@
 												<h4>Xin chào <?= $username ?></h4><br>
 												<ul>
 													<li>
-														<a href="index.php?act=edit-taikhoan"><i class="ti-user"></i> My Profile</a>
+														<a href="index.php?act=edit-taikhoan"><i class="ti-user"></i>Thông tin tài khoản</a>
 													</li>
 													<?php if ($vaitro == "admin") { ?>
 														<li>
@@ -121,7 +121,7 @@
 														</li>
 													<?php } ?>
 													<li>
-														<a href="index.php?act=myorder"><i class="ti-package"></i>My Orders</a>
+														<a href="index.php?act=myorder"><i class="ti-package"></i>Đơn hàng</a>
 													</li>
 													<li>
 														<a href="index.php?act=logout"><i class="ti-help-alt"></i>Đăng xuất</a>
@@ -131,7 +131,7 @@
 											<?php
 											} else {
 											?>
-												<a href="index.php?act=dangky" class="btn_1">Sign In or Sign Up</a>
+												<a href="index.php?act=dangky" class="btn_1">Đăng nhập & Đăng ký</a>
 											<?php
 											}
 											?>
@@ -155,14 +155,14 @@
 		<div class="top_panel">
 			<div class="container header_panel">
 				<a href="" class="btn_close_top_panel"><i class="ti-close"></i></a>
-				<small>What are you looking for?</small>
+				<small>Nhập tên sản phẩm phần cần tìm?</small>
 			</div>
 			<!-- /header_panel -->
 
 			<div class="container">
 				<div class="search-input">
 					<form action="index.php?act=danhmuc" method="POST">
-						<input type="text" placeholder="Search over 10.000 products..." name="kw">
+						<input type="text" placeholder="Tìm kiếm..." name="kw">
 						<input type="submit" name="timkiem" id="" value="Tìm kiếm">
 					</form>
 				</div>

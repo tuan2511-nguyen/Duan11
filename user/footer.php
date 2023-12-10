@@ -28,12 +28,12 @@
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
-                <h3 data-bs-target="#collapse_3">Contacts</h3>
+                <h3 data-bs-target="#collapse_3">Liên lạc</h3>
                 <div class="collapse dont-collapse-sm contacts" id="collapse_3">
                     <ul>
                         <li><i class="ti-home"></i>97845 Baker st. 567<br>Los Angeles - US</li>
-                        <li><i class="ti-headphone-alt"></i>+94 423-23-221</li>
-                        <li><i class="ti-email"></i><a href="#0">info@allaia.com</a></li>
+                        <li><i class="ti-headphone-alt"></i>+94 423-235-221</li>
+                        <li><i class="ti-email"></i><a href="#0">giaychinhhang@allaia.com</a></li>
                     </ul>
                 </div>
             </div>
@@ -47,7 +47,7 @@
                         </div>
                     </div>
                     <div class="follow_us">
-                        <h5>Follow Us</h5>
+                        <h5>Theo dõi chúng tôi</h5>
                         <ul>
                             <li><a href="#0"><img src="view/data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="img/twitter_icon.svg" alt="" class="lazy"></a></li>
                             <li><a href="#0"><img src="view/data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="img/facebook_icon.svg" alt="" class="lazy"></a></li>

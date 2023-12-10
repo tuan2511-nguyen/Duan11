@@ -50,7 +50,7 @@ if (is_array($sp)) {
                         <span class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i><em>4 reviews</em></span>
                         <div class="prod_options">
                             <div class="row">
-                                <label class="col-xl-5 col-lg-5 col-md-6 col-6"><strong>Size</strong> - Size Guide <a href="#0" data-bs-toggle="modal" data-bs-target="#size-modal"><i class="ti-help-alt"></i></a></label>
+                                <label class="col-xl-5 col-lg-5 col-md-6 col-6"><strong>Size</strong>  <a href="#0" data-bs-toggle="modal" data-bs-target="#size-modal"><i class="ti-help-alt"></i></a></label>
                                 <div class="col-xl-4 col-lg-5 col-md-6 col-6">
                                     <div class="custom-select-form">
                                         <select class="wide" id="size" name="size">
@@ -64,7 +64,7 @@ if (is_array($sp)) {
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-xl-5 col-lg-5  col-md-6 col-6"><strong>Quantity</strong></label>
+                                <label class="col-xl-5 col-lg-5  col-md-6 col-6"><strong>Số lượng</strong></label>
                                 <div class="col-xl-4 col-lg-5 col-md-6 col-6">
                                     <div class="numbers-row">
                                         <input type="number" value="1" id="quantity_1" class="qty2" name="soluong" oninput="validateQuantity(this)" maxlength="2">
@@ -82,13 +82,13 @@ if (is_array($sp)) {
                         <br>
                         <div class="row">
                             <div class="col-lg-5 col-md-6">
-                                <div class="price_main"><span class="new_price"><?php echo $ctsp['gia_khuyenmai'] ?></span><span class="percentage">-20%</span> <span class="old_price"><?php echo $ctsp['gia_goc'] ?></span></div>
+                                <div class="price_main"><span class="new_price"><?php echo $ctsp['gia_khuyenmai'] ?>₫</span><span class="percentage">-20%</span> <span class="old_price"><?php echo $ctsp['gia_goc'] ?>₫</span></div>
                             </div>
                             <div class="col-lg-4 col-md-6">
                                 <input type="hidden" name="id_sp" value="<?= $ctsp['id_sp'] ?>">
                                 <input type="hidden" name="ten_sp" value="<?= $ctsp['ten_sp'] ?>">
                                 <input type="hidden" name="gia_khuyenmai" value="<?= $ctsp['gia_khuyenmai'] ?>">
-                                <div class="btn_add_to_cart"><input type="submit" class="btn_1" value="Add to Cart"></div>
+                                <div class="btn_add_to_cart"><input type="submit" class="btn_1" value="Thêm vào giỏ hàng"></div>
                             </div>
                         </div>
                     </div>
@@ -105,10 +105,10 @@ if (is_array($sp)) {
         <div class="container">
             <ul class="nav nav-tabs" role="tablist">
                 <li class="nav-item">
-                    <a id="tab-A" href="#pane-A" class="nav-link active" data-bs-toggle="tab" role="tab">Description</a>
+                    <a id="tab-A" href="#pane-A" class="nav-link active" data-bs-toggle="tab" role="tab">Mô tả</a>
                 </li>
                 <li class="nav-item">
-                    <a id="tab-B" href="#pane-B" class="nav-link" data-bs-toggle="tab" role="tab">Reviews</a>
+                    <a id="tab-B" href="#pane-B" class="nav-link" data-bs-toggle="tab" role="tab">Bình luận</a>
                 </li>
             </ul>
         </div>
@@ -170,7 +170,7 @@ if (is_array($sp)) {
                             if (isset($_SESSION['username'])) {
                                 extract($_SESSION['username']);
                             ?>
-                                <p class="text-end"><a href="index.php?act=binhluan&id_sp=<?= $ctsp['id_sp'] ?>" class="btn_1">Leave a review</a></p>
+                                <p class="text-end"><a href="index.php?act=binhluan&id_sp=<?= $ctsp['id_sp'] ?>" class="btn_1">Bình luận</a></p>
                             <?php
                             } else {
                             ?>
@@ -217,8 +217,8 @@ if (is_array($sp)) {
 									<h3>' . $ten_sp . '</h3>
 								</a>
 								<div class="price_box">
-									<span class="new_price">' . $gia_khuyenmai . '</span>
-									<span class="old_price">' . $gia_goc . '</span>
+									<span class="new_price">' . $gia_khuyenmai . '₫</span>
+									<span class="old_price">' . $gia_goc . '₫</span>
 								</div>
 								<ul>
 									<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
@@ -237,35 +237,35 @@ if (is_array($sp)) {
 
     <div class="feat">
         <div class="container">
-            <ul>
-                <li>
-                    <div class="box">
-                        <i class="ti-gift"></i>
-                        <div class="justify-content-center">
-                            <h3>Free Shipping</h3>
-                            <p>For all oders over $99</p>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="box">
-                        <i class="ti-wallet"></i>
-                        <div class="justify-content-center">
-                            <h3>Secure Payment</h3>
-                            <p>100% secure payment</p>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="box">
-                        <i class="ti-headphone-alt"></i>
-                        <div class="justify-content-center">
-                            <h3>24/7 Support</h3>
-                            <p>Online top support</p>
-                        </div>
-                    </div>
-                </li>
-            </ul>
+        <ul>
+						<li>
+							<div class="box">
+								<i class="ti-gift"></i>
+								<div class="justify-content-center">
+									<h3>Miễn phí vận chuyển</h3>
+									<p>Cho tất cả các đơn hàng</p>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="box">
+								<i class="ti-wallet"></i>
+								<div class="justify-content-center">
+									<h3>Thanh toán an toàn</h3>
+									<p>Thanh toán an toàn 100%</p>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="box">
+								<i class="ti-headphone-alt"></i>
+								<div class="justify-content-center">
+									<h3>Hỗ trợ 24/7</h3>
+									<p>Hỗ trợ trực tuyến hàng đầu</p>
+								</div>
+							</div>
+						</li>
+					</ul>
         </div>
     </div>
     <!--/feat-->

@@ -52,7 +52,7 @@
 					<form method="POST" action="index.php?act=danhmuc">
 						<div class="inner_bt"><a href="#" class="open_filters"><i class="ti-close"></i></a></div>
 						<div class="filter_type version_2">
-							<h4><a href="#filter_1" data-bs-toggle="collapse">Categories</a></h4>
+							<h4><a href="#filter_1" data-bs-toggle="collapse">Danh mục</a></h4>
 							<div class="collapse show" id="filter_1">
 								<ul>
 									<?php
@@ -71,34 +71,34 @@
 							<!-- /filter_type -->
 						</div>
 						<div class="filter_type version_2">
-							<h4><a href="#filter_4" data-bs-toggle="collapse">Price</a></h4>
+							<h4><a href="#filter_4" data-bs-toggle="collapse">Giá</a></h4>
 							<div class="collapse show" id="filter_4">
 								<ul>
 									<li>
 										<label class="container_check">
-											0$$-100$
-											<input type="checkbox" name="price_range[]" value="0-100">
+											0₫ ~ 1.000.000₫
+											<input type="checkbox" name="price_range[]" value="0-1000000">
 											<span class="checkmark"></span>
 										</label>
 									</li>
 									<li>
 										<label class="container_check">
-											100$-200$
-											<input type="checkbox" name="price_range[]" value="100-200">
+											1.000.000₫ ~ 2.000.000₫
+											<input type="checkbox" name="price_range[]" value="1000000-2000000">
 											<span class="checkmark"></span>
 										</label>
 									</li>
 									<li>
 										<label class="container_check">
-											200$-300$
-											<input type="checkbox" name="price_range[]" value="200-3000">
+											2.000.000₫ ~ 3.000.000₫
+											<input type="checkbox" name="price_range[]" value="2000000-3000000">
 											<span class="checkmark"></span>
 										</label>
 									</li>
 									<li>
 										<label class="container_check">
-											300$-600$
-											<input type="checkbox" name="price_range[]" value="300-600">
+											3.000.000₫ ~ 6.000.000₫
+											<input type="checkbox" name="price_range[]" value="3000000-6000000">
 											<span class="checkmark"></span>
 										</label>
 									</li>
@@ -133,8 +133,8 @@
 									<h3>' . $ten_sp . '</h3>
 								</a>
 								<div class="price_box">
-									<span class="new_price">' . $gia_khuyenmai . '</span>
-									<span class="old_price">' . $gia_goc . '</span>
+									<span class="new_price">' . $gia_khuyenmai . '₫</span>
+									<span class="old_price">' . $gia_goc . '₫</span>
 								</div>
 							</div>
 							<!-- /grid_item -->

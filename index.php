@@ -125,6 +125,9 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id_sp']) && isset($_POST['quantity_' . $_POST['id_sp']])) {
                 $id_sp = $_POST['id_sp'];
                 $product_id = $_POST['id_sp'];
+            }
+            if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id_sp']) && isset($_POST['size']) && isset($_POST['quantity_' . $_POST['id_sp'] . '_' . $_POST['size']])) {
+                $product_id = $_POST['id_sp'] . '_' . $_POST['size'];
                 $quantity = $_POST['quantity_' . $product_id];
                 $sp=loadone_sanpham($id_sp);
 

@@ -28,8 +28,8 @@
 							<div class="box">
 								<i class="ti-gift"></i>
 								<div class="justify-content-center">
-									<h3>Free Shipping</h3>
-									<p>For all oders over $99</p>
+									<h3>Miễn phí vận chuyển</h3>
+									<p>Cho tất cả các đơn hàng</p>
 								</div>
 							</div>
 						</li>
@@ -37,8 +37,8 @@
 							<div class="box">
 								<i class="ti-wallet"></i>
 								<div class="justify-content-center">
-									<h3>Secure Payment</h3>
-									<p>100% secure payment</p>
+									<h3>Thanh toán an toàn</h3>
+									<p>Thanh toán an toàn 100%</p>
 								</div>
 							</div>
 						</li>
@@ -46,8 +46,8 @@
 							<div class="box">
 								<i class="ti-headphone-alt"></i>
 								<div class="justify-content-center">
-									<h3>24/7 Support</h3>
-									<p>Online top support</p>
+									<h3>Hỗ trợ 24/7</h3>
+									<p>Hỗ trợ trực tuyến hàng đầu</p>
 								</div>
 							</div>
 						</li>
@@ -107,15 +107,15 @@
 
 			<div class="container margin_60_35">
 				<div class="main_title mb-4">
-					<h2>New Arrival</h2>
+					<h2>Sản phẩm mới</h2>
 					<span>Products</span>
-					<p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
+					<p>Mẫu giày mới nhất 2023 với giá cực tốt.</p>
 				</div>
 				<div class="isotope_filter">
 					<ul>
-						<li><a href="#0" id="all" data-filter="*">All</a></li>
+						<!-- <li><a href="#0" id="all" data-filter="*">All</a></li>
 						<li><a href="#0" id="popular" data-filter=".popular">Popular</a></li>
-						<li><a href="#0" id="sale" data-filter=".sale">Sale</a></li>
+						<li><a href="#0" id="sale" data-filter=".sale">Sale</a></li> -->
 					</ul>
 				</div>
 				<div class="isotope-wrapper">
@@ -208,7 +208,7 @@
 
 			<div class="container margin_60_35">
 				<div class="main_title">
-					<h2>Latest News</h2>
+					<h2>Tin tức mới nhất</h2>
 					<span>Blog</span>
 					<p>Cum doctus civibus efficiantur in imperdiet deterruisset</p>
 				</div>
