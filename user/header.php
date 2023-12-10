@@ -99,6 +99,10 @@
 								<li>
 									<div class="dropdown dropdown-cart">
 										<a href="index.php?act=viewcart" class="cart_bt"></a>
+<<<<<<< HEAD
+=======
+									</div>
+>>>>>>> 2dfa9411111c89dac3c32199978c6a77b8ae7fc3
 									<!-- /dropdown-cart-->
 								</li>
 								<li>

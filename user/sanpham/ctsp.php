@@ -203,23 +203,31 @@ if (is_array($sp)) {
                 extract($sp_random);
                 $linksp = "index.php?act=ct_sanpham&id_sp=" . $sp_random['id_sp'];
                 $hinh = $img_path . $img;
-                echo '<div class="item">
-					<div class="grid_item">
-						<figure>
-							<a href="' . $linksp . '">
-								<img class="owl-lazy" src="'.$hinh.'">
-							</a>
-						</figure>
-						<div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
-						<a href="' . $linksp . '">
-							<h3>' . $sp_random['ten_sp'] . '</h3>
-						</a>
-						<div class="price_box">
-							<span class="new_price">' . $sp_random['gia_khuyenmai'] . '</span>
-						</div>
-					</div>
-					<!-- /grid_item -->
-				</div>';
+                echo '
+							<div class="grid_item">
+								<figure> 
+									<span class="ribbon off">-30%</span>
+									<a href="' . $linksp . '">
+										<img class="img-fluid lazy" src="'. $hinh .'">
+									</a>
+									<div data-countdown="2019/05/15" class="countdown"></div>
+								</figure>
+								<div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
+								<a href="product-detail-1.html">
+									<h3>' . $ten_sp . '</h3>
+								</a>
+								<div class="price_box">
+									<span class="new_price">' . $gia_khuyenmai . '</span>
+									<span class="old_price">' . $gia_goc . '</span>
+								</div>
+								<ul>
+									<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
+									<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a></li>
+									<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
+								</ul>
+							</div>
+							<!-- /grid_item -->
+						';
             }
             ?>
         </div>
