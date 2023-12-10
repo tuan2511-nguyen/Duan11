@@ -168,20 +168,35 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
 
                     // Kiểm tra xem mã giảm giá có hợp lệ không
                     if ($couponInfo) {
-                        // Mã giảm giá hợp lệ, tiến hành xử lý
-                        extract($couponInfo);
-                        $discount = intval($loaikhuyenmai);
-                        $discountedTotal = $total - $discount;
+                        // Kiểm tra xem mã giảm giá đã được sử dụng chưa
+                        if (!$couponInfo['trangthai'] && strtotime($couponInfo['ngaybatdau']) < time()) {
+                            // Mã giảm giá hợp lệ và chưa được sử dụng, tiến hành xử lý
+                            extract($couponInfo);
+                            $discount = intval($loaikhuyenmai);
+                            $discountedTotal = $total - $discount;
 
-                        // Cập nhật giá tiền mới sau khi áp dụng mã giảm giá vào session
-                        $_SESSION['discount'] = $discount;
-                        $_SESSION['discountedTotal'] = $discountedTotal;
+                            // Cập nhật giá tiền mới sau khi áp dụng mã giảm giá vào session
+                            $_SESSION['discount'] = $discount;
+                            $_SESSION['discountedTotal'] = $discountedTotal;
+
+
+                            // Đánh dấu mã giảm giá là đã sử dụng trong cơ sở dữ liệu
+                            mark_voucher_as_used($couponCode);
+                        } else {
+                            // Mã giảm giá đã được sử dụng hoặc đã hết hạn, hiển thị thông báo tương ứng
+                            if ($couponInfo['trangthai']) {
+                                $thongbao = "Mã giảm giá đã được sử dụng.";
+                            } else {
+                                $thongbao = "Mã giảm giá đã hết hạn.";
+                            }
+                        }
                     } else {
                         // Mã giảm giá không hợp lệ, hiển thị thông báo
                         $thongbao = "Mã giảm giá không hợp lệ. Vui lòng kiểm tra lại.";
                     }
                 }
             }
+
             include "user/sanpham/cart.php";
             break;
         case 'remove':
@@ -223,7 +238,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                     $thanhtoan = $_POST['thanhtoan'];
                     $orderCode = 'G' . rand(1, 10000);
                     // Tính toán tổng giá với giảm giá
-                    $tong_gia_sau_giam_gia = $tong_gia - $giamgia;
+                    $tong_gia_sau_giam_gia = $tong_gia - $giamgia + 7;
                     if ($thanhtoan == 'Thanh toán khi nhận hàng') {
 
                         $hoa_don = array(
@@ -328,12 +343,36 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             break;
 
         case 'confirm':
+            if (isset($_GET['vnp_Amount'])) {
+                $_SESSION['code_cart'] = $_GET['vnp_TxnRef'];
+                $vnp_Amount = $_GET['vnp_Amount'];
+                $vnp_BankCode = $_GET['vnp_BankCode'];
+                $vnp_BankTranNo = $_GET['vnp_BankTranNo'];
+                $vnp_OrderInfo = $_GET['vnp_OrderInfo'];
+                $vnp_PayDate = $_GET['vnp_PayDate'];
+                $vnp_TmnCode = $_GET['vnp_TmnCode'];
+                $vnp_CardType = $_GET['vnp_CardType'];
+                $vnp_TransactionNo = $_GET['vnp_TransactionNo'];
+                $code_cart = $_SESSION['code_cart'];
+                $insert_vnpay = insert_vnpay($vnp_Amount, $vnp_BankCode, $vnp_BankTranNo, $vnp_OrderInfo, $vnp_PayDate, $vnp_TmnCode, $vnp_CardType, $vnp_TransactionNo, $code_cart);
+            }
             include "user/sanpham/confirm.php";
             break;
         case 'myorder':
             if (isset($_SESSION['username'])) {
                 $id_user = $_SESSION['username']['id_user'];
-                $hoadon = loadall_hoadon($id_user);
+                $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+                $limit = 10;
+                $total_records = get_total_hd($id_user); // Truyền điều kiện tìm kiếm vào get_total_products
+                $total_records = intval($total_records);
+                $total_page = ceil($total_records / $limit);
+                if ($current_page > $total_page) {
+                    $current_page = $total_page;
+                } else if ($current_page < 1) {
+                    $current_page = 1;
+                }
+                $start = ($current_page - 1) * $limit;
+                $hoadon = loadall_hoadon($id_user, $start, $limit);
             }
             include "user/sanpham/myorder.php";
             break;
@@ -344,7 +383,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             }
             if (isset($_SESSION['username'])) {
                 $id_user = $_SESSION['username']['id_user'];
-                $hoadon = loadall_hoadon($id_user);
+                $hoadon = loadall_hoadon($id_user,$start, $limit);
             }
             include "user/sanpham/myorder.php";
             break;
