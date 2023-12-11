@@ -96,19 +96,26 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 }
                 $product_id = $id_sp . '_' . $size; // Tạo ID sản phẩm duy nhất
 
+                $hinh = ""; // Placeholder for the image URL
+
+                // Load the image URL based on product ID
+                if ($sp) {
+                    $hinh = $sp['img']; // Assuming 'hinh' is the key for the image URL in the $sp array
+                }
+
                 if (!isset($_SESSION['cart'][$product_id])) {
                     $_SESSION['cart'][$product_id] = array(
                         "id_sp" => $id_sp,
                         "ten_sp" => $ten_sp,
                         "gia_khuyenmai" => $gia_khuyenmai,
                         "soluong" => $soluong,
-                        "size" => $size
+                        "size" => $size,
+                        "hinh" => $hinh // Store the image URL in the session
                     );
                 } else {
                     $_SESSION['cart'][$product_id]['soluong'] += $soluong;
                 }
             }
-
 
             $total = 0;
             if (isset($_SESSION['cart']) && count($_SESSION['cart']) > 0) {
@@ -118,9 +125,9 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 $_SESSION['total'] = $total; // Lưu tổng vào session
             }
 
-
             include "user/sanpham/cart.php";
             break;
+
         case "update":
             if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id_sp']) && isset($_POST['quantity_' . $_POST['id_sp']])) {
                 $id_sp = $_POST['id_sp'];
@@ -130,7 +137,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 $id_sp = $_POST['id_sp'];
                 $product_id = $_POST['id_sp'] . '_' . $_POST['size'];
                 $quantity = $_POST['quantity_' . $product_id];
-                $sp=loadone_sanpham($id_sp);
+                $sp = loadone_sanpham($id_sp);
 
                 // Update the quantity in the cart
                 foreach ($_SESSION['cart'] as $key => $product) {
@@ -389,7 +396,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             }
             if (isset($_SESSION['username'])) {
                 $id_user = $_SESSION['username']['id_user'];
-                $hoadon = loadall_hoadon($id_user,$start, $limit);
+                $hoadon = loadall_hoadon($id_user, $start, $limit);
             }
             include "user/sanpham/myorder.php";
             break;
@@ -426,7 +433,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                                 $thongbao = "<div class='notification'>Email không hợp lệ.</div>";
                             } else {
                                 // Check if the username is already taken
-                                if (checkName($username)) { 
+                                if (checkName($username)) {
                                     $thongbao = "<div class='notification'>Tên đăng nhập đã tồn tại. Vui lòng chọn một tên đăng nhập khác.</div>";
                                 } else {
                                     // Nếu tất cả các kiểm tra đều thành công, thì tiếp tục đăng ký
