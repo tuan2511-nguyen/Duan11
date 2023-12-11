@@ -31,6 +31,7 @@
                         <th>Tên tài khoản</th>
                         <th>Nội dung</th>
                         <th>Ngày đăng</th>
+                        <th>Chức năng</th>
                         <!--
                         <th class="action-column">Chức năng</th>-->
                     </tr>
