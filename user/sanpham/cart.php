@@ -1,13 +1,13 @@
 <?php
-if(isset($sp)){
-	if (is_array($sp)) {
-		extract($sp);
-		$hinh = $img_path . $img;
-	}
-}else{
-	
+$hinh = ''; // Initialize $hinh
+
+if (isset($sp)) {
+    if (is_array($sp)) {
+        extract($sp);
+        $hinh = $img_path . $img;
+    }
 }
-?> 
+?>
 <main class="bg_gray">
 	<div class="container margin_30">
 		<div class="page_header">
