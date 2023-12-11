@@ -10,6 +10,7 @@ if (is_array($sp)) {
             <div class="col-md-6">
                 <div class="all">
                     <div class="slider">
+<<<<<<< HEAD
                         <div class="owl-carousel owl-theme main">
                             <div style="background-image: url(<?= $hinh ?>);" class="item-box"></div>
                             <div style="background-image: url(img/products/shoes/2.jpg);" class="item-box"></div>
@@ -17,6 +18,10 @@ if (is_array($sp)) {
                             <div style="background-image: url(img/products/shoes/4.jpg);" class="item-box"></div>
                             <div style="background-image: url(img/products/shoes/5.jpg);" class="item-box"></div>
                             <div style="background-image: url(img/products/shoes/6.jpg);" class="item-box"></div>
+=======
+                        <div class="owl-carousel owl-theme main"> 
+                            <div style="background-image: url(<?=$hinh?>);" class="item-box"></div>
+>>>>>>> f6157c3e0b1a1586d89a3bd4fc0d44994757590c
                         </div>
                         <div class="left nonl"><i class="ti-angle-left"></i></div>
                         <div class="right"><i class="ti-angle-right"></i></div>
