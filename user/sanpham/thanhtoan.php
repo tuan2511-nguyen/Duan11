@@ -35,14 +35,14 @@
 								<div class="row no-gutters">
 									<div class="col-12">
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Full Address*" name="diachi">
+											<input type="text" class="form-control" placeholder="Full Address*" name="diachi" require>
 										</div>
 									</div>
 								</div>
 								<div class="row no-gutters">
 									<div class="col-12">
 										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Telephone *" name="sdt">
+											<input type="text" class="form-control" placeholder="Telephone *" name="sdt" require>
 										</div>
 									</div>
 								</div>

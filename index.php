@@ -82,7 +82,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             }
             include "user/binhluan/binhluan.php";
             break;
-        case 'viewcart':
+        case 'viewcart': 
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $id_sp = $_POST['id_sp'];
                 $ten_sp = $_POST['ten_sp'];
