@@ -68,6 +68,9 @@
                 <a href="index.php?act=add-danhmuc"  class="form">
                     <input type="button" value="Thêm Danh mục">
                 </a>-->
+                <form action="" method="post">
+                <input type="hidden" name="username" value="<?php if (isset($username) && ($username > 0)) echo $username; ?>">
+                </form>
             </div>
             <br>
             <?php

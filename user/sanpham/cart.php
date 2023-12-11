@@ -1,13 +1,13 @@
 <?php
-// if(isset($sp)){
-// 	if (is_array($sp)) {
-// 		extract($sp);
-// 		$hinh = $img_path . $img;
-// 	}
-// }else{
+if(isset($sp)){
+	if (is_array($sp)) {
+		extract($sp);
+		$hinh = $img_path . $img;
+	}
+}else{
 	
-// }
-?>
+}
+?> 
 <main class="bg_gray">
 	<div class="container margin_30">
 		<div class="page_header">
@@ -25,16 +25,16 @@
 			<thead>
 				<tr>
 					<th>
-						Product
+						Sản phẩm
 					</th>
 					<th>
-						Price
+						Giá
 					</th>
 					<th>
-						Quantity
+						Số lượng
 					</th>
 					<th>
-						Subtotal
+						Tổng giá
 					</th>
 					<th>
 
@@ -49,12 +49,12 @@
 						echo '<tr data-id="' . $product_id . '">
 								<td>
 									<div class="thumb_cart">
-										<img src="" class="lazy" alt="Ảnh">
+										<img src="'.$hinh.'" class="lazy" alt="Ảnh">
 									</div>
 									<span class="item_cart">' . $item['ten_sp'] . ' (Size: ' . $item['size'] . ')</span>
 								</td>
 								<td id="price_' . $product_id . '">
-									<strong>$' . $item['gia_khuyenmai'] . '</strong>
+									<strong>' . $item['gia_khuyenmai'] . '₫</strong>
 								</td>
 								<td>
 									<form action="index.php?act=update" method="post" class="update-form">
@@ -66,7 +66,7 @@
 									</form>
 								</td>
 								<td id="total_' . $product_id . '">
-									<strong>$' . ($item['gia_khuyenmai'] * $item['soluong']) . '</strong>
+									<strong>' . ($item['gia_khuyenmai'] * $item['soluong']) . '₫</strong>
 								</td>
 								<td class="options">
 									<a href="index.php?act=remove&id_sp=' . $item['id_sp'] . '&size=' . $item['size'] . '"><i class="ti-trash"></i></a>
@@ -75,7 +75,7 @@
 							</tr>';
 					}
 				} else {
-					echo "<h3 style='text-align:center;'>Your cart is empty!</h3>";
+					echo "<h3 style='text-align:center;'>Giỏ hàng trống!</h3>";
 				}
 				?>
 
@@ -84,7 +84,7 @@
 
 		<div class="row add_top_30 flex-sm-row-reverse cart_actions">
 			<div class="col-sm-4 text-end">
-				<button type="button" class="btn_1 gray"><a href="index.php?act=danhmuc">Update Cart</a></button>
+				<button type="button" class="btn_1 gray"><a href="index.php?act=danhmuc">Mua hàng</a></button>
 			</div>
 			<div class="col-sm-8">
 				<div class="apply-coupon">
@@ -121,32 +121,32 @@
 					<!-- Trong trang hiện tại hoặc trang giỏ hàng -->
 					<ul>
 						<li>
-							<span>Subtotal</span> $<?php echo number_format($total, 2); ?>
+							<span>Tổng giá</span> <?php echo number_format($total); ?>₫
 						</li>
 						<?php
 						// Kiểm tra giỏ hàng có sản phẩm không để quyết định hiển thị phí vận chuyển và giảm giá
 						if (!empty($_SESSION['cart'])) {
 							echo '<li>
-									<span>Shipping</span> $7.00
+									<span>Shipping</span> 50,000₫
 								</li>';
 							if (isset($_POST['coupon-code'])&& $couponInfo && !$couponInfo['trangthai'] && strtotime($couponInfo['ngaybatdau']) < time()) {
 								echo '<li>
-										<span>Discount</span> -$' . number_format($discount, 2) . '
+										<span>Discount</span> -' . number_format($discount) . '₫
 									</li>';
 
 								echo '<li>
-										<span>Total</span> $' . number_format($discountedTotal + 7, 2) . '
+										<span>Thành tiền</span> ' . number_format($discountedTotal + 50000) . '₫
 									</li>';
 							} else {
 								// Nếu không có mã giảm giá, hiển thị tổng giá không giảm giá
 								echo '<li>
-										<span>Total</span> $' . number_format($total + 7, 2) . '
+										<span>Thành tiền</span> ' . number_format($total + 50000) . '₫
 									</li>';
 							}
 						} else {
 							// Nếu giỏ hàng trống, hiển thị thông báo hoặc thực hiện hành động khác
 							echo '<li>
-									<span>Total</span> $' . number_format($total, 2) . '
+									<span>Thành tiền</span> ' . number_format($total) . '₫
 								</li>';
 						}
 						?>
@@ -157,15 +157,15 @@
 						// Kiểm tra nếu giỏ hàng không trống
 						if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
 							// Nếu đã đăng nhập và giỏ hàng không trống, chuyển hướng đến trang thanh toán
-							echo '<a href="index.php?act=thanhtoan" class="btn_1 full-width cart">Proceed to Checkout</a>';
+							echo '<a href="index.php?act=thanhtoan" class="btn_1 full-width cart">Thanh toán</a>';
 							exit();
 						} else {
 							// Nếu giỏ hàng trống, hiển thị thông báo hoặc thực hiện hành động khác
-							echo '<p>Your cart is empty. Please add items to your cart before proceeding to checkout.</p>';
+							echo '<p>Giỏ hàng của bạn trống trơn. Vui lòng thêm sản phẩm trước khi thanh toán.</p>';
 							echo '<a href="index.php?act=danhmuc" class="btn_1 full-width cart">Mua Hàng</a>';
 						}
 					} else {
-						echo '<a href="index.php?act=dangnhap" class="btn_1 full-width cart">Proceed to Checkout</a>';
+						echo '<a href="index.php?act=dangnhap" class="btn_1 full-width cart">Thanh toán</a>';
 					}
 					?>
 

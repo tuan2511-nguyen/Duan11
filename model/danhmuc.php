@@ -1,4 +1,9 @@
 <?php
+    function checkdm($id_dm){
+        $sql = "SELECT * FROM sanpham WHERE id_dm = $id_dm";
+        $check = pdo_query($sql);
+        return $check;
+    }
     function insert_danhmuc($ten_dm){
         $sql="insert into danhmuc(ten_dm) values('$ten_dm')";
         pdo_execute($sql);

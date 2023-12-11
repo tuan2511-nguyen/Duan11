@@ -76,19 +76,19 @@
 								</div>
 								<ul>
 									<li class="">
-										<a href="index.php" class="">Home</a> 
+										<a href="index.php" class="">Trang chủ</a> 
 									</li>
 									<li class="">
 										<a href="javascript:void(0);" class="" onclick="window.location.href='index.php?act=danhmuc';">Sản phẩm</a>
 									</li>
 									<li class="">
-										<a href="javascript:void(0);" class="">Extra Pages</a>
+										<a href="index.php?act=gioithieu" class="">Giới thiệu</a>
 									</li>
 									<li>
-										<a href="../blog.html">Blog</a>
+										<a href="index.php?act=blog">Blog</a>
 									</li>
 									<li>
-										<a href="#0">Buy Template</a>
+										<a href="index.php?act=lienhe">Liên hệ</a>
 									</li>
 								</ul>
 							</div>
@@ -99,10 +99,7 @@
 								<li>
 									<div class="dropdown dropdown-cart">
 										<a href="index.php?act=viewcart" class="cart_bt"></a>
-<<<<<<< HEAD
-=======
 									</div>
->>>>>>> 2dfa9411111c89dac3c32199978c6a77b8ae7fc3
 									<!-- /dropdown-cart-->
 								</li>
 								<li>

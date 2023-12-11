@@ -15,28 +15,30 @@
             <thead>
                 <tr>
                     <th>
-                        Product
+                        Sản phẩm
                     </th>
                     <th>
                         Size
                     </th>
                     <th>
-                        Quantity
+                        Số lượng
                     </th>
                     <th>
-                        Subtotal
+                        Tổng giá
                     </th>
                 </tr>
             </thead>
             <tbody>
                 <?php
                 // Lặp qua mỗi sản phẩm trong đơn hàng
-                foreach ($dh as $sanpham) {
+                foreach ($dh as $sanpham) { 
+                    extract($sanpham);
+                    $hinh = $img_path . $img;
                 ?>
                     <tr>
                         <td>
                             <div class="thumb_cart">
-                                <img src="img/products/<?php echo $sanpham['img']; ?>" data-src="img/products/<?php echo $sanpham['img']; ?>" class="lazy" alt="Product Image">
+                                <img src="<?=$hinh?>" class="lazy" alt="Product Image">
                             </div>
                             <span class="item_cart"><?php echo $sanpham['ten_sp']; ?></span>
                         </td>
@@ -47,7 +49,7 @@
                             <div><?php echo $sanpham['soluong']; ?></div>
                         </td>
                         <td>
-                            <strong>$<?php echo $sanpham['giaban'] * $sanpham['soluong']; ?></strong>
+                            <strong><?php echo $sanpham['giaban'] * $sanpham['soluong']; ?>₫</strong>
                         </td>
                         <td class="options"></td>
                     </tr>
@@ -55,8 +57,8 @@
                 }
                 ?>
                 <td colspan="2"></td>
-                <td><strong>Total:</strong></td>
-                <td> <strong><?php echo $dh[0]['tonggia']; ?>$</strong></td>
+                <td><strong>Thành tiền:</strong></td>
+                <td> <strong><?php echo $dh[0]['tonggia']; ?>₫</strong></td>
                 <td></td>
                 </tr>
             </tbody>
@@ -69,10 +71,10 @@
             </div>
             <div class="col-sm-8">
                 <ul class="ctdh" style="list-style: none; font-size: 20px; line-height: 30px;">
-                    <li>Địa chỉ giao hàng: <?php echo $dh[0]['diachi']; ?></li>
-                    <li>Phương thức thanh toán: <?php echo $dh[0]['thanhtoan']; ?></li>
-                    <li>Vận chuyển: <?php echo $dh[0]['vanchuyen']; ?></li>
-                    <li>Trạng thái: <?php echo $dh[0]['trangthai']; ?></li>
+                    <li><strong>Địa chỉ giao hàng:</strong> <?php echo $dh[0]['diachi']; ?></li>
+                    <li><strong>Phương thức thanh toán:</strong> <?php echo $dh[0]['thanhtoan']; ?></li>
+                    <li><strong>Vận chuyển:</strong> <?php echo $dh[0]['vanchuyen']; ?></li>
+                    <li><strong>Trạng thái:</strong> <?php echo $dh[0]['trangthai']; ?></li>
                 </ul>
             </div>
         </div>

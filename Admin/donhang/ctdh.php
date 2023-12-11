@@ -3,18 +3,18 @@
         <tr>
             <th>
 
-            </th>
+            </th> 
             <th>
-                Product
+                Sản phẩm
             </th>
             <th>
                 Size
             </th>
             <th>
-                Quantity
+                Số lượng 
             </th>
             <th>
-                Subtotal
+                Tổng giá
             </th>
         </tr>
     </thead>
@@ -22,12 +22,14 @@
         <?php
         // Lặp qua mỗi sản phẩm trong đơn hàng
         foreach ($dh as $sanpham) {
+            extract($sanpham);
+            $hinhpath = "../upload/" . $img;
+            $hinh = "<img src='" . $hinhpath . "' height='80px'>";
+       
         ?>
             <tr>
                 <td>
-                    <div class="thumb_cart">
-                        <img src="img/products/<?php echo $sanpham['img']; ?>" data-src="img/products/<?php echo $sanpham['img']; ?>" class="lazy" alt="Product Image">
-                    </div>
+                    <?=$hinh?>
                 <td>
                     <span class="item_cart"><?php echo $sanpham['ten_sp']; ?></span>
                 </td>
@@ -39,15 +41,15 @@
                     <div><?php echo $sanpham['soluong']; ?></div>
                 </td>
                 <td>
-                    <strong>$<?php echo $sanpham['giaban'] * $sanpham['soluong']; ?></strong>
+                    <strong><?php echo $sanpham['giaban'] * $sanpham['soluong']; ?>₫</strong>
                 </td>
             </tr>
         <?php
         }
         ?>
         <td colspan="3"></td>
-        <td><strong>Total:</strong></td>
-        <td> <strong><?php echo $dh[0]['tonggia']; ?>$</strong></td>
+        <td><strong>Thành tiền:</strong></td>
+        <td> <strong><?php echo $dh[0]['tonggia']; ?>₫</strong></td>
         </tr>
     </tbody>
 </table>

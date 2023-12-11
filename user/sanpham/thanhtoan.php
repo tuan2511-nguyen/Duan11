@@ -8,7 +8,7 @@
 					<li>Page active</li>
 				</ul>
 			</div>
-			<h1>Sign In or Create an Account</h1>
+			<h1>Thanh Toán</h1>
 
 		</div>
 		<!-- /page_header -->
@@ -16,7 +16,7 @@
 
 			<div class="col-lg-4 col-md-6">
 				<div class="step first">
-					<h3>1. User Info and Billing address</h3>
+					<h3>1. Thông tin người dùng và địa chỉ nhận hàng</h3>
 					<ul class="nav nav-tabs" id="tab_checkout" role="tablist">
 						<li class="nav-item">
 							<a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#tab_1" role="tab" aria-controls="tab_1" aria-selected="true">Thông tin</a>
@@ -59,7 +59,7 @@
 			</div>
 			<div class="col-lg-4 col-md-6">
 				<div class="step middle payments">
-					<h3>2. Payment and Shipping</h3>
+					<h3>2. Phương thức thanh toán</h3>
 					<ul>
 						<li>
 							<label class="container_radio">Thanh toán khi nhận hàng
@@ -102,35 +102,35 @@
 		</div>
 		<div class="col-lg-4 col-md-6">
 			<div class="step last">
-				<h3>3. Order Summary</h3>
+				<h3>3. Thông tin đơn hàng</h3>
 				<div class="box_general summary">
 					<ul>
 						<?php foreach ($cart as $san_pham) : ?>
 							<li class="clearfix">
 								<em><?= $san_pham['ten_sp'] ?> x <?= $san_pham['soluong'] ?></em>
-								<span>$<?= $san_pham['gia_khuyenmai'] * $san_pham['soluong'] ?></span>
+								<span><?= $san_pham['gia_khuyenmai'] * $san_pham['soluong'] ?>₫</span>
 							</li>
 						<?php endforeach; ?>
 					</ul>
 					<ul>
-						<li class="clearfix"><em><strong>Subtotal</strong></em> <span>$<?= number_format($tong_gia, 2) ?></span></li>
-						<li class="clearfix"><em><strong>Shipping</strong></em> <span>$7</span></li>
+						<li class="clearfix"><em><strong>Tổng giá</strong></em> <span><?= number_format($tong_gia) ?>₫</span></li>
+						<li class="clearfix"><em><strong>Shipping</strong></em> <span>50,000₫</span></li>
 						<?php if (isset($_SESSION['discount'])) : ?>
-							<li class="clearfix"><em><strong>Discount</strong></em> <span>-$<?= number_format($_SESSION['discount'], 2) ?></span></li>
-							<li class="clearfix"><em><strong>Total</strong></em> <span>$<?= number_format($_SESSION['discountedTotal'] + 7, 2) ?></span></li>
+							<li class="clearfix"><em><strong>Discount</strong></em> <span>-<?= number_format($_SESSION['discount']) ?>₫</span></li>
+							<li class="clearfix"><em><strong>Thành tiền</strong></em> <span><?= number_format($_SESSION['discountedTotal'] + 50000) ?>₫</span></li>
 						<?php else : ?>
-							<li class="clearfix"><em><strong>Total</strong></em> <span>$<?= number_format($tong_gia + 7, 2) ?></span></li>
+							<li class="clearfix"><em><strong>Thành tiền</strong></em> <span><?= number_format($tong_gia + 50000) ?>₫</span></li>
 						<?php endif; ?>
 					</ul>
 
-					<div class="total clearfix">TOTAL <span>$
+					<div class="total clearfix">Thành tiền <span>
 							<?php
 							if (isset($_SESSION['discount'])) {
-								echo number_format($_SESSION['discountedTotal'] + 7, 2);
+								echo number_format($_SESSION['discountedTotal'] + 50000);
 							} else {
-								echo number_format($tong_gia + 7, 2);
+								echo number_format($tong_gia + 50000);
 							}
-							?>
+							?>₫
 						</span></div>
 
 

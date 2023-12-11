@@ -33,7 +33,6 @@
 
                     <button type="submit">Tìm kiếm</button>
                 </form> -->
-
                 <div id="Chart" style="width:100%; max-width:1500px; height:500px;"></div>
 
                 <table>
@@ -58,7 +57,7 @@
                     <tfoot>
                         <tr>
                             <td colspan="3"></td>
-                            <td><strong>Tổng doanh thu: <?= $doanhThu ?>$</strong></td>
+                            <td><strong>Tổng doanh thu: <?= $doanhThu ?>₫</strong></td>
                         </tr>
                     </tfoot>
                 </table>
@@ -130,7 +129,7 @@
 
                                 // Cập nhật giá trị cho các phần tử Chi tiết
                                 document.getElementById('detail-date').innerText = date;
-                                document.getElementById('detail-sales').innerText = sales + '$';
+                                document.getElementById('detail-sales').innerText = sales + '₫';
                                 document.getElementById('detail-quantity').innerText = quantity;
                             }
                         });

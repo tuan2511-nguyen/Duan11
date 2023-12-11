@@ -89,7 +89,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 $gia_khuyenmai = $_POST['gia_khuyenmai'];
                 $soluong = intval($_POST['soluong']); // Ép kiểu dữ liệu về int
                 $size = $_POST['size'];
-                // $sp = loadone_sanpham($id_sp);
+                $sp = loadone_sanpham($id_sp);
 
                 if (!isset($_SESSION['cart'])) {
                     $_SESSION['cart'] = array();
@@ -127,6 +127,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 $product_id = $_POST['id_sp'];
             }
             if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id_sp']) && isset($_POST['size']) && isset($_POST['quantity_' . $_POST['id_sp'] . '_' . $_POST['size']])) {
+                $id_sp = $_POST['id_sp'];
                 $product_id = $_POST['id_sp'] . '_' . $_POST['size'];
                 $quantity = $_POST['quantity_' . $product_id];
                 $sp=loadone_sanpham($id_sp);
@@ -243,7 +244,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                     $thanhtoan = $_POST['thanhtoan'];
                     $orderCode = 'G' . rand(1, 10000);
                     // Tính toán tổng giá với giảm giá
-                    $tong_gia_sau_giam_gia = $tong_gia - $giamgia + 7;
+                    $tong_gia_sau_giam_gia = $tong_gia - $giamgia + 50000;
                     if ($thanhtoan == 'Thanh toán khi nhận hàng') {
 
                         $hoa_don = array(
@@ -425,7 +426,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                                 $thongbao = "<div class='notification'>Email không hợp lệ.</div>";
                             } else {
                                 // Check if the username is already taken
-                                if (checkName($username) > 0) {
+                                if (checkName($username)) { 
                                     $thongbao = "<div class='notification'>Tên đăng nhập đã tồn tại. Vui lòng chọn một tên đăng nhập khác.</div>";
                                 } else {
                                     // Nếu tất cả các kiểm tra đều thành công, thì tiếp tục đăng ký
@@ -446,7 +447,6 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
             if (isset($_POST['btn_login']) && ($_POST['btn_login'])) {
                 $user = $_POST['username'];
                 $pass = $_POST['pass'];
-
                 // Kiểm tra xem tên người dùng và mật khẩu có trống không
                 if (empty($user) || empty($pass)) {
                     $thongbao1 = "Tên người dùng và mật khẩu không được để trống.";
@@ -481,6 +481,15 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
         case 'logout':
             session_unset();
             echo '<script>window.location.href = "index.php";</script>';
+            break;
+        case 'lienhe':
+            include "user/lienhe.php";
+            break;
+        case 'blog':
+            include "user/blog.php";
+            break;
+        case 'gioithieu':
+            include "user/gioithieu.php";
             break;
         default:
             include "user/home.php";

@@ -48,7 +48,7 @@
                                 echo '</td>
                                         <td>' . $current_hd['hoten'] . '</td>
                                         <td>' . $current_hd['thanhtoan'] . '</td>
-                                        <td>' . $current_hd['tonggia'] . '$</td>
+                                        <td>' . $current_hd['tonggia'] . '₫</td>
                                         <td>' . $current_hd['trangthai'] . '</td>
                                         <td>
                                             <button class="cancel-order" data-order-id="' . $current_hd['id_hd'] . '">Hủy đơn</button>
@@ -73,7 +73,7 @@
                         echo '</td>
                                 <td>' . $current_hd['hoten'] . '</td>
                                 <td>' . $current_hd['thanhtoan'] . '</td>
-                                <td>' . $current_hd['tonggia'] . '$</td>
+                                <td>' . $current_hd['tonggia'] . '₫</td>
                                 <td>' . $current_hd['trangthai'] . '</td>
                                 <td>
                                     <button class="cancel-order" data-order-id="' . $current_hd['id_hd'] . '">Hủy đơn</button>

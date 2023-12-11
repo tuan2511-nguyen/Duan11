@@ -140,8 +140,8 @@
 									<h3>' . $ten_sp . '</h3>
 								</a>
 								<div class="price_box">
-									<span class="new_price">' . $gia_khuyenmai . '</span>
-									<span class="old_price">' . $gia_goc . '</span>
+									<span class="new_price">' . $gia_khuyenmai . '₫</span> 
+									<span class="old_price">' . $gia_goc . '₫</span>
 								</div>
 								<ul>
 									<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
@@ -210,66 +210,66 @@
 				<div class="main_title">
 					<h2>Tin tức mới nhất</h2>
 					<span>Blog</span>
-					<p>Cum doctus civibus efficiantur in imperdiet deterruisset</p>
+					<p></p>
 				</div>
 				<div class="row">
 					<div class="col-lg-6">
-						<a class="box_news" href="blog.html">
+						<a class="box_news" href="">
 							<figure>
-								<img src="img/blog-thumb-placeholder.jpg" data-src="img/blog-thumb-1.jpg" alt="" width="400" height="266" class="lazy">
-								<figcaption><strong>28</strong>Dec</figcaption>
+								<img src="upload/Thiet-ke-chua-co-ten-2023-12-10T162548.980.png" alt="" width="400" height="266" class="lazy">
+								<figcaption><strong>20</strong>11</figcaption>
 							</figure>
 							<ul>
 								<li>by Mark Twain</li>
-								<li>20.11.2017</li>
+								<li>20.11.2023</li>
 							</ul>
-							<h4>Pri oportere scribentur eu</h4>
-							<p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....</p>
+							<h4>Điểm qua 8 đôi Air Jordan Retro được phát hành trước năm 2024</h4>
+							<p>Điều có thể gây nhầm lẫn với các đợt phát hành giày sneaker, vì có vẻ như giày sneaker đang giảm giá mỗi ngày. Nhưng Authentic Shoes đã....</p>
 						</a>
 					</div>
 					<!-- /box_news -->
 					<div class="col-lg-6">
 						<a class="box_news" href="blog.html">
 							<figure>
-								<img src="img/blog-thumb-placeholder.jpg" data-src="img/blog-thumb-2.jpg" alt="" width="400" height="266" class="lazy">
-								<figcaption><strong>28</strong>Dec</figcaption>
+								<img src="upload/Thiet-ke-chua-co-ten-2023-12-08T173933.351.png" alt="" width="400" height="266" class="lazy">
+								<figcaption><strong>28</strong>11</figcaption>
 							</figure>
 							<ul>
 								<li>By Jhon Doe</li>
-								<li>20.11.2017</li>
+								<li>28.11.2023</li>
 							</ul>
-							<h4>Duo eius postea suscipit ad</h4>
-							<p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....</p>
+							<h4>6 đôi sneaker bạn nên thêm vào “rotation” của mình năm 2024</h4>
+							<p>Các thương hiệu giày sneaker trên toàn cầu hiện đang hoàn thiện lịch phát hành của họ cho nửa đầu năm 2024 và đang có rất nhiều áp lực.....</p>
 						</a>
 					</div>
 					<!-- /box_news -->
 					<div class="col-lg-6">
 						<a class="box_news" href="blog.html">
 							<figure>
-								<img src="img/blog-thumb-placeholder.jpg" data-src="img/blog-thumb-3.jpg" alt="" width="400" height="266" class="lazy">
-								<figcaption><strong>28</strong>Dec</figcaption>
+								<img src="upload/Thiet-ke-chua-co-ten-2023-12-08T170830.245.png" alt="" width="400" height="266" class="lazy">
+								<figcaption><strong>20</strong>12</figcaption>
 							</figure>
 							<ul>
 								<li>By Luca Robinson</li>
-								<li>20.11.2017</li>
+								<li>20.12.2023</li>
 							</ul>
-							<h4>Elitr mandamus cu has</h4>
-							<p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....</p>
+							<h4>Đâu là những đôi sneaker chủ đề Giáng sinh tốt nhất mọi thời đại?</h4>
+							<p>It’s begging to look a lot like Christmas”, và bạn biết điều đó có nghĩa là gì không? Đã đến lúc bắt đầu chọn những đôi giày thể thao theo....</p>
 						</a>
 					</div>
 					<!-- /box_news -->
 					<div class="col-lg-6">
 						<a class="box_news" href="blog.html">
 							<figure>
-								<img src="img/blog-thumb-placeholder.jpg" data-src="img/blog-thumb-4.jpg" alt="" width="400" height="266" class="lazy">
-								<figcaption><strong>28</strong>Dec</figcaption>
+								<img src="upload/Thiet-ke-chua-co-ten-2023-12-05T145036.905.png" alt="" width="400" height="266" class="lazy">
+								<figcaption><strong>28</strong>12</figcaption>
 							</figure>
 							<ul>
 								<li>By Paula Rodrigez</li>
-								<li>20.11.2017</li>
+								<li>28.12.2023</li>
 							</ul>
-							<h4>Id est adhuc ignota delenit</h4>
-							<p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....</p>
+							<h4>Stussy x Nike: 23 năm lịch sử hợp tác đình đám (Phần 2)</h4>
+							<p>Hơn 20 năm hợp tác, Stussy và Nike đã liên tục gây ấn tượng với những người đam mê sneaker bởi các siêu phẩm của họ. Ở phần 2 của....</p>
 						</a>
 					</div>
 					<!-- /box_news -->

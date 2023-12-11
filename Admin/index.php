@@ -43,8 +43,14 @@ if (isset($_GET['act'])) {
             break;
         case 'xoadm':
             if (isset($_GET['id_dm']) && ($_GET['id_dm'] > 0)) {
-                delete_danhmuc($_GET['id_dm']);
-                $thongbao = "Xóa thành công";
+                $id_dm = $_GET['id_dm'];
+                if (checkdm($id_dm)) {
+                    $thongbao = "Danh mục có sản phẩm";
+                    echo "<script>alert('$thongbao');</script>";
+                } else {
+                    delete_danhmuc($id_dm);
+                    $thongbao = "Xóa thành công";
+                }
             }
             $listdm = loadall_danhmuc();
             include "danhmuc/list-danhmuc.php";
@@ -205,6 +211,7 @@ if (isset($_GET['act'])) {
             if (isset($_GET['id_user']) && ($_GET['id_user'] > 0)) {
                 delete_taikhoan($_GET['id_user']);
                 $thongbao = "Xóa thành công";
+        
             }
 
             $listtaikhoan = loadall_taikhoan();
