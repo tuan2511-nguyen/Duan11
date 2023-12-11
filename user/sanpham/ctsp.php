@@ -12,11 +12,6 @@ if (is_array($sp)) {
                     <div class="slider">
                         <div class="owl-carousel owl-theme main"> 
                             <div style="background-image: url(<?=$hinh?>);" class="item-box"></div>
-                            <div style="background-image: url(img/products/shoes/2.jpg);" class="item-box"></div>
-                            <div style="background-image: url(img/products/shoes/3.jpg);" class="item-box"></div>
-                            <div style="background-image: url(img/products/shoes/4.jpg);" class="item-box"></div>
-                            <div style="background-image: url(img/products/shoes/5.jpg);" class="item-box"></div>
-                            <div style="background-image: url(img/products/shoes/6.jpg);" class="item-box"></div>
                         </div>
                         <div class="left nonl"><i class="ti-angle-left"></i></div>
                         <div class="right"><i class="ti-angle-right"></i></div>
