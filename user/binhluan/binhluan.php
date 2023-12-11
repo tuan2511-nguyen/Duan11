@@ -9,11 +9,11 @@
 							<div class="form-group">
 								<label class="d-block">Overall rating</label>
 								<span class="rating mb-0">
-									<input type="radio" class="rating-input" id="5_star" name="rating" value="5"><label for="5_star" class="rating-star"></label>
-									<input type="radio" class="rating-input" id="4_star" name="rating" value="4"><label for="4_star" class="rating-star"></label>
-									<input type="radio" class="rating-input" id="3_star" name="rating" value="3"><label for="3_star" class="rating-star"></label>
-									<input type="radio" class="rating-input" id="2_star" name="rating" value="2"><label for="2_star" class="rating-star"></label>
-									<input type="radio" class="rating-input" id="1_star" name="rating" value="1"><label for="1_star" class="rating-star"></label>
+									<input type="radio" class="rating-input" id="5_star" name="rating" value="5"><label for="5_star" class="rating-star" require></label>
+									<input type="radio" class="rating-input" id="4_star" name="rating" value="4"><label for="4_star" class="rating-star" require></label>
+									<input type="radio" class="rating-input" id="3_star" name="rating" value="3"><label for="3_star" class="rating-star" require></label>
+									<input type="radio" class="rating-input" id="2_star" name="rating" value="2"><label for="2_star" class="rating-star" require></label>
+									<input type="radio" class="rating-input" id="1_star" name="rating" value="1"><label for="1_star" class="rating-star" require></label>
 								</span>
 							</div>
 						</div>
