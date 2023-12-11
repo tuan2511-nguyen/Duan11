@@ -89,6 +89,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 $gia_khuyenmai = $_POST['gia_khuyenmai'];
                 $soluong = intval($_POST['soluong']); // Ép kiểu dữ liệu về int
                 $size = $_POST['size'];
+                $hinh = $_POST['hinh'];
                 $sp = loadone_sanpham($id_sp);
 
                 if (!isset($_SESSION['cart'])) {
@@ -96,12 +97,12 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 }
                 $product_id = $id_sp . '_' . $size; // Tạo ID sản phẩm duy nhất
 
-                $hinh = ""; // Placeholder for the image URL
+                // $hinh = ""; // Placeholder for the image URL
 
                 // Load the image URL based on product ID
-                if ($sp) {
-                    $hinh = $sp['img']; // Assuming 'hinh' is the key for the image URL in the $sp array
-                }
+                // if ($sp) {
+                //     $hinh = $sp['img']; // Assuming 'hinh' is the key for the image URL in the $sp array
+                // }
 
                 if (!isset($_SESSION['cart'][$product_id])) {
                     $_SESSION['cart'][$product_id] = array(

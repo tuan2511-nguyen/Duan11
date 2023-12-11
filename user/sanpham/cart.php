@@ -49,7 +49,7 @@ if (isset($sp)) {
 						echo '<tr data-id="' . $product_id . '">
 								<td>
 									<div class="thumb_cart">
-										<img src="'.$hinh.'" class="lazy" alt="Ảnh">
+										<img src="'.$item['hinh'].'" class="lazy" alt="Ảnh">
 									</div>
 									<span class="item_cart">' . $item['ten_sp'] . ' (Size: ' . $item['size'] . ')</span>
 								</td>

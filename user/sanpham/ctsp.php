@@ -10,8 +10,8 @@ if (is_array($sp)) {
             <div class="col-md-6">
                 <div class="all">
                     <div class="slider">
-                        <div class="owl-carousel owl-theme main"> 
-                            <div style="background-image: url(<?=$hinh?>);" class="item-box"></div>
+                        <div class="owl-carousel owl-theme main">
+                            <div style="background-image: url(<?= $hinh ?>);" class="item-box"></div>
                             <div style="background-image: url(img/products/shoes/2.jpg);" class="item-box"></div>
                             <div style="background-image: url(img/products/shoes/3.jpg);" class="item-box"></div>
                             <div style="background-image: url(img/products/shoes/4.jpg);" class="item-box"></div>
@@ -38,7 +38,7 @@ if (is_array($sp)) {
                         <span class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i><em>4 reviews</em></span>
                         <div class="prod_options">
                             <div class="row">
-                                <label class="col-xl-5 col-lg-5 col-md-6 col-6"><strong>Size</strong>  <a href="#0" data-bs-toggle="modal" data-bs-target="#size-modal"><i class="ti-help-alt"></i></a></label>
+                                <label class="col-xl-5 col-lg-5 col-md-6 col-6"><strong>Size</strong> <a href="#0" data-bs-toggle="modal" data-bs-target="#size-modal"><i class="ti-help-alt"></i></a></label>
                                 <div class="col-xl-4 col-lg-5 col-md-6 col-6">
                                     <div class="custom-select-form">
                                         <select class="wide" id="size" name="size">
@@ -70,6 +70,7 @@ if (is_array($sp)) {
                         <br>
                         <div class="row">
                             <div class="col-lg-5 col-md-6">
+                                <input type="hidden" name="hinh" value="<?= $hinh ?>">
                                 <div class="price_main"><span class="new_price"><?php echo $ctsp['gia_khuyenmai'] ?>₫</span><span class="percentage">-20%</span> <span class="old_price"><?php echo $ctsp['gia_goc'] ?>₫</span></div>
                             </div>
                             <div class="col-lg-4 col-md-6">
@@ -196,7 +197,7 @@ if (is_array($sp)) {
 								<figure> 
 									<span class="ribbon off">-30%</span>
 									<a href="' . $linksp . '">
-										<img class="img-fluid lazy" src="'. $hinh .'">
+										<img class="img-fluid lazy" src="' . $hinh . '">
 									</a>
 									<div data-countdown="2019/05/15" class="countdown"></div>
 								</figure>
@@ -225,35 +226,35 @@ if (is_array($sp)) {
 
     <div class="feat">
         <div class="container">
-        <ul>
-						<li>
-							<div class="box">
-								<i class="ti-gift"></i>
-								<div class="justify-content-center">
-									<h3>Miễn phí vận chuyển</h3>
-									<p>Cho tất cả các đơn hàng</p>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="box">
-								<i class="ti-wallet"></i>
-								<div class="justify-content-center">
-									<h3>Thanh toán an toàn</h3>
-									<p>Thanh toán an toàn 100%</p>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="box">
-								<i class="ti-headphone-alt"></i>
-								<div class="justify-content-center">
-									<h3>Hỗ trợ 24/7</h3>
-									<p>Hỗ trợ trực tuyến hàng đầu</p>
-								</div>
-							</div>
-						</li>
-					</ul>
+            <ul>
+                <li>
+                    <div class="box">
+                        <i class="ti-gift"></i>
+                        <div class="justify-content-center">
+                            <h3>Miễn phí vận chuyển</h3>
+                            <p>Cho tất cả các đơn hàng</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="box">
+                        <i class="ti-wallet"></i>
+                        <div class="justify-content-center">
+                            <h3>Thanh toán an toàn</h3>
+                            <p>Thanh toán an toàn 100%</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="box">
+                        <i class="ti-headphone-alt"></i>
+                        <div class="justify-content-center">
+                            <h3>Hỗ trợ 24/7</h3>
+                            <p>Hỗ trợ trực tuyến hàng đầu</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
     <!--/feat-->
